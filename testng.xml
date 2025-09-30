@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="extentreport.Listener"></listener>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="NdosiAutomationTesting">
+        <parameter name="browser" value="Edge"/>
+        <classes>
+            <class name="tests.home.HomePageTests"></class>
+            <class name="tests.auth.LoginTests"></class>
+
+            <!-- <class name="tests.auth.RegisterTests"></class>-->
+
+            <class name="tests.auth.NormalLoginTests"></class>
+
+            <class name="tests.inventory.InventoryTests"></class>
+            <class name="tests.cart.CartTests"></class>
+
+            <class name="tests.cart.PurchaseTests"></class>
+            <class name="tests.cart.InvoiceTests"></class>
+        </classes>
+    </test>
+</suite>
