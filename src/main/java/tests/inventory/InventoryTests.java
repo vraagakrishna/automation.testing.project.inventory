@@ -112,172 +112,179 @@ public class InventoryTests extends TestsBase {
     public void inventoryFormLaptopPriceVerification() {
         inventoryPage.inventoryFormDevicePriceVerification(Enums.DeviceType.LAPTOP.getDisplayName());
     }
+
+    @Test(description = "Inventory form price verification on changing device type", groups = "7. Inventory Form Price Verification Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 15)
+    public void inventoryFormPriceVerificationOnChangingDeviceType() {
+        inventoryPage.inventoryFormDevicePriceVerificationOnChangingDeviceType(
+                Enums.DeviceType.PHONE.getDisplayName(), Enums.DeviceType.TABLET.getDisplayName()
+        );
+    }
     // </editor-fold>
 
     // <editor-fold desc="Positive Tests">
-    @Test(description = "Submit a valid inventory form with one phone", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 15)
+    @Test(description = "Submit a valid inventory form with one phone", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 16)
     public void validInventoryFormSubmissionWithOnePhone() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with one tablet", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 16)
+    @Test(description = "Submit a valid inventory form with one tablet", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 17)
     public void validInventoryFormSubmissionWithOneTablet() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with one laptop", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 17)
+    @Test(description = "Submit a valid inventory form with one laptop", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 18)
     public void validInventoryFormSubmissionWithOneLaptop() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with two phone", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 18)
+    @Test(description = "Submit a valid inventory form with two phone", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 19)
     public void validInventoryFormSubmissionWithTwoPhones() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 2, "Blue", UserTestData.address, "standard", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with two tablets", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 19)
+    @Test(description = "Submit a valid inventory form with two tablets", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 20)
     public void validInventoryFormSubmissionWithTwoTablet() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with two laptops", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 20)
+    @Test(description = "Submit a valid inventory form with two laptops", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 21)
     public void validInventoryFormSubmissionWithTwoLaptop() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with two 128GB phone", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 21)
+    @Test(description = "Submit a valid inventory form with two 128GB phone", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 22)
     public void validInventoryFormSubmissionWithTwo128GBPhones() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "128GB", 2, "Blue", UserTestData.address, "standard", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with two 128GB tablets", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 22)
+    @Test(description = "Submit a valid inventory form with two 128GB tablets", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 23)
     public void validInventoryFormSubmissionWithTwo128GBTablets() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "128GB", 2, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with two 128GB laptops", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 23)
+    @Test(description = "Submit a valid inventory form with two 128GB laptops", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 24)
     public void validInventoryFormSubmissionWithTwo128GBLaptops() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "128GB", 2, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with two 256GB phone", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 24)
+    @Test(description = "Submit a valid inventory form with two 256GB phone", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 25)
     public void validInventoryFormSubmissionWithTwo256GBPhones() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "256GB", 2, "Blue", UserTestData.address, "standard", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with two 256GB tablets", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 25)
+    @Test(description = "Submit a valid inventory form with two 256GB tablets", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 26)
     public void validInventoryFormSubmissionWithTwo256GBTablets() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "256GB", 2, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with two 256GB laptops", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 26)
+    @Test(description = "Submit a valid inventory form with two 256GB laptops", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 27)
     public void validInventoryFormSubmissionWithTwo256GBLaptops() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "256GB", 2, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with phone in express shipping", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 27)
+    @Test(description = "Submit a valid inventory form with phone in express shipping", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 28)
     public void validInventoryFormSubmissionWithPhoneExpressShipping() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "256GB", 2, "Blue", UserTestData.address, "express", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with tablet in express shipping", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 28)
+    @Test(description = "Submit a valid inventory form with tablet in express shipping", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 29)
     public void validInventoryFormSubmissionWithTabletExpressShipping() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "256GB", 2, "Gold", UserTestData.address, "express", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with laptop in express shipping", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 29)
+    @Test(description = "Submit a valid inventory form with laptop in express shipping", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 30)
     public void validInventoryFormSubmissionWithLaptopExpressShipping() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "256GB", 2, "Gold", UserTestData.address, "express", "none", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with phone in 1 year warranty", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 30)
+    @Test(description = "Submit a valid inventory form with phone in 1 year warranty", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 31)
     public void validInventoryFormSubmissionWithPhoneOneYearWarranty() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "256GB", 2, "Blue", UserTestData.address, "standard", "1yr", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with tablet in 1 year warranty", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 31)
+    @Test(description = "Submit a valid inventory form with tablet in 1 year warranty", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 32)
     public void validInventoryFormSubmissionWithTabletOneYearWarranty() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "256GB", 2, "Gold", UserTestData.address, "express", "1yr", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with laptop in 1 year warranty", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 32)
+    @Test(description = "Submit a valid inventory form with laptop in 1 year warranty", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 33)
     public void validInventoryFormSubmissionWithLaptopOneYearWarranty() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "256GB", 2, "Gold", UserTestData.address, "express", "1yr", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with phone in 2 year warranty", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 33)
+    @Test(description = "Submit a valid inventory form with phone in 2 year warranty", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 34)
     public void validInventoryFormSubmissionWithPhoneTwoYearWarranty() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "256GB", 2, "Blue", UserTestData.address, "standard", "2yr", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with tablet in 2 year warranty", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 34)
+    @Test(description = "Submit a valid inventory form with tablet in 2 year warranty", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 35)
     public void validInventoryFormSubmissionWithTabletTwoYearWarranty() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "256GB", 2, "Gold", UserTestData.address, "express", "2yr", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with laptop in 2 year warranty", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 35)
+    @Test(description = "Submit a valid inventory form with laptop in 2 year warranty", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 36)
     public void validInventoryFormSubmissionWithLaptopTwoYearWarranty() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "256GB", 2, "Gold", UserTestData.address, "express", "2yr", "");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with phone with 10 percent discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 36)
+    @Test(description = "Submit a valid inventory form with phone with 10 percent discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 37)
     public void validInventoryFormSubmissionWithPhoneTenPercentDiscount() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "256GB", 2, "Blue", UserTestData.address, "standard", "2yr", "SAVE10");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with tablet with 10 percent discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 37)
+    @Test(description = "Submit a valid inventory form with tablet with 10 percent discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 38)
     public void validInventoryFormSubmissionWithTabletTenPercentDiscount() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "256GB", 2, "Gold", UserTestData.address, "express", "2yr", "SAVE10");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with laptop with 10 percent discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 38)
+    @Test(description = "Submit a valid inventory form with laptop with 10 percent discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 39)
     public void validInventoryFormSubmissionWithLaptopTenPercentDiscount() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "256GB", 2, "Gold", UserTestData.address, "express", "2yr", "SAVE10");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with phone with 20 percent discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 39)
+    @Test(description = "Submit a valid inventory form with phone with 20 percent discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 40)
     public void validInventoryFormSubmissionWithPhoneTwentyPercentDiscount() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "256GB", 2, "Blue", UserTestData.address, "standard", "2yr", "SAVE20");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with tablet with 20 percent discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 40)
+    @Test(description = "Submit a valid inventory form with tablet with 20 percent discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 41)
     public void validInventoryFormSubmissionWithTabletTwentyPercentDiscount() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "256GB", 2, "Gold", UserTestData.address, "express", "2yr", "SAVE20");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit a valid inventory form with laptop with 20 percent discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 41)
+    @Test(description = "Submit a valid inventory form with laptop with 20 percent discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 42)
     public void validInventoryFormSubmissionWithLaptopTwentyPercentDiscount() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "256GB", 2, "Gold", UserTestData.address, "express", "2yr", "SAVE20");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
     }
 
-    @Test(description = "Submit inventory form with invalid discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 42)
+    @Test(description = "Submit inventory form with invalid discount", groups = "8. Inventory Form Positive Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 43)
     public void inventoryFormSubmissionWithInvalidDiscount() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "256GB", 2, "Gold", UserTestData.address, "express", "2yr", "SAVE50");
         inventoryPage.validAndResetInventoryFormSubmission(inventoryItem);
@@ -285,7 +292,7 @@ public class InventoryTests extends TestsBase {
     // </editor-fold>
 
     // <editor-fold desc="Additional Coverage Tests 2">
-    @Test(description = "Discount removal", groups = "6. Inventory Form Negative Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 43)
+    @Test(description = "Discount removal", groups = "6. Inventory Form Negative Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 44)
     public void discountRemoval() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "256GB", 2, "Gold", UserTestData.address, "express", "2yr", "SAVE20");
         inventoryPage.discountRemoval(inventoryItem);

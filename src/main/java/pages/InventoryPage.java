@@ -687,20 +687,7 @@ public class InventoryPage {
 
         this.selectDeviceType(selectedDeviceType);
 
-        javascriptExecutorUtils.scrollToView(step1PricingSummary_id);
-        screenshotUtils.captureAndAttach(driver, "Validating the price");
-
-        logger.info("Validate unit price");
-        String pricePerUnitFormatted = this.formatCurrency(inventoryItem.getUnitPrice());
-        this.validateUnitPrice(pricePerUnitFormatted);
-
-        // validate Quantity
-        logger.info(String.format("Validate quantity is %s", inventoryItem.getQuantity()));
-        this.validateQuantity(inventoryItem.getQuantity());
-
-        // validate Sub Total
-        logger.info("Validate sub total");
-        this.validateSubTotal(pricePerUnitFormatted);
+        this.validatePrice(inventoryItem);
 
         // remove Device selection
         this.selectDeviceType("Select");
@@ -711,6 +698,56 @@ public class InventoryPage {
         this.validateSubTotal(blankPrice);
 
         screenshotUtils.captureAndAttach(driver, "Validating the price after removing device selection");
+
+        this.resetInventoryForm();
+    }
+
+    public void inventoryFormDevicePriceVerificationOnChangingDeviceType(String selectedDeviceType1, String selectedDeviceType2) {
+        logger.info(String.format("Submit inventory form with %s device type", selectedDeviceType1));
+
+        InventoryItem inventoryItem = new InventoryItem(
+                selectedDeviceType1,
+                Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Black", "address1"
+        );
+
+        this.enterInventoryFormData(inventoryItem);
+
+        this.validatePrice(inventoryItem);
+
+        this.submitInventoryForm();
+
+        // wait until Step 2 is displayed
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(visibilityOf(inventoryReviewStep_id));
+
+        screenshotUtils.captureAndAttach(driver, "Navigating to Next step");
+
+        this.validateInventoryDetails(inventoryItem);
+
+        this.backToInventoryForm();
+
+
+        // changing Device Type selection
+        logger.info("Changing device type to: " + selectedDeviceType2);
+        inventoryItem.setDeviceType(selectedDeviceType2);
+
+        this.selectDeviceType(selectedDeviceType2);
+        this.selectBrand(inventoryItem.getBrand());
+
+        this.validatePrice(inventoryItem);
+
+        this.submitInventoryForm();
+
+        // wait until Step 2 is displayed
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(visibilityOf(inventoryReviewStep_id));
+
+        screenshotUtils.captureAndAttach(driver, "Navigating to Next step");
+
+        this.validateInventoryDetails(inventoryItem);
+
+        this.backToInventoryForm();
+
 
         this.resetInventoryForm();
     }
@@ -1585,10 +1622,16 @@ public class InventoryPage {
     private void validatePrice(InventoryItem item) {
         logger.info("Validate the price on the form");
 
+        javascriptExecutorUtils.scrollToView(step1PricingSummary_id);
         screenshotUtils.captureAndAttach(driver, "Validating the price");
 
+        logger.info("Validate unit price");
         this.validateUnitPrice(this.formatCurrency(item.getUnitPrice()));
+
+        logger.info(String.format("Validate quantity is %s", item.getQuantity()));
         this.validateQuantity(item.getQuantity());
+
+        logger.info("Validate sub total");
         this.validateSubTotal(this.formatCurrency(item.getSubTotalPrice()));
     }
 

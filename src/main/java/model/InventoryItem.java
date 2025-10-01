@@ -5,9 +5,12 @@ import java.util.Set;
 public class InventoryItem {
 
     // <editor-fold desc="Class Fields">
-    private final String deviceType;
     private final String storage;
+
+    private String deviceType;
+
     private String brand = "Select device type first";
+
     private String color = "Black";
 
     private String address = "";
@@ -77,6 +80,11 @@ public class InventoryItem {
     // <editor-fold desc="Getters and Setters">
     public String getDeviceType() {
         return deviceType;
+    }
+
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
+        this.calculatePrices();
     }
 
     public String getBrand() {
