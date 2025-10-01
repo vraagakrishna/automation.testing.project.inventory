@@ -314,4 +314,5 @@ public class InventoryItem {
         };
     }
     // </editor-fold>
+
 }

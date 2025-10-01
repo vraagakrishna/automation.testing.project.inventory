@@ -3,6 +3,7 @@ package utils;
 import org.openqa.selenium.WebDriver;
 
 public class DriverManager {
+
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
@@ -16,4 +17,5 @@ public class DriverManager {
     public static void unload() {
         driver.remove();
     }
+
 }

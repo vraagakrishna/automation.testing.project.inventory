@@ -21,4 +21,5 @@ public class HomePageTests extends TestsBase {
         loginPage.verifyLoginPageIsDisplayed();
     }
     // </editor-fold>
+
 }

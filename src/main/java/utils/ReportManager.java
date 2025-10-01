@@ -3,6 +3,7 @@ package utils;
 import com.aventstack.extentreports.ExtentTest;
 
 public class ReportManager {
+
     private static final ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
     public static ExtentTest getTest() {
@@ -16,4 +17,5 @@ public class ReportManager {
     public static void unload() {
         test.remove();
     }
+
 }

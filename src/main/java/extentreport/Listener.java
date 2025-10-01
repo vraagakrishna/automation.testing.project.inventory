@@ -101,10 +101,6 @@ public class Listener implements ITestListener {
 
     private void takeAfterScreenshot(ITestResult result) {
         if (driver != null) {
-            //String description = this.getDescription(result);
-            //String screenshotPath = screenshotUtils.takeScreenshot(driver, description + "_after");
-
-            //extentTest.addScreenCaptureFromPath(screenshotPath, "After Test Screenshot");
             screenshotUtils.captureAndAttach(driver, "After Test Screenshot");
         }
     }

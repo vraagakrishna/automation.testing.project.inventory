@@ -186,4 +186,5 @@ public class LoginPage {
         return emailField_id.getDomProperty("value");
     }
     // </editor-fold>
+
 }

@@ -280,4 +280,5 @@ public class RegisterPage {
         registerButton_id.click();
     }
     // </editor-fold>
+
 }

@@ -36,4 +36,5 @@ public class ExtentReportManager {
         return extentReports;
     }
     // </editor-fold>
+
 }

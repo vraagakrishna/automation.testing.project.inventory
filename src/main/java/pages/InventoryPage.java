@@ -1961,4 +1961,5 @@ public class InventoryPage {
     }
     // </editor-fold>
     // </editor-fold>
+
 }
