@@ -160,7 +160,7 @@
 - [x] 2yr warranty + express + SAVE10 combined math: verify subtotal + R89 + R25 − 10% lines equal displayed Total.
 - [x] State isolation: Add discounted laptop to cart, configure new phone (no discount) → existing cart laptop keeps
   discount line.
-- [ ] Remove from preview list (Step2 small panel) updates main cart summary totals instantly (no stale total).
+- [x] Remove from preview list (Step2 small panel) updates main cart summary totals instantly (no stale total).
 - [x] Single Confirm Purchase with discount: apply SAVE10 then Confirm Purchase (not cart) → toast includes discounted
   Total (no cart wording).
 - [ ] Double-click Place Order (cart) protection: rapid double click yields one toast and cart empties once.

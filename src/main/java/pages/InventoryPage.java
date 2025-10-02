@@ -143,6 +143,14 @@ public class InventoryPage {
     @FindBy(id = "breakdown-total-value")
     WebElement breakdownTotalValue_id;
     // </editor-fold>
+
+    // <editor-fold desc="Cart Review">
+    @FindBy(id = "cart-items-preview")
+    WebElement cartItemsPreview_id;
+
+    @FindBy(xpath = "//*[@id=\"cart-items-preview\"]/div[2]")
+    WebElement cartItemsPreviewList;
+    // </editor-fold>
     // </editor-fold>
 
     // <editor-fold desc="Inventory Form Price">
@@ -844,6 +852,9 @@ public class InventoryPage {
 
         logger.info(String.format("Items in cart: %s", inventoryItems.size()));
 
+        javascriptExecutorUtils.scrollToView(filteredCartItems.get(0));
+        screenshotUtils.captureAndAttach(driver, "Verify cart items");
+
         for (WebElement cartItem : filteredCartItems) {
             String idNumber = cartItem.getAttribute("id");
             idNumber = idNumber.replace(cartItemId, "");
@@ -881,8 +892,6 @@ public class InventoryPage {
         Assert.assertEquals(cartGrandTotalValue_id.getText(), grandTotalFormatted, "Grand total is incorrect");
 
         Assert.assertTrue(reviewCartBtn_id.isDisplayed(), "Review Cart Button is displayed");
-
-        screenshotUtils.captureAndAttach(driver, "Verify cart items");
     }
 
     public void removeAllItemsInCart() {
@@ -1449,6 +1458,80 @@ public class InventoryPage {
         }
 
         softAssert.assertAll();
+    }
+
+    public void addItemAndRemoveExistingItemOnReviewStep(InventoryItem inventoryItem, List<InventoryItem> previousItems) {
+        logger.info(String.format("Submit a valid inventory form with Device Type (%s), Brand (%s), Storage (%s), Quantity (%s), Color (%s), and Address (%s)\n" +
+                        "with Shipping (%s), Warranty (%s), Discount Code (%s)",
+                inventoryItem.getDeviceType(), inventoryItem.getBrand(), inventoryItem.getStorage(), inventoryItem.getQuantity(), inventoryItem.getColor(), inventoryItem.getAddress(),
+                inventoryItem.getShippingMethod(), inventoryItem.getWarranty(), inventoryItem.getDiscountCode()));
+
+        this.enterInventoryFormData(inventoryItem);
+
+        this.validatePrice(inventoryItem);
+
+        this.submitInventoryForm();
+
+        this.enterExtraDetails(inventoryItem);
+
+        // wait until Step 2 is displayed
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(visibilityOf(inventoryReviewStep_id));
+
+        screenshotUtils.captureAndAttach(driver, "Navigating to Next step");
+
+        this.validateInventoryDetails(inventoryItem);
+
+        logger.info("Checking if the cart items is visible");
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(visibilityOf(cartItemsPreview_id));
+
+        javascriptExecutorUtils.scrollToView(cartItemsPreview_id);
+        screenshotUtils.captureAndAttach(driver, "Cart items");
+
+        WebElement cartItem = cartItemsPreviewList.findElements(By.tagName("div")).get(0);
+        InventoryItem currentItem = previousItems.get(0);
+
+        javascriptExecutorUtils.scrollToView(cartItem);
+
+        logger.info("Verifying item: " + currentItem.getItemDescription());
+        WebElement itemDescription = cartItem.findElement(By.xpath(".//div[1]/span[1]"));
+        Assert.assertEquals(itemDescription.getText(), currentItem.getItemDescription(), "Item description is incorrect");
+
+        logger.info("Verifying warranty");
+        WebElement itemWarranty = cartItem.findElement(By.xpath(".//div[1]/span[2]"));
+        Assert.assertEquals(itemWarranty.getText(), "Warranty: " + currentItem.getWarranty(), "Item warranty is incorrect");
+
+        logger.info("Verifying shipping");
+        WebElement itemShipping = cartItem.findElement(By.xpath(".//div[1]/span[3]"));
+        Assert.assertEquals(itemShipping.getText(), "Ship: " + currentItem.getShippingMethod(), "Item shipping is incorrect");
+
+        if (currentItem.getDiscountPrice() > 0) {
+            logger.info("Verifying discount");
+            WebElement itemDiscount = cartItem.findElement(By.xpath(".//div[1]/span[4]"));
+            Assert.assertEquals(itemDiscount.getText(), "Discount: " + currentItem.getDiscountPercentageAsString(), "Item discount is incorrect");
+        }
+
+        logger.info("Verifying price");
+        WebElement itemTotalPrice = cartItem.findElement(By.xpath(".//div[2]"));
+        Assert.assertEquals(itemTotalPrice.getText(), this.formatCurrency(currentItem.getTotalPrice()), "Item total price is incorrect");
+
+        logger.info("Removing item from cart");
+        WebElement removeItemBtn = cartItem.findElement(By.xpath(".//button"));
+        Assert.assertTrue(removeItemBtn.isDisplayed(), "Remove item button is not displayed");
+
+        removeItemBtn.click();
+        previousItems.remove(currentItem);
+
+        screenshotUtils.captureAndAttach(driver, "Removed previous item");
+
+        logger.info("Add current item");
+        this.clickAddItemToCartButton();
+
+        logger.info("Verifying if previous item is removed");
+        this.verifyCartItems(new ArrayList<>(List.of(inventoryItem)));
+
+        this.validateBlankInventoryForm();
     }
     // </editor-fold>
 

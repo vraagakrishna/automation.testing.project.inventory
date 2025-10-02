@@ -193,7 +193,7 @@ public class CartTests extends TestsBase {
     // <editor-fold desc="Cart Tests Additional">
     @Test(description = "Add multiple items to cart", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 7)
     public void multiDevice() {
-        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
         inventoryPage.validateBlankInventoryForm();
 
@@ -230,6 +230,25 @@ public class CartTests extends TestsBase {
         inventoryPage.verifyNumberOfItemsInCart(1);
         inventoryItemList.remove(inventoryItem1);
         inventoryPage.verifyCartItems(inventoryItemList);
+
+        // Clean up
+        inventoryPage.removeAllItemsInCart();
+    }
+
+    @Test(description = "Remove item on cart review step", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 8)
+    public void removeItemOnCartReview() {
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "SAVE10");
+        inventoryPage.addItemToCart(inventoryItem1);
+        inventoryPage.validateBlankInventoryForm();
+
+        inventoryPage.isCartVisible();
+
+        inventoryPage.verifyNumberOfItemsInCart(1);
+
+
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "256GB", 1, "Gold", UserTestData.address, "express", "1yr", "SAVE10");
+
+        inventoryPage.addItemAndRemoveExistingItemOnReviewStep(inventoryItem2, new ArrayList<>(List.of(inventoryItem1)));
 
         // Clean up
         inventoryPage.removeAllItemsInCart();
