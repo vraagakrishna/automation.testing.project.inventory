@@ -190,7 +190,7 @@
 17. Accessibility Quick
 
 - [x] Tab cycles through all actionable elements (login → tabs → form → cart buttons → invoice buttons).
-- [ ] Radio storage selectable by keyboard.
+- [x] Radio storage selectable by keyboard.
 - [x] Error text uses role=alert; toast uses role=status.
 - [ ] Success popup dismiss button accessible via keyboard (Enter/Space).
 - [x] Invoice history panel accessible with aria-labels and proper focus management.

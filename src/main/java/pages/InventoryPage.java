@@ -8,6 +8,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -771,6 +772,23 @@ public class InventoryPage {
         this.backToInventoryForm();
 
         this.resetInventoryForm();
+    }
+
+    public void selectRadioButtonWithKeyboard(String selectedStorage) {
+        logger.info(String.format("Select %s storage with keyboard", selectedStorage));
+        this.selectRadioButtonWithKeyboard(storages, selectedStorage);
+
+        screenshotUtils.captureAndAttach(driver, String.format("Selected %s storage with keyboard", selectedStorage));
+
+        String chosenStorage = "";
+        for (WebElement radio : storages) {
+            if (radio.getAttribute("value").equals(selectedStorage) && radio.isSelected()) {
+                chosenStorage = selectedStorage;
+                break;
+            }
+        }
+
+        Assert.assertEquals(chosenStorage, selectedStorage, String.format("%s should be selected", selectedStorage));
     }
 
     public void discountRemoval(InventoryItem item) {
@@ -1615,6 +1633,27 @@ public class InventoryPage {
             if (radio.getAttribute("value").equals(selectedValue)) {
                 radio.click();
                 break;
+            }
+        }
+    }
+
+    private void selectRadioButtonWithKeyboard(List<WebElement> radioButtons, String valueToSelect) {
+        Actions actions = new Actions(driver);
+
+        // Focus the first radio button
+        WebElement firstRadio = radioButtons.get(0);
+        firstRadio.click();
+
+        for (WebElement radio : radioButtons) {
+            String val = radio.getAttribute("value");
+            if (val.equals(valueToSelect)) {
+                // Press space bar to select the focused radio
+                actions.sendKeys(Keys.SPACE).perform();
+                screenshotUtils.captureAndAttach(driver, "Desired item selected");
+                break;
+            } else {
+                // Move focus to next radio in the group (right arrow)
+                actions.sendKeys(Keys.ARROW_RIGHT).perform();
             }
         }
     }
