@@ -2,6 +2,7 @@ package tests.cart;
 
 import enums.Enums;
 import model.InventoryItem;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.TestsBase;
 import utils.UserTestData;
@@ -252,6 +253,45 @@ public class CartTests extends TestsBase {
 
         // Clean up
         inventoryPage.removeAllItemsInCart();
+    }
+
+    @Test(description = "Place order with empty cart", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 9)
+    public void placeOrderWithEmptyCart() {
+        InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "256GB", 1, "Gold", UserTestData.address, "express", "1yr", "SAVE10");
+        inventoryPage.addItemToCart(inventoryItem);
+        inventoryPage.validateBlankInventoryForm();
+
+        inventoryPage.isCartVisible();
+
+        inventoryPage.verifyNumberOfItemsInCart(1);
+
+
+        // click Review Cart
+        inventoryPage.clickReviewCartOrder();
+
+        // get cart item as html
+        String cartItemHtml = inventoryPage.getCartAsHtml();
+
+        // remove all the items in the cart
+        inventoryPage.removeAllItemsInCart();
+
+        // add the cart item using DOM tweak
+        inventoryPage.insertCartItem(cartItemHtml);
+
+        inventoryPage.isCartVisible();
+
+        inventoryPage.verifyNumberOfItemsInCart(1);
+
+
+        // click Confirm Order
+        inventoryPage.clickConfirmOrder();
+
+        // no toast should be shown
+        Assert.assertFalse(inventoryPage.isPurchaseSuccessToastVisible(), "Purchase success toast is visible");
+
+
+        // Clean up
+        inventoryPage.removeInjectedElements();
     }
     // </editor-fold>
 

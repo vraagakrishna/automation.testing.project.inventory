@@ -108,6 +108,8 @@ public class TestsBase {
         if (inventoryPage.isInvoiceHistoryPanelVisible())
             inventoryPage.closeInvoiceHistoryPanel();
 
+        inventoryPage.removeInjectedElements();
+
         if (inventoryPage.isInvoiceVisible() && inventoryPage.invoiceHasItems()) {
             inventoryPage.clickInvoiceButton();
             inventoryPage.clearAllInvoices();

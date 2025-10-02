@@ -48,6 +48,9 @@ public class InventoryPage {
     // </editor-fold>
 
     // <editor-fold desc="Inventory Form">
+    @FindBy(id = "inventory-card")
+    WebElement inventoryCard_id;
+
     @FindBy(id = "inventory-form")
     WebElement inventoryForm_id;
 
@@ -1532,6 +1535,22 @@ public class InventoryPage {
         this.verifyCartItems(new ArrayList<>(List.of(inventoryItem)));
 
         this.validateBlankInventoryForm();
+    }
+
+    public String getCartAsHtml() {
+        return javascriptExecutorUtils.getOuterHtml(cartSummary_id);
+    }
+
+    public void insertCartItem(String cartItemHtml) {
+        javascriptExecutorUtils.insertElementIntoContainer(inventoryCard_id, cartItemHtml);
+
+        screenshotUtils.captureAndAttach(driver, "DOM tweak to add items to UI");
+    }
+
+    public void removeInjectedElements() {
+        javascriptExecutorUtils.removeInjectedElements();
+
+        screenshotUtils.captureAndAttach(driver, "Cleaned up injected elements");
     }
     // </editor-fold>
 

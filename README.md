@@ -130,7 +130,7 @@
 
 - [x] Quantity dev-tools set 999 → Error Quantity must be ≤ 10.
 - [x] Remove discounted item → Grand Total drops by its discounted total; no leftover discount.
-- [ ] Attempt Place Order with empty cart (after manual DOM tweak) → No toast (guard works).
+- [x] Attempt Place Order with empty cart (after manual DOM tweak) → No toast (guard works).
 
 <br/>
 

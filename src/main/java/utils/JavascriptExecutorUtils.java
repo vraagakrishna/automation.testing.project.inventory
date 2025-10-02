@@ -33,6 +33,23 @@ public class JavascriptExecutorUtils {
         js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
 
     }
+
+    public String getOuterHtml(WebElement element) {
+        return (String) js.executeScript("return arguments[0].outerHTML;", element);
+    }
+
+    public void insertElementIntoContainer(WebElement container, String element) {
+        js.executeScript(
+                "arguments[0].insertAdjacentHTML('beforeend', '<div data-test-id=\"injected-item\">' + arguments[1] + '</div>');",
+                container, element
+        );
+    }
+
+    public void removeInjectedElements() {
+        js.executeScript(
+                "document.querySelectorAll('[data-test-id=\"injected-item\"]').forEach(el => el.remove());"
+        );
+    }
     // </editor-fold>
 
 }
