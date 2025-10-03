@@ -5,7 +5,8 @@
 1. Login & Session
 
 - [x] Valid credentials → Tabs visible, token exists (localStorage.authToken).
-- [ ] Invalid password → Alert text contains: Invalid credentials. Use: testuser / password123.
+- [ ] ~~Invalid password → Alert text contains: Invalid credentials. Use: testuser / password123.~~ (The default
+  credentials have been removed)
 - [x] Extra spaces in credentials → Login still works (spaces are automatically trimmed).
 - [x] Switch the Tab then back → Must login again (forced logout).
 - [x] Click Logout → Token removed, login screen shown.
@@ -192,7 +193,8 @@
 - [x] Tab cycles through all actionable elements (login → tabs → form → cart buttons → invoice buttons).
 - [x] Radio storage selectable by keyboard.
 - [x] Error text uses role=alert; toast uses role=status.
-- [ ] Success popup dismiss button accessible via keyboard (Enter/Space).
+- [x] Success popup dismiss button accessible via keyboard (Enter/Space). **alert.accept() is equivalent to pressing
+  Enter**
 - [x] Invoice history panel accessible with aria-labels and proper focus management.
 
 <br/>
