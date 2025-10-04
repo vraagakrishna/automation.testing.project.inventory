@@ -51,6 +51,9 @@ public class BrowserFactory {
                 // Disable password manager popups
                 chromeOptions.addArguments("--disable-notifications");
 
+                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--window-size=1920,1080");
+
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":
@@ -63,6 +66,9 @@ public class BrowserFactory {
 
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.setProfile(profile);
+
+                firefoxOptions.addArguments("--headless");
+                firefoxOptions.addArguments("--window-size=1920,1080");
 
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
@@ -77,13 +83,17 @@ public class BrowserFactory {
                 edgePrefs.put("safebrowsing.enabled", true);
                 edgeOptions.setExperimentalOption("prefs", edgePrefs);
 
+                edgeOptions.addArguments("--headless=new");
+                edgeOptions.addArguments("--window-size=1920,1080");
+
                 driver = new EdgeDriver(edgeOptions);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported browser: " + browserName);
         }
 
-        driver.manage().window().maximize();
+        // removed because of window-size added to Options
+        //driver.manage().window().maximize();
         driver.get(url);
         return driver;
     }
