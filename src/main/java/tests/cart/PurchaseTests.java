@@ -1,5 +1,6 @@
 package tests.cart;
 
+import enums.Enums;
 import model.InventoryItem;
 import model.Invoice;
 import org.testng.annotations.Test;
@@ -44,7 +45,7 @@ public class PurchaseTests extends TestsBase {
         inventoryPage.verifyInvoiceButton(0);
 
         // Purchase item
-        InventoryItem inventoryItem1 = new InventoryItem("Phone", "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.purchaseItem(inventoryItem1);
 
         inventoryPage.verifyPurchaseSuccessAfterPurchase(inventoryItem1);
@@ -84,7 +85,7 @@ public class PurchaseTests extends TestsBase {
         inventoryPage.verifyInvoiceButton(0);
 
         // Purchase item
-        InventoryItem inventoryItem1 = new InventoryItem("Phone", "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.purchaseItem(inventoryItem1);
 
         inventoryPage.verifyPurchaseSuccessAfterPurchase(inventoryItem1);
@@ -115,10 +116,10 @@ public class PurchaseTests extends TestsBase {
 
     @Test(description = "Purchase multiple items", groups = "10. Purchase Items Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 4)
     public void purchaseMultipleItems() {
-        InventoryItem inventoryItem1 = new InventoryItem("Phone", "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
-        InventoryItem inventoryItem2 = new InventoryItem("Tablet", "Apple", "256GB", 1, "Black", UserTestData.address, "express", "none", "SAVE10");
-        InventoryItem inventoryItem3 = new InventoryItem("Laptop", "Other", "64GB", 10, "Blue", UserTestData.address, "standard", "1yr", "SAVE20");
-        InventoryItem inventoryItem4 = new InventoryItem("Phone", "Samsung", "128GB", 1, "White", UserTestData.address, "standard", "2yr", "");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "256GB", 1, "Black", UserTestData.address, "express", "none", "SAVE10");
+        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.OTHER.getDisplayName(), "64GB", 10, "Blue", UserTestData.address, "standard", "1yr", "SAVE20");
+        InventoryItem inventoryItem4 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "128GB", 1, "White", UserTestData.address, "standard", "2yr", "");
 
         List<InventoryItem> inventoryItemList = new ArrayList<>(List.of(inventoryItem1, inventoryItem2, inventoryItem3, inventoryItem4));
         List<Invoice> invoices = inventoryPage.purchaseMultipleItems(inventoryItemList);
@@ -137,16 +138,16 @@ public class PurchaseTests extends TestsBase {
 
     @Test(description = "Purchase 10 items", groups = "10. Purchase Items Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 5)
     public void purchaseTenItems() {
-        InventoryItem inventoryItem1 = new InventoryItem("Phone", "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
-        InventoryItem inventoryItem2 = new InventoryItem("Tablet", "Apple", "256GB", 1, "Black", UserTestData.address, "express", "none", "SAVE10");
-        InventoryItem inventoryItem3 = new InventoryItem("Laptop", "Other", "64GB", 10, "Blue", UserTestData.address, "standard", "1yr", "SAVE20");
-        InventoryItem inventoryItem4 = new InventoryItem("Phone", "Samsung", "128GB", 1, "White", UserTestData.address, "standard", "2yr", "");
-        InventoryItem inventoryItem5 = new InventoryItem("Tablet", "Other", "64GB", 1, "Gold", UserTestData.address, "express", "none", "SAVE10");
-        InventoryItem inventoryItem6 = new InventoryItem("Laptop", "Macbook pro", "256GB", 10, "Blue", UserTestData.address, "standard", "1yr", "SAVE20");
-        InventoryItem inventoryItem7 = new InventoryItem("Phone", "Xiaomi", "128GB", 1, "White", UserTestData.address, "standard", "2yr", "");
-        InventoryItem inventoryItem8 = new InventoryItem("Tablet", "Samsung", "64GB", 6, "Gold", UserTestData.address, "express", "none", "SAVE10");
-        InventoryItem inventoryItem9 = new InventoryItem("Laptop", "Macbook air", "256GB", 10, "White", UserTestData.address, "standard", "1yr", "SAVE20");
-        InventoryItem inventoryItem10 = new InventoryItem("Tablet", "Other", "64GB", 1, "Gold", UserTestData.address, "express", "none", "SAVE10");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "256GB", 1, "Black", UserTestData.address, "express", "none", "SAVE10");
+        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.OTHER.getDisplayName(), "64GB", 10, "Blue", UserTestData.address, "standard", "1yr", "SAVE20");
+        InventoryItem inventoryItem4 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "128GB", 1, "White", UserTestData.address, "standard", "2yr", "");
+        InventoryItem inventoryItem5 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.OTHER.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "express", "none", "SAVE10");
+        InventoryItem inventoryItem6 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "256GB", 10, "Blue", UserTestData.address, "standard", "1yr", "SAVE20");
+        InventoryItem inventoryItem7 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.XIAOMI.getDisplayName(), "128GB", 1, "White", UserTestData.address, "standard", "2yr", "");
+        InventoryItem inventoryItem8 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "64GB", 6, "Gold", UserTestData.address, "express", "none", "SAVE10");
+        InventoryItem inventoryItem9 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_AIR.getDisplayName(), "256GB", 10, "White", UserTestData.address, "standard", "1yr", "SAVE20");
+        InventoryItem inventoryItem10 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.OTHER.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "express", "none", "SAVE10");
 
         List<InventoryItem> inventoryItemList = new ArrayList<>(List.of(inventoryItem1, inventoryItem2, inventoryItem3, inventoryItem4, inventoryItem5, inventoryItem6, inventoryItem7, inventoryItem8, inventoryItem9, inventoryItem10));
         List<Invoice> invoices = inventoryPage.purchaseMultipleItems(inventoryItemList);
@@ -165,19 +166,19 @@ public class PurchaseTests extends TestsBase {
 
     @Test(description = "Purchase more than 10 items", groups = "10. Purchase Items Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 6)
     public void purchaseMoreThanTenItems() {
-        InventoryItem inventoryItem1 = new InventoryItem("Phone", "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
-        InventoryItem inventoryItem2 = new InventoryItem("Tablet", "Apple", "256GB", 1, "Black", UserTestData.address, "express", "none", "SAVE10");
-        InventoryItem inventoryItem3 = new InventoryItem("Laptop", "Other", "64GB", 10, "Blue", UserTestData.address, "standard", "1yr", "SAVE20");
-        InventoryItem inventoryItem4 = new InventoryItem("Phone", "Samsung", "128GB", 1, "White", UserTestData.address, "standard", "2yr", "");
-        InventoryItem inventoryItem5 = new InventoryItem("Tablet", "Other", "64GB", 1, "Gold", UserTestData.address, "express", "none", "SAVE10");
-        InventoryItem inventoryItem6 = new InventoryItem("Laptop", "Macbook pro", "256GB", 10, "Blue", UserTestData.address, "standard", "1yr", "SAVE20");
-        InventoryItem inventoryItem7 = new InventoryItem("Phone", "Xiaomi", "128GB", 1, "White", UserTestData.address, "standard", "2yr", "");
-        InventoryItem inventoryItem8 = new InventoryItem("Tablet", "Samsung", "64GB", 6, "Gold", UserTestData.address, "express", "none", "SAVE10");
-        InventoryItem inventoryItem9 = new InventoryItem("Laptop", "Macbook air", "256GB", 10, "White", UserTestData.address, "standard", "1yr", "SAVE20");
-        InventoryItem inventoryItem10 = new InventoryItem("Tablet", "Other", "64GB", 1, "Gold", UserTestData.address, "express", "none", "SAVE10");
-        InventoryItem inventoryItem11 = new InventoryItem("Phone", "Other", "128GB", 8, "Black", UserTestData.address, "standard", "2yr", "");
-        InventoryItem inventoryItem12 = new InventoryItem("Tablet", "Other", "64GB", 1, "Gold", UserTestData.address, "express", "none", "SAVE10");
-        InventoryItem inventoryItem13 = new InventoryItem("Laptop", "Macbook pro", "256GB", 10, "Blue", UserTestData.address, "standard", "1yr", "SAVE20");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "256GB", 1, "Black", UserTestData.address, "express", "none", "SAVE10");
+        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.OTHER.getDisplayName(), "64GB", 10, "Blue", UserTestData.address, "standard", "1yr", "SAVE20");
+        InventoryItem inventoryItem4 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "128GB", 1, "White", UserTestData.address, "standard", "2yr", "");
+        InventoryItem inventoryItem5 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.OTHER.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "express", "none", "SAVE10");
+        InventoryItem inventoryItem6 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "256GB", 10, "Blue", UserTestData.address, "standard", "1yr", "SAVE20");
+        InventoryItem inventoryItem7 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.XIAOMI.getDisplayName(), "128GB", 1, "White", UserTestData.address, "standard", "2yr", "");
+        InventoryItem inventoryItem8 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "64GB", 6, "Gold", UserTestData.address, "express", "none", "SAVE10");
+        InventoryItem inventoryItem9 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_AIR.getDisplayName(), "256GB", 10, "White", UserTestData.address, "standard", "1yr", "SAVE20");
+        InventoryItem inventoryItem10 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.OTHER.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "express", "none", "SAVE10");
+        InventoryItem inventoryItem11 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.OTHER.getDisplayName(), "128GB", 8, "Black", UserTestData.address, "standard", "2yr", "");
+        InventoryItem inventoryItem12 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.OTHER.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "express", "none", "SAVE10");
+        InventoryItem inventoryItem13 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "256GB", 10, "Blue", UserTestData.address, "standard", "1yr", "SAVE20");
 
         List<InventoryItem> inventoryItemList = new ArrayList<>(List.of(inventoryItem1, inventoryItem2, inventoryItem3, inventoryItem4, inventoryItem5, inventoryItem6, inventoryItem7, inventoryItem8, inventoryItem9, inventoryItem10, inventoryItem11, inventoryItem12, inventoryItem13));
         List<Invoice> invoices = inventoryPage.purchaseMultipleItems(inventoryItemList);

@@ -21,7 +21,10 @@ public class Enums {
     public enum Brand {
         APPLE("Apple"),
         SAMSUNG("Samsung"),
-        OTHER("Other");
+        XIAOMI("Xiaomi"),
+        OTHER("Other"),
+        MACBOOK_PRO("Macbook pro"),
+        MACBOOK_AIR("Macbook air");
 
         private final String displayName;
 

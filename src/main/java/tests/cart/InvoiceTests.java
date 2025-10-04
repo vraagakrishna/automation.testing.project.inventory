@@ -43,9 +43,9 @@ public class InvoiceTests extends TestsBase {
     @Test(description = "Place order and close toast", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 2)
     public void placeOrderAndCloseToast() {
         // Defining inventory items
-        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
-        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
-        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
 
         List<InventoryItem> inventoryItemList = new ArrayList<>(List.of(inventoryItem1, inventoryItem2, inventoryItem3));
 
@@ -65,9 +65,9 @@ public class InvoiceTests extends TestsBase {
     @Test(description = "Place order and view invoice", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 3)
     public void placeOrderAndViewInvoice() {
         // Defining inventory items
-        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
-        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
-        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
 
         List<InventoryItem> inventoryItemList = new ArrayList<>(List.of(inventoryItem1, inventoryItem2, inventoryItem3));
 
@@ -87,9 +87,9 @@ public class InvoiceTests extends TestsBase {
     @Test(description = "Place order with discount", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 4)
     public void placeOrderWithDiscount() {
         // Defining inventory items
-        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "SAVE10");
-        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "SAVE10");
-        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "64GB", 2, "Gold", UserTestData.address, "standard", "none", "SAVE10");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "SAVE10");
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "SAVE10");
+        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "64GB", 2, "Gold", UserTestData.address, "standard", "none", "SAVE10");
 
         List<InventoryItem> inventoryItemList = new ArrayList<>(List.of(inventoryItem1, inventoryItem2, inventoryItem3));
 
@@ -109,18 +109,18 @@ public class InvoiceTests extends TestsBase {
     @Test(description = "Place order with more than 10 items", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 5)
     public void placeOrderWithMoreThanTenItems() {
         // Defining inventory items
-        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
-        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 1, "White", UserTestData.address, "standard", "none", "SAVE50");
-        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
-        InventoryItem inventoryItem4 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Samsung", "128GB", 10, "Black", UserTestData.address, "express", "none", "random");
-        InventoryItem inventoryItem5 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Samsung", "128GB", 10, "Blue", UserTestData.address, "standard", "1yr", "");
-        InventoryItem inventoryItem6 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook air", "128GB", 8, "Black", UserTestData.address, "standard", "none", "SAVE10");
-        InventoryItem inventoryItem7 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Xiaomi", "128GB", 6, "White", UserTestData.address, "express", "2yr", "SAVE50");
-        InventoryItem inventoryItem8 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 10, "Black", UserTestData.address, "standard", "1yr", "");
-        InventoryItem inventoryItem9 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "128GB", 8, "Black", UserTestData.address, "standard", "none", "SAVE20");
-        InventoryItem inventoryItem10 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Other", "256GB", 6, "Blue", UserTestData.address, "express", "2yr", "");
-        InventoryItem inventoryItem11 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Samsung", "256GB", 10, "Gold", UserTestData.address, "standard", "1yr", "");
-        InventoryItem inventoryItem12 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Other", "128GB", 8, "White", UserTestData.address, "standard", "none", "SAVE10");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "White", UserTestData.address, "standard", "none", "SAVE50");
+        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem4 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "128GB", 10, "Black", UserTestData.address, "express", "none", "random");
+        InventoryItem inventoryItem5 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "128GB", 10, "Blue", UserTestData.address, "standard", "1yr", "");
+        InventoryItem inventoryItem6 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_AIR.getDisplayName(), "128GB", 8, "Black", UserTestData.address, "standard", "none", "SAVE10");
+        InventoryItem inventoryItem7 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.XIAOMI.getDisplayName(), "128GB", 6, "White", UserTestData.address, "express", "2yr", "SAVE50");
+        InventoryItem inventoryItem8 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 10, "Black", UserTestData.address, "standard", "1yr", "");
+        InventoryItem inventoryItem9 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "128GB", 8, "Black", UserTestData.address, "standard", "none", "SAVE20");
+        InventoryItem inventoryItem10 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.OTHER.getDisplayName(), "256GB", 6, "Blue", UserTestData.address, "express", "2yr", "");
+        InventoryItem inventoryItem11 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "256GB", 10, "Gold", UserTestData.address, "standard", "1yr", "");
+        InventoryItem inventoryItem12 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.OTHER.getDisplayName(), "128GB", 8, "White", UserTestData.address, "standard", "none", "SAVE10");
 
         List<InventoryItem> inventoryItemList = new ArrayList<>(List.of(inventoryItem1, inventoryItem2, inventoryItem3, inventoryItem4, inventoryItem5, inventoryItem6, inventoryItem7, inventoryItem8, inventoryItem9, inventoryItem10, inventoryItem11, inventoryItem12));
 
@@ -143,11 +143,11 @@ public class InvoiceTests extends TestsBase {
         List<Invoice> invoices = new ArrayList<>();
 
         // Defining inventory items for order 1
-        InventoryItem inventoryItem1_1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
-        InventoryItem inventoryItem1_2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 1, "White", UserTestData.address, "standard", "none", "SAVE50");
-        InventoryItem inventoryItem1_3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
-        InventoryItem inventoryItem1_4 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Samsung", "128GB", 10, "Black", UserTestData.address, "express", "none", "random");
-        InventoryItem inventoryItem1_5 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Samsung", "128GB", 10, "Blue", UserTestData.address, "standard", "1yr", "");
+        InventoryItem inventoryItem1_1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1_2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "White", UserTestData.address, "standard", "none", "SAVE50");
+        InventoryItem inventoryItem1_3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1_4 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "128GB", 10, "Black", UserTestData.address, "express", "none", "random");
+        InventoryItem inventoryItem1_5 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "128GB", 10, "Blue", UserTestData.address, "standard", "1yr", "");
 
         List<InventoryItem> inventoryItemList1 = new ArrayList<>(List.of(inventoryItem1_1, inventoryItem1_2, inventoryItem1_3, inventoryItem1_4, inventoryItem1_5));
 
@@ -178,11 +178,11 @@ public class InvoiceTests extends TestsBase {
         List<Invoice> invoices = new ArrayList<>();
 
         // Defining inventory items for order 1
-        InventoryItem inventoryItem1_1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
-        InventoryItem inventoryItem1_2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 1, "White", UserTestData.address, "standard", "none", "SAVE50");
-        InventoryItem inventoryItem1_3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
-        InventoryItem inventoryItem1_4 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Samsung", "128GB", 10, "Black", UserTestData.address, "express", "none", "random");
-        InventoryItem inventoryItem1_5 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Samsung", "128GB", 10, "Blue", UserTestData.address, "standard", "1yr", "");
+        InventoryItem inventoryItem1_1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1_2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "White", UserTestData.address, "standard", "none", "SAVE50");
+        InventoryItem inventoryItem1_3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1_4 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "128GB", 10, "Black", UserTestData.address, "express", "none", "random");
+        InventoryItem inventoryItem1_5 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "128GB", 10, "Blue", UserTestData.address, "standard", "1yr", "");
 
         List<InventoryItem> inventoryItemList1 = new ArrayList<>(List.of(inventoryItem1_1, inventoryItem1_2, inventoryItem1_3, inventoryItem1_4, inventoryItem1_5));
 
@@ -194,11 +194,11 @@ public class InvoiceTests extends TestsBase {
 
 
         // Defining inventory items for order 2
-        InventoryItem inventoryItem2_1 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook air", "128GB", 8, "Black", UserTestData.address, "standard", "none", "SAVE10");
-        InventoryItem inventoryItem2_2 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Xiaomi", "128GB", 6, "White", UserTestData.address, "express", "2yr", "SAVE50");
-        InventoryItem inventoryItem2_3 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 10, "Black", UserTestData.address, "standard", "1yr", "");
-        InventoryItem inventoryItem2_4 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "128GB", 8, "Black", UserTestData.address, "standard", "none", "SAVE20");
-        InventoryItem inventoryItem2_5 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Other", "256GB", 6, "Blue", UserTestData.address, "express", "2yr", "");
+        InventoryItem inventoryItem2_1 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_AIR.getDisplayName(), "128GB", 8, "Black", UserTestData.address, "standard", "none", "SAVE10");
+        InventoryItem inventoryItem2_2 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.XIAOMI.getDisplayName(), "128GB", 6, "White", UserTestData.address, "express", "2yr", "SAVE50");
+        InventoryItem inventoryItem2_3 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 10, "Black", UserTestData.address, "standard", "1yr", "");
+        InventoryItem inventoryItem2_4 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "128GB", 8, "Black", UserTestData.address, "standard", "none", "SAVE20");
+        InventoryItem inventoryItem2_5 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.OTHER.getDisplayName(), "256GB", 6, "Blue", UserTestData.address, "express", "2yr", "");
 
         List<InventoryItem> inventoryItemList2 = new ArrayList<>(List.of(inventoryItem2_1, inventoryItem2_2, inventoryItem2_3, inventoryItem2_4, inventoryItem2_5));
         Invoice invoice2 = inventoryPage.orderMultipleItems(orderNumber, inventoryItemList2, true);
@@ -209,8 +209,8 @@ public class InvoiceTests extends TestsBase {
 
 
         // Defining inventory items for order 3
-        InventoryItem inventoryItem3_1 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Samsung", "256GB", 10, "Gold", UserTestData.address, "standard", "1yr", "");
-        InventoryItem inventoryItem3_2 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Other", "128GB", 8, "White", UserTestData.address, "standard", "none", "SAVE10");
+        InventoryItem inventoryItem3_1 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "256GB", 10, "Gold", UserTestData.address, "standard", "1yr", "");
+        InventoryItem inventoryItem3_2 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.OTHER.getDisplayName(), "128GB", 8, "White", UserTestData.address, "standard", "none", "SAVE10");
 
         // Verifying the items in the cart
         List<InventoryItem> inventoryItemList3 = new ArrayList<>(List.of(inventoryItem3_1, inventoryItem3_2));
@@ -222,11 +222,11 @@ public class InvoiceTests extends TestsBase {
 
 
         // Defining inventory items for order 4
-        InventoryItem inventoryItem4_1 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook air", "128GB", 8, "Blue", UserTestData.address, "standard", "none", "SAVE10");
-        InventoryItem inventoryItem4_2 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Xiaomi", "128GB", 6, "White", UserTestData.address, "express", "2yr", "SAVE50");
-        InventoryItem inventoryItem4_3 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 10, "Gold", UserTestData.address, "standard", "1yr", "");
-        InventoryItem inventoryItem4_4 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "128GB", 8, "Black", UserTestData.address, "standard", "none", "SAVE20");
-        InventoryItem inventoryItem4_5 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Samsung", "256GB", 6, "Blue", UserTestData.address, "express", "2yr", "");
+        InventoryItem inventoryItem4_1 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_AIR.getDisplayName(), "128GB", 8, "Blue", UserTestData.address, "standard", "none", "SAVE10");
+        InventoryItem inventoryItem4_2 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.XIAOMI.getDisplayName(), "128GB", 6, "White", UserTestData.address, "express", "2yr", "SAVE50");
+        InventoryItem inventoryItem4_3 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 10, "Gold", UserTestData.address, "standard", "1yr", "");
+        InventoryItem inventoryItem4_4 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "128GB", 8, "Black", UserTestData.address, "standard", "none", "SAVE20");
+        InventoryItem inventoryItem4_5 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.SAMSUNG.getDisplayName(), "256GB", 6, "Blue", UserTestData.address, "express", "2yr", "");
 
         List<InventoryItem> inventoryItemList4 = new ArrayList<>(List.of(inventoryItem4_1, inventoryItem4_2, inventoryItem4_3, inventoryItem4_4, inventoryItem4_5));
         Invoice invoice4 = inventoryPage.orderMultipleItems(orderNumber, inventoryItemList4, true);

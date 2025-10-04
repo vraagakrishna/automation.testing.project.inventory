@@ -42,7 +42,7 @@ public class CartTests extends TestsBase {
     // <editor-fold desc="Cart Tests">
     @Test(description = "Add items to cart", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 2)
     public void addItemsToCart() {
-        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
         inventoryPage.validateBlankInventoryForm();
 
@@ -50,13 +50,13 @@ public class CartTests extends TestsBase {
 
         inventoryPage.verifyNumberOfItemsInCart(1);
 
-        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem2);
         inventoryPage.validateBlankInventoryForm();
 
         inventoryPage.verifyNumberOfItemsInCart(2);
 
-        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem3);
         inventoryPage.validateBlankInventoryForm();
 
@@ -69,7 +69,7 @@ public class CartTests extends TestsBase {
 
     @Test(description = "Add items to cart and remove first item", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 3)
     public void addItemsToCartAndRemoveFirst() {
-        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
         inventoryPage.validateBlankInventoryForm();
 
@@ -77,13 +77,13 @@ public class CartTests extends TestsBase {
 
         inventoryPage.verifyNumberOfItemsInCart(1);
 
-        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem2);
         inventoryPage.validateBlankInventoryForm();
 
         inventoryPage.verifyNumberOfItemsInCart(2);
 
-        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem3);
         inventoryPage.validateBlankInventoryForm();
 
@@ -98,7 +98,7 @@ public class CartTests extends TestsBase {
 
     @Test(description = "Add items to cart and remove last item", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 4)
     public void addItemsToCartAndRemoveLast() {
-        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
         inventoryPage.validateBlankInventoryForm();
 
@@ -106,13 +106,13 @@ public class CartTests extends TestsBase {
 
         inventoryPage.verifyNumberOfItemsInCart(1);
 
-        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem2);
         inventoryPage.validateBlankInventoryForm();
 
         inventoryPage.verifyNumberOfItemsInCart(2);
 
-        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem3);
         inventoryPage.validateBlankInventoryForm();
 
@@ -127,7 +127,7 @@ public class CartTests extends TestsBase {
 
     @Test(description = "Add items to cart and remove discounted item", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 5)
     public void addItemsToCartAndRemoveDiscountedItem() {
-        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "SAVE20");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "SAVE20");
         inventoryPage.addItemToCart(inventoryItem1);
         inventoryPage.validateBlankInventoryForm();
 
@@ -135,13 +135,13 @@ public class CartTests extends TestsBase {
 
         inventoryPage.verifyNumberOfItemsInCart(1);
 
-        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem2);
         inventoryPage.validateBlankInventoryForm();
 
         inventoryPage.verifyNumberOfItemsInCart(2);
 
-        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem3 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "64GB", 2, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem3);
         inventoryPage.validateBlankInventoryForm();
 
@@ -156,7 +156,7 @@ public class CartTests extends TestsBase {
 
     @Test(description = "Add items to cart and reduce quantity", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 6)
     public void addItemsToCartAndReduceQuantity() {
-        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 10, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 10, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
         inventoryPage.validateBlankInventoryForm();
 
@@ -174,7 +174,7 @@ public class CartTests extends TestsBase {
 
     @Test(description = "Add items to cart and increase quantity", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 7)
     public void addItemsToCartAndIncreaseQuantity() {
-        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "Apple", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
         inventoryPage.validateBlankInventoryForm();
 
@@ -203,7 +203,7 @@ public class CartTests extends TestsBase {
         inventoryPage.verifyNumberOfItemsInCart(1);
 
 
-        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "256GB", 1, "Gold", UserTestData.address, "express", "1yr", "SAVE10");
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "256GB", 1, "Gold", UserTestData.address, "express", "1yr", "SAVE10");
         inventoryPage.addItemToCart(inventoryItem2);
         inventoryPage.validateBlankInventoryForm();
 
@@ -247,7 +247,7 @@ public class CartTests extends TestsBase {
         inventoryPage.verifyNumberOfItemsInCart(1);
 
 
-        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "256GB", 1, "Gold", UserTestData.address, "express", "1yr", "SAVE10");
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "256GB", 1, "Gold", UserTestData.address, "express", "1yr", "SAVE10");
 
         inventoryPage.addItemAndRemoveExistingItemOnReviewStep(inventoryItem2, new ArrayList<>(List.of(inventoryItem1)));
 
@@ -257,7 +257,7 @@ public class CartTests extends TestsBase {
 
     @Test(description = "Place order with empty cart", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 9)
     public void placeOrderWithEmptyCart() {
-        InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), "Macbook pro", "256GB", 1, "Gold", UserTestData.address, "express", "1yr", "SAVE10");
+        InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "256GB", 1, "Gold", UserTestData.address, "express", "1yr", "SAVE10");
         inventoryPage.addItemToCart(inventoryItem);
         inventoryPage.validateBlankInventoryForm();
 
