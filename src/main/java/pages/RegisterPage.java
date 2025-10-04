@@ -181,7 +181,7 @@ public class RegisterPage {
         this.clearRegisterForm();
     }
 
-    public void registerWithValidEmailndInvalidPassword() {
+    public void registerWithValidEmailAndInvalidPassword() {
         String expectedMessage = "Password must be at least 8 characters long";
         logger.info("Submission of a register form with first name, last name, valid email address, short password and confirm password");
 

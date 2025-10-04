@@ -59,7 +59,7 @@ public class RegisterTests extends TestsBase {
 
     @Test(description = "Register with valid email address and invalid password", groups = "3. Register", dependsOnMethods = "verifyRegisterPageIsDisplayed", priority = 8)
     public void registerWithValidEmailndInvalidPassword() {
-        registerPage.registerWithValidEmailndInvalidPassword();
+        registerPage.registerWithValidEmailAndInvalidPassword();
     }
 
     @Test(description = "Register with valid credentials", groups = "3. Register", dependsOnMethods = "verifyRegisterPageIsDisplayed", priority = 9)
