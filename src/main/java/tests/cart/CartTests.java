@@ -64,7 +64,6 @@ public class CartTests extends TestsBase {
 
         List<InventoryItem> inventoryItemList = new ArrayList<>(List.of(inventoryItem1, inventoryItem2, inventoryItem3));
         inventoryPage.verifyCartItems(inventoryItemList);
-        inventoryPage.removeAllItemsInCart();
     }
 
     @Test(description = "Add items to cart and remove first item", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 3)
@@ -92,8 +91,6 @@ public class CartTests extends TestsBase {
         List<InventoryItem> inventoryItemList = new ArrayList<>(List.of(inventoryItem1, inventoryItem2, inventoryItem3));
         inventoryPage.verifyCartItems(inventoryItemList);
         inventoryPage.removeFirstItemInCart(inventoryItemList);
-
-        inventoryPage.removeAllItemsInCart();
     }
 
     @Test(description = "Add items to cart and remove last item", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 4)
@@ -121,8 +118,6 @@ public class CartTests extends TestsBase {
         List<InventoryItem> inventoryItemList = new ArrayList<>(List.of(inventoryItem1, inventoryItem2, inventoryItem3));
         inventoryPage.verifyCartItems(inventoryItemList);
         inventoryPage.removeLastItemInCart(inventoryItemList);
-
-        inventoryPage.removeAllItemsInCart();
     }
 
     @Test(description = "Add items to cart and remove discounted item", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 5)
@@ -150,8 +145,6 @@ public class CartTests extends TestsBase {
         List<InventoryItem> inventoryItemList = new ArrayList<>(List.of(inventoryItem1, inventoryItem2, inventoryItem3));
         inventoryPage.verifyCartItems(inventoryItemList);
         inventoryPage.removeFirstItemInCart(inventoryItemList);
-
-        inventoryPage.removeAllItemsInCart();
     }
 
     @Test(description = "Add items to cart and reduce quantity", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 6)
@@ -168,8 +161,6 @@ public class CartTests extends TestsBase {
         inventoryPage.verifyCartItems(inventoryItemList);
 
         inventoryPage.reduceQuantityOfItem(inventoryItem1);
-
-        inventoryPage.removeAllItemsInCart();
     }
 
     @Test(description = "Add items to cart and increase quantity", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 7)
@@ -186,8 +177,6 @@ public class CartTests extends TestsBase {
         inventoryPage.verifyCartItems(inventoryItemList);
 
         inventoryPage.increaseQuantityOfItem(inventoryItem1);
-
-        inventoryPage.removeAllItemsInCart();
     }
     // </editor-fold>
 
@@ -231,9 +220,6 @@ public class CartTests extends TestsBase {
         inventoryPage.verifyNumberOfItemsInCart(1);
         inventoryItemList.remove(inventoryItem1);
         inventoryPage.verifyCartItems(inventoryItemList);
-
-        // Clean up
-        inventoryPage.removeAllItemsInCart();
     }
 
     @Test(description = "Remove item on cart review step", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 8)
@@ -250,9 +236,6 @@ public class CartTests extends TestsBase {
         InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "256GB", 1, "Gold", UserTestData.address, "express", "1yr", "SAVE10");
 
         inventoryPage.addItemAndRemoveExistingItemOnReviewStep(inventoryItem2, new ArrayList<>(List.of(inventoryItem1)));
-
-        // Clean up
-        inventoryPage.removeAllItemsInCart();
     }
 
     @Test(description = "Place order with empty cart", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 9)
@@ -288,10 +271,6 @@ public class CartTests extends TestsBase {
 
         // no toast should be shown
         Assert.assertFalse(inventoryPage.isPurchaseSuccessToastVisible(), "Purchase success toast is visible");
-
-
-        // Clean up
-        inventoryPage.removeInjectedElements();
     }
 
     @Test(description = "Double click on Place Order button", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 10)

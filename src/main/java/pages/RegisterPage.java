@@ -92,8 +92,6 @@ public class RegisterPage {
         this.clickRegisterButton();
 
         this.alertUtils.verifyIfAlertMessageIsCorrect(expectedMessage);
-
-        this.clearRegisterForm();
     }
 
     public void registerWithFirstNameOnly() {
@@ -107,8 +105,6 @@ public class RegisterPage {
         this.clickRegisterButton();
 
         this.alertUtils.verifyIfAlertMessageIsCorrect(expectedMessage);
-
-        this.clearRegisterForm();
     }
 
     public void registerWithFirstAndLastNameOnly() {
@@ -123,8 +119,6 @@ public class RegisterPage {
         this.clickRegisterButton();
 
         this.alertUtils.verifyIfAlertMessageIsCorrect(expectedMessage);
-
-        this.clearRegisterForm();
     }
 
     public void registerWithInvalidEmail() {
@@ -140,8 +134,6 @@ public class RegisterPage {
         this.clickRegisterButton();
 
         this.alertUtils.verifyIfAlertMessageIsCorrect(expectedMessage);
-
-        this.clearRegisterForm();
     }
 
     public void registerWithInvalidEmailAndInvalidPassword() {
@@ -158,8 +150,6 @@ public class RegisterPage {
         this.clickRegisterButton();
 
         this.alertUtils.verifyIfAlertMessageIsCorrect(expectedMessage);
-
-        this.clearRegisterForm();
     }
 
     public void registerWithInvalidEmailAndInvalidPasswordAndConfirmPassword() {
@@ -177,8 +167,6 @@ public class RegisterPage {
         this.clickRegisterButton();
 
         this.alertUtils.verifyIfAlertMessageIsCorrect(expectedMessage);
-
-        this.clearRegisterForm();
     }
 
     public void registerWithValidEmailAndInvalidPassword() {
@@ -196,8 +184,6 @@ public class RegisterPage {
         this.clickRegisterButton();
 
         this.alertUtils.verifyIfAlertMessageIsCorrect(expectedMessage);
-
-        this.clearRegisterForm();
     }
 
     public void registerWithValidCredentials() {
@@ -232,8 +218,6 @@ public class RegisterPage {
         this.clickRegisterButton();
 
         this.alertUtils.verifyIfAlertMessageIsCorrect(expectedMessage);
-
-        this.clearRegisterForm();
     }
 
     public void clickLoginButton() {

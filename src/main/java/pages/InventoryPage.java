@@ -478,8 +478,6 @@ public class InventoryPage {
         Assert.assertFalse(inventoryNextBtn_id.isEnabled(), "Next Button is enabled...");
 
         screenshotUtils.captureAndAttach(driver, "Submitting blank inventory form");
-
-        this.resetInventoryForm();
     }
 
     public void validDeviceTypeSubmission() {
@@ -497,8 +495,6 @@ public class InventoryPage {
         Assert.assertFalse(inventoryNextBtn_id.isEnabled(), "Next Button is enabled...");
 
         screenshotUtils.captureAndAttach(driver, "Submitting inventory form with device type");
-
-        this.resetInventoryForm();
     }
 
     public void validDeviceTypeAndBrandSubmission() {
@@ -516,8 +512,6 @@ public class InventoryPage {
         Assert.assertFalse(inventoryNextBtn_id.isEnabled(), "Next Button is enabled...");
 
         screenshotUtils.captureAndAttach(driver, "Submitting inventory form with device type and brand");
-
-        this.resetInventoryForm();
     }
 
     public void validDeviceTypeAndBrandAndStorageSubmission() {
@@ -539,8 +533,6 @@ public class InventoryPage {
         Assert.assertFalse(inventoryNextBtn_id.isEnabled(), "Next Button is enabled...");
 
         screenshotUtils.captureAndAttach(driver, "Submitting inventory form with device type, brand and storage");
-
-        this.resetInventoryForm();
     }
 
     public void invalidQuantitySubmission() {
@@ -566,8 +558,6 @@ public class InventoryPage {
         Assert.assertFalse(inventoryNextBtn_id.isEnabled(), "Next Button is disabled...");
 
         screenshotUtils.captureAndAttach(driver, "Submitting inventory form with device type, brand, storage and 0 quantity");
-
-        this.resetInventoryForm();
     }
 
     public void invalidAddressSubmission() {
@@ -596,8 +586,6 @@ public class InventoryPage {
         Assert.assertFalse(inventoryNextBtn_id.isEnabled(), "Next Button is disabled...");
 
         screenshotUtils.captureAndAttach(driver, "Submitting inventory form with device type, brand, storage, 2 quantity and blank address");
-
-        this.resetInventoryForm();
     }
 
     public void invalidQuantityAmountSubmission(int quantity) {
@@ -634,8 +622,6 @@ public class InventoryPage {
         this.validatePrice(inventoryItem);
 
         this.validateImage(inventoryItem);
-
-        this.resetInventoryForm();
     }
 
     public void changeSelectionOfDeviceType() {
@@ -679,8 +665,6 @@ public class InventoryPage {
         Assert.assertFalse(inventoryNextBtn_id.isEnabled(), "Next Button is enabled...");
 
         screenshotUtils.captureAndAttach(driver, "Brand selection should be removed");
-
-        this.resetInventoryForm();
     }
 
     public void partiallyFillInInventoryForm() {
@@ -696,8 +680,6 @@ public class InventoryPage {
 
         // verify purchase device form is enabled
         Assert.assertFalse(inventoryNextBtn_id.isEnabled(), "Next Button is enabled...");
-
-        this.resetInventoryForm();
     }
 
     public void inventoryFormDevicePriceVerification(String selectedDeviceType) {
@@ -720,8 +702,6 @@ public class InventoryPage {
         this.validateSubTotal(blankPrice);
 
         screenshotUtils.captureAndAttach(driver, "Validating the price after removing device selection");
-
-        this.resetInventoryForm();
     }
 
     public void inventoryFormDevicePriceVerificationOnChangingDeviceType(String selectedDeviceType1, String selectedDeviceType2) {
@@ -773,9 +753,6 @@ public class InventoryPage {
         this.validateInventoryDetails(inventoryItem);
 
         this.backToInventoryForm();
-
-
-        this.resetInventoryForm();
     }
 
     public void validAndResetInventoryFormSubmission(InventoryItem item) {
@@ -784,8 +761,6 @@ public class InventoryPage {
         this.resetInventoryReviewForm();
 
         this.backToInventoryForm();
-
-        this.resetInventoryForm();
     }
 
     public void selectRadioButtonWithKeyboard(String selectedStorage) {
@@ -820,8 +795,6 @@ public class InventoryPage {
         this.resetInventoryReviewForm();
 
         this.backToInventoryForm();
-
-        this.resetInventoryForm();
     }
 
     public void purchaseItem(InventoryItem item) {

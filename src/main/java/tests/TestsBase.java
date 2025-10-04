@@ -122,6 +122,7 @@ public class TestsBase {
 
         if (inventoryPage.isInventoryFormVisible()) {
             inventoryPage.resetInventoryForm();
+            inventoryPage.removeAllItemsInCart();
         }
 
         if (registerPage.isRegisterFormVisible())
