@@ -58,6 +58,9 @@ public class InventoryPage {
     @FindBy(id = "inventory-form-grid")
     WebElement inventoryFormGrid_id;
 
+    @FindBy(id = "device-preview")
+    WebElement devicePreview_id;
+
     @FindBy(id = "inventory-review-step")
     WebElement inventoryReviewStep_id;
     // </editor-fold>
@@ -413,6 +416,8 @@ public class InventoryPage {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(visibilityOf(inventoryFormGrid_id));
 
+        Assert.assertFalse(this.isDisplayed(devicePreview_id), "Device preview is displayed");
+
         // checking fields
         List<String> expectedFields = new ArrayList<>(Arrays.asList("Device Type", "Brand", "Storage", "Color", "Quantity", "Delivery Address"));
 
@@ -627,6 +632,8 @@ public class InventoryPage {
 
         this.validatePrice(inventoryItem);
 
+        this.validateImage(inventoryItem);
+
         this.resetInventoryForm();
     }
 
@@ -701,6 +708,8 @@ public class InventoryPage {
 
         this.validatePrice(inventoryItem);
 
+        this.validateImage(inventoryItem);
+
         // remove Device selection
         this.selectDeviceType("Select");
 
@@ -726,6 +735,8 @@ public class InventoryPage {
 
         this.validatePrice(inventoryItem);
 
+        this.validateImage(inventoryItem);
+
         this.submitInventoryForm();
 
         // wait until Step 2 is displayed
@@ -747,6 +758,8 @@ public class InventoryPage {
         this.selectBrand(inventoryItem.getBrand());
 
         this.validatePrice(inventoryItem);
+
+        this.validateImage(inventoryItem);
 
         this.submitInventoryForm();
 
@@ -1491,6 +1504,8 @@ public class InventoryPage {
 
         this.validatePrice(inventoryItem);
 
+        this.validateImage(inventoryItem);
+
         this.submitInventoryForm();
 
         this.enterExtraDetails(inventoryItem);
@@ -1569,6 +1584,51 @@ public class InventoryPage {
         javascriptExecutorUtils.removeInjectedElements();
 
         screenshotUtils.captureAndAttach(driver, "Cleaned up injected elements");
+    }
+
+    public void validatingPreviewImages() {
+        logger.info("Validating preview images");
+
+        logger.info("Validating default");
+        Assert.assertFalse(this.isDisplayed(devicePreview_id), "Device preview is displayed");
+
+        InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), "", "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+
+        logger.info("Verifying phone image");
+        this.selectDeviceType(inventoryItem.getDeviceType());
+        this.validateImage(inventoryItem);
+
+        logger.info("Verifying Apple phone image");
+        inventoryItem.setBrand(Enums.Brand.APPLE.getDisplayName());
+        this.selectBrand(inventoryItem.getBrand());
+        this.validateImage(inventoryItem);
+
+        logger.info("Verifying Samsung phone image");
+        inventoryItem.setBrand(Enums.Brand.SAMSUNG.getDisplayName());
+        this.selectBrand(inventoryItem.getBrand());
+        this.validateImage(inventoryItem);
+
+        logger.info("Verifying Xiaomi phone image");
+        inventoryItem.setBrand(Enums.Brand.XIAOMI.getDisplayName());
+        this.selectBrand(inventoryItem.getBrand());
+        this.validateImage(inventoryItem);
+
+        logger.info("Verifying Other phone image");
+        inventoryItem.setBrand(Enums.Brand.OTHER.getDisplayName());
+        this.selectBrand(inventoryItem.getBrand());
+        this.validateImage(inventoryItem);
+
+
+        logger.info("Verifying tablet image");
+        inventoryItem.setDeviceType(Enums.DeviceType.TABLET.getDisplayName());
+        this.selectDeviceType(inventoryItem.getDeviceType());
+        this.validateImage(inventoryItem);
+
+
+        logger.info("Verifying laptop image");
+        inventoryItem.setDeviceType(Enums.DeviceType.TABLET.getDisplayName());
+        this.selectDeviceType(inventoryItem.getDeviceType());
+        this.validateImage(inventoryItem);
     }
     // </editor-fold>
 
@@ -1776,6 +1836,51 @@ public class InventoryPage {
         this.validateSubTotal(this.formatCurrency(item.getSubTotalPrice()));
     }
 
+    private void validateImage(InventoryItem item) {
+        logger.info(
+                String.format("Validating image with Device Name %s and Brand %s", item.getDeviceType(), item.getBrand())
+        );
+        screenshotUtils.captureAndAttach(
+                driver,
+                String.format("Validate image with Device Name %s and Brand %s", item.getDevicePrice(), item.getBrand())
+        );
+        String deviceType = item.getDeviceType();
+
+        if (deviceType.equalsIgnoreCase(Enums.DeviceType.LAPTOP.getDisplayName())) {
+            WebElement image = devicePreview_id.findElement(By.tagName("img"));
+            Assert.assertTrue(image.getAttribute("src").contains("laptop"), "Laptop image is not displayed");
+        } else if (deviceType.equalsIgnoreCase(Enums.DeviceType.TABLET.getDisplayName())) {
+            WebElement image = devicePreview_id.findElement(By.tagName("img"));
+            Assert.assertTrue(image.getAttribute("src").contains("tablet"), "Tablet image is not displayed");
+        } else if (deviceType.equals(Enums.DeviceType.PHONE.getDisplayName())) {
+            String brand = item.getBrand();
+
+            if (brand.isEmpty() || brand.equalsIgnoreCase(Enums.Brand.OTHER.getDisplayName())) {
+                WebElement image = devicePreview_id.findElement(By.xpath(".//*[name()='svg']"));
+                Assert.assertTrue(image.isDisplayed(), "Phone svg is not displayed");
+
+                String svgText = image.findElement(By.xpath(".//*[name()='text']")).getText();
+
+                if (brand.isEmpty())
+                    Assert.assertEquals(svgText, "Device", "Default image is not displayed");
+                else
+                    Assert.assertEquals(svgText, "Other", "Default image is not displayed");
+            } else {
+                WebElement image = devicePreview_id.findElement(By.tagName("img"));
+
+                if (brand.equalsIgnoreCase(Enums.Brand.APPLE.getDisplayName())) {
+                    Assert.assertTrue(image.getAttribute("src").contains("iphone"), "Apple phone is not displayed");
+                } else if (brand.equalsIgnoreCase(Enums.Brand.SAMSUNG.getDisplayName())) {
+                    Assert.assertTrue(image.getAttribute("src").contains("sumsung"), "Samsung phone is not displayed");
+                } else if (brand.equalsIgnoreCase(Enums.Brand.XIAOMI.getDisplayName())) {
+                    Assert.assertTrue(image.getAttribute("src").contains("xiami"), "Xiaomi phone is not displayed");
+                }
+            }
+
+
+        }
+    }
+
     private void validatePriceOnReviewPage(InventoryItem item) {
         // verify that the price is correct
         String pricePerUnitFormatted = this.formatCurrency(item.getUnitPrice());
@@ -1868,6 +1973,8 @@ public class InventoryPage {
 
         this.validatePrice(inventoryItem);
 
+        this.validateImage(inventoryItem);
+
         this.submitInventoryForm();
 
         // wait until Step 2 is displayed
@@ -1915,10 +2022,10 @@ public class InventoryPage {
     // </editor-fold>
 
     // <editor-fold desc="Generic Methods">
-    private boolean isDisplayed(WebElement button) {
+    private boolean isDisplayed(WebElement element) {
         boolean isPresent;
         try {
-            isPresent = button.isDisplayed();
+            isPresent = element.isDisplayed();
         } catch (NoSuchElementException e) {
             isPresent = false;
         }

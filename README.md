@@ -153,7 +153,7 @@
 
 - [x] Device change resets brand: pick phone+apple, switch to tablet → brand cleared, brand select disabled until
   re-picked.
-- [ ] Preview **image** vs SVG fallback: laptop/macbook uses laptop image, unknown brand would fallback to SVG (add a
+- [x] Preview image vs SVG fallback: laptop/macbook uses laptop image, unknown brand would fallback to SVG (add a
   temporary brand via dev tools to observe).
 - [x] Discount removal: apply SAVE10 then clear field + Apply → discount message disappears, pricing recalculates
   without discount.

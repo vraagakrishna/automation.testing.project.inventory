@@ -91,6 +91,10 @@ public class InventoryItem {
         return brand;
     }
 
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public String getStorage() {
         return storage;
     }
