@@ -1828,7 +1828,7 @@ public class InventoryPage {
         );
         screenshotUtils.captureAndAttach(
                 driver,
-                String.format("Validate image with Device Name %s and Brand %s", item.getDevicePrice(), item.getBrand())
+                String.format("Validate image with Device Name %s and Brand %s", item.getDeviceType(), item.getBrand())
         );
         String deviceType = item.getDeviceType();
 
