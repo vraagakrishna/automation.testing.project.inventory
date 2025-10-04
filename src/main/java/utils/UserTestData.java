@@ -8,7 +8,7 @@ public class UserTestData {
 
     public static final String LAST_NAME = "V";
 
-    public static final String PASSWORD = "12345678"; //"P@ssword123!";
+    public static final String PASSWORD = "P@ssword123!";
 
     private static final Faker faker = new Faker();
 
@@ -17,7 +17,7 @@ public class UserTestData {
     private static String uniqueEmail;
 
     public static String generateUniqueEmail() {
-        return "123@gmail.com";
+        return "rk@gmail.com";
 
          /*
         if (uniqueEmail == null)
