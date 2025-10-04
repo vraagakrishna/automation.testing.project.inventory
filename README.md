@@ -167,7 +167,7 @@
 - [x] Double-click Place Order (cart) protection: rapid double click yields one toast and cart empties once.
 - [x] Tab navigation reset: partially fill form, switch to API tab, return → form back to defaults (Step1, cleared).
 - [x] Reload clears session: after login press refresh → must login again (token removed).
-- [ ] Aria-live announcements: trigger an error, then fix and submit; ensure screen reader (or inspect DOM) updates
+- [x] Aria-live announcements: trigger an error, then fix and submit; ensure screen reader (or inspect DOM) updates
   alert region.
 - [x] Color persistence: change color to gold for phone, Add To Cart → new blank form defaults back to black (expected).
 - [x] Reactive subtotal: change quantity from 1→2→3 on Step1; Subtotal updates each change without blur.

@@ -621,6 +621,7 @@ public class InventoryPage {
 
         String expectedErrorMessage = "Please correct highlighted fields.";
         Assert.assertEquals(inventoryErrors_id.getText(), expectedErrorMessage, "Expected error message is not found");
+        Assert.assertFalse(inventoryErrors_id.getAttribute("aria-live").isEmpty(), "Expected error message does not have aria-live");
 
         List<String> expectedErrorMessages = new ArrayList<>(List.of("Quantity must be ≤ 10"));
         expectedErrorMessages = expectedErrorMessages.stream().map(String::toLowerCase).collect(Collectors.toList());
