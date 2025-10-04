@@ -842,6 +842,8 @@ public class InventoryPage {
     }
 
     public void verifyNumberOfItemsInCart(int expectedNumberOfItems) {
+        this.javascriptExecutorUtils.scrollToView(cartTitle_id);
+
         String expectedCartHeading = this.getCartHeading(expectedNumberOfItems);
         Assert.assertEquals(cartTitle_id.getText(), expectedCartHeading, "Cart heading is incorrect");
 
