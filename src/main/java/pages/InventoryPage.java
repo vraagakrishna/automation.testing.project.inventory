@@ -1114,6 +1114,15 @@ public class InventoryPage {
         screenshotUtils.captureAndAttach(driver, "Clicked Confirm Order button");
     }
 
+    public void clickConfirmOrderDoubleClick() {
+        logger.info("Double clicking Confirm Order button");
+
+        Actions actions = new Actions(driver);
+        actions.doubleClick(confirmCartBtn_id).perform();
+
+        screenshotUtils.captureAndAttach(driver, "Double clicked Confirm Order button");
+    }
+
     public void verifyPurchaseSuccessAfterConfirmOrder(List<InventoryItem> inventoryItems) {
         logger.info("Verifying Purchase");
 

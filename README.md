@@ -164,7 +164,7 @@
 - [x] Remove from preview list (Step2 small panel) updates main cart summary totals instantly (no stale total).
 - [x] Single Confirm Purchase with discount: apply SAVE10 then Confirm Purchase (not cart) → toast includes discounted
   Total (no cart wording).
-- [ ] Double-click Place Order (cart) protection: rapid double click yields one toast and cart empties once.
+- [x] Double-click Place Order (cart) protection: rapid double click yields one toast and cart empties once.
 - [x] Tab navigation reset: partially fill form, switch to API tab, return → form back to defaults (Step1, cleared).
 - [x] Reload clears session: after login press refresh → must login again (token removed).
 - [ ] Aria-live announcements: trigger an error, then fix and submit; ensure screen reader (or inspect DOM) updates
