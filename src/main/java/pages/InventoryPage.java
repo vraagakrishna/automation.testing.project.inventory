@@ -1622,11 +1622,14 @@ public class InventoryPage {
     // <editor-fold desc="Enter Data into Inventory Form">
     private void selectDeviceType(String selectedDeviceType) {
         new Select(deviceType_id).selectByVisibleText(selectedDeviceType);
+        javascriptExecutorUtils.triggerManualOnChange(deviceType_id);
     }
 
     private void selectBrand(String selectedBrand) {
-        if (brand_id.isEnabled())
+        if (brand_id.isEnabled()) {
             new Select(brand_id).selectByVisibleText(selectedBrand);
+            javascriptExecutorUtils.triggerManualOnChange(brand_id);
+        }
     }
 
     private void selectQuantity(int selectedQuantity) {

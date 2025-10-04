@@ -50,6 +50,13 @@ public class JavascriptExecutorUtils {
                 "document.querySelectorAll('[data-test-id=\"injected-item\"]').forEach(el => el.remove());"
         );
     }
+
+    public void triggerManualOnChange(WebElement element) {
+        js.executeScript(
+                "const evt = new Event('change', { bubbles: true }); arguments[0].dispatchEvent(evt);",
+                element
+        );
+    }
     // </editor-fold>
 
 }
