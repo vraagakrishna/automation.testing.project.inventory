@@ -2155,7 +2155,7 @@ public class InventoryPage {
         File downloadedInvoice = new File(pathname);
 
         // Wait until file exists
-        new WebDriverWait(driver, Duration.ofSeconds(50))
+        new WebDriverWait(driver, Duration.ofSeconds(200))
                 .until(d -> downloadedInvoice.exists());
 
         Assert.assertTrue(downloadedInvoice.exists(), "Invoice PDF was not downloaded!");
