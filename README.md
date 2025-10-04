@@ -244,6 +244,6 @@
 - [x] Use **Page Object Model (POM)** framework
 - [x] Generate a report
 - [x] Take screenshots
-- [ ] Read from Excel
+- [x] Read from Excel
 - [ ] Implement CI/CD pipeline using GitHub actions
 

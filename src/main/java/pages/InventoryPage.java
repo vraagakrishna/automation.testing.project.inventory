@@ -43,6 +43,8 @@ public class InventoryPage {
 
     private final JavascriptExecutorUtils javascriptExecutorUtils;
 
+    private final UserTestData userTestData;
+
     // <editor-fold desc="Title">
     @FindBy(id = "inventory-title")
     WebElement inventoryTitle_id;
@@ -289,11 +291,12 @@ public class InventoryPage {
     // </editor-fold>
 
     // <editor-fold desc="Ctor">
-    public InventoryPage(WebDriver driver) {
+    public InventoryPage(WebDriver driver) throws IOException {
         this.driver = driver;
         this.softAssert = new SoftAssert();
         this.javascriptExecutorUtils = new JavascriptExecutorUtils(driver);
         this.alertUtils = new AlertUtils(driver);
+        this.userTestData = new UserTestData();
         screenshotUtils = new ScreenshotUtils();
         fileUtils = new FileUtils();
     }
@@ -1107,7 +1110,7 @@ public class InventoryPage {
         screenshotUtils.captureAndAttach(driver, "Purchase success toast");
 
         logger.info("Verifying success message");
-        Assert.assertEquals(orderSuccessMessage.getText(), UserTestData.FIRST_NAME + ", your order was purchased successfully!", "Order success message is incorrect");
+        Assert.assertEquals(orderSuccessMessage.getText(), UserTestData.getFirstName() + ", your order was purchased successfully!", "Order success message is incorrect");
 
         logger.info("Verifying order details");
         String details = orderDetails.getText().replace("Order Details:\n", "");
@@ -1156,7 +1159,7 @@ public class InventoryPage {
         screenshotUtils.captureAndAttach(driver, "Purchase success toast");
 
         logger.info("Verifying success message");
-        Assert.assertEquals(orderSuccessMessage.getText(), UserTestData.FIRST_NAME + ", your order was purchased successfully!", "Order success message is incorrect");
+        Assert.assertEquals(orderSuccessMessage.getText(), UserTestData.getFirstName() + ", your order was purchased successfully!", "Order success message is incorrect");
 
         logger.info("Verifying order details");
         String details = orderDetails.getText();
@@ -1245,7 +1248,7 @@ public class InventoryPage {
 
         logger.info("Verifying the invoice customer name");
         WebElement customerName = invoiceItem.findElement(By.id("invoice-customer-name-INV-" + idNumber));
-        Assert.assertEquals(customerName.getText(), String.format("Customer: %s %s", UserTestData.FIRST_NAME, UserTestData.LAST_NAME), "Customer name is incorrect");
+        Assert.assertEquals(customerName.getText(), String.format("Customer: %s %s", UserTestData.getFirstName(), UserTestData.getLastName()), "Customer name is incorrect");
 
         logger.info("Verifying invoice item count");
         WebElement itemCount = invoiceItem.findElement(By.id("invoice-item-count-INV-" + idNumber));
@@ -1449,7 +1452,7 @@ public class InventoryPage {
 
             logger.info("Verifying the invoice customer name");
             WebElement customerName = driver.findElement(By.id("invoice-customer-name-" + invoice.getInvoiceNumber()));
-            Assert.assertEquals(customerName.getText(), String.format("Customer: %s %s", UserTestData.FIRST_NAME, UserTestData.LAST_NAME), "Customer name is incorrect");
+            Assert.assertEquals(customerName.getText(), String.format("Customer: %s %s", UserTestData.getFirstName(), UserTestData.getLastName()), "Customer name is incorrect");
 
             logger.info("Verifying the invoice datetime");
             WebElement invoiceDateTime = driver.findElement(By.id("invoice-datetime-" + invoice.getInvoiceNumber()));
@@ -2053,10 +2056,10 @@ public class InventoryPage {
         Assert.assertTrue(logoSrc.startsWith("data:image/png;base64,"), "Logo is missing or not base64 encoded");
 
         logger.info("Verifying customer name");
-        Assert.assertEquals(invoiceCustomerName.getText(), String.format("%s %s", UserTestData.FIRST_NAME, UserTestData.LAST_NAME), "Customer name on invoice is incorrect");
+        Assert.assertEquals(invoiceCustomerName.getText(), String.format("%s %s", UserTestData.getFirstName(), UserTestData.getLastName()), "Customer name on invoice is incorrect");
 
         logger.info("Verifying customer email");
-        Assert.assertEquals(invoiceCustomerEmail.getText(), UserTestData.generateUniqueEmail(), "Customer email on invoice is incorrect");
+        Assert.assertEquals(invoiceCustomerEmail.getText(), UserTestData.getUniqueEmail(), "Customer email on invoice is incorrect");
 
         logger.info("Verifying customer address");
         Assert.assertEquals(invoiceCustomerAddress.getText(), invoice.getAddress(), "Address on invoice is incorrect");
@@ -2175,10 +2178,10 @@ public class InventoryPage {
 
         // Verifying expected details
         logger.info("Verifying customer name");
-        Assert.assertTrue(pdfText.contains(String.format("%s %s", UserTestData.FIRST_NAME, UserTestData.LAST_NAME)), "Customer name on downloaded invoice is incorrect");
+        Assert.assertTrue(pdfText.contains(String.format("%s %s", UserTestData.getFirstName(), UserTestData.getLastName())), "Customer name on downloaded invoice is incorrect");
 
         logger.info("Verifying customer email");
-        Assert.assertTrue(pdfText.contains(UserTestData.generateUniqueEmail()), "Customer email on downloaded invoice is incorrect");
+        Assert.assertTrue(pdfText.contains(UserTestData.getUniqueEmail()), "Customer email on downloaded invoice is incorrect");
 
         logger.info("Verifying customer address");
         Assert.assertTrue(pdfText.contains(invoice.getAddress()), "Customer address on downloaded invoice is incorrect");

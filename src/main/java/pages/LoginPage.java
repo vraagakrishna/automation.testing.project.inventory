@@ -11,6 +11,7 @@ import utils.JavascriptExecutorUtils;
 import utils.ScreenshotUtils;
 import utils.UserTestData;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.logging.Logger;
 
@@ -26,6 +27,8 @@ public class LoginPage {
     private final WebDriver driver;
 
     private final AlertUtils alertUtils;
+
+    private final UserTestData userTestData;
 
     @FindBy(id = "login-heading")
     WebElement loginHeading_id;
@@ -44,9 +47,10 @@ public class LoginPage {
     // </editor-fold>
 
     // <editor-fold desc="Ctor">
-    public LoginPage(WebDriver driver) {
+    public LoginPage(WebDriver driver) throws IOException {
         this.driver = driver;
         this.alertUtils = new AlertUtils(driver);
+        this.userTestData = new UserTestData();
         screenshotUtils = new ScreenshotUtils();
     }
     // </editor-fold>
@@ -110,14 +114,14 @@ public class LoginPage {
 
     public void checkPrePopulatedEmailAddress() {
         String emailAddress = getEmailAddress();
-        Assert.assertEquals(emailAddress, UserTestData.generateUniqueEmail(), "Email address is not pre-populated");
+        Assert.assertEquals(emailAddress, UserTestData.getUniqueEmail(), "Email address is not pre-populated");
     }
 
     public void enterValidPasswordAfterRegistration() {
         logger.info("Valid credentials login");
 
         // Note: email address is pre-populated
-        this.enterPassword(UserTestData.PASSWORD);
+        this.enterPassword(UserTestData.getPassword());
 
         this.clickLoginButton();
     }
@@ -140,8 +144,8 @@ public class LoginPage {
 
         this.clearLoginForm();
 
-        this.enterEmailAddress(UserTestData.generateUniqueEmail());
-        this.enterPassword(UserTestData.PASSWORD);
+        this.enterEmailAddress(UserTestData.getUniqueEmail());
+        this.enterPassword(UserTestData.getPassword());
 
         screenshotUtils.captureAndAttach(driver, "Submission with valid credentials");
 
@@ -153,8 +157,8 @@ public class LoginPage {
 
         this.clearLoginForm();
 
-        this.enterEmailAddress(String.format("   %s   ", UserTestData.generateUniqueEmail()));
-        this.enterPassword(String.format("   %s   ", UserTestData.PASSWORD));
+        this.enterEmailAddress(String.format("   %s   ", UserTestData.getUniqueEmail()));
+        this.enterPassword(String.format("   %s   ", UserTestData.getPassword()));
 
         screenshotUtils.captureAndAttach(driver, "Submission with valid credentials with whitespace");
 

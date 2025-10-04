@@ -10,6 +10,7 @@ import utils.JavascriptExecutorUtils;
 import utils.ScreenshotUtils;
 import utils.UserTestData;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.logging.Logger;
 
@@ -26,6 +27,8 @@ public class LearningMaterialsPage {
 
     private final JavascriptExecutorUtils javascriptExecutorUtils;
 
+    private final UserTestData userTestData;
+
     @FindBy(id = "practice-heading")
     WebElement practiceHeading_id;
 
@@ -40,16 +43,17 @@ public class LearningMaterialsPage {
     // </editor-fold>
 
     // <editor-fold desc="Ctor">
-    public LearningMaterialsPage(WebDriver driver) {
+    public LearningMaterialsPage(WebDriver driver) throws IOException {
         this.driver = driver;
         this.javascriptExecutorUtils = new JavascriptExecutorUtils(driver);
+        this.userTestData = new UserTestData();
         screenshotUtils = new ScreenshotUtils();
     }
     // </editor-fold>
 
     // <editor-fold desc="Public Methods">
     public void verifyLearningMaterialsPageIsDisplayed() {
-        String expectedHeading = String.format("Welcome back, %s!", UserTestData.FIRST_NAME);
+        String expectedHeading = String.format("Welcome back, %s!", UserTestData.getFirstName());
 
         logger.info("Waiting for Learning Materials Page to be visible");
         new WebDriverWait(driver, Duration.ofSeconds(20))

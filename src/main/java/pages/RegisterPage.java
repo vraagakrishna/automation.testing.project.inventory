@@ -10,6 +10,7 @@ import utils.AlertUtils;
 import utils.ScreenshotUtils;
 import utils.UserTestData;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.logging.Logger;
 
@@ -25,6 +26,8 @@ public class RegisterPage {
     private final WebDriver driver;
 
     private final AlertUtils alertUtils;
+
+    private final UserTestData userTestData;
 
     @FindBy(id = "registration-heading")
     WebElement registrationHeading_id;
@@ -52,9 +55,10 @@ public class RegisterPage {
     // </editor-fold>
 
     // <editor-fold desc="Ctor">
-    public RegisterPage(WebDriver driver) {
+    public RegisterPage(WebDriver driver) throws IOException {
         this.driver = driver;
         this.alertUtils = new AlertUtils(driver);
+        this.userTestData = new UserTestData();
         screenshotUtils = new ScreenshotUtils();
     }
     // </editor-fold>
@@ -98,7 +102,7 @@ public class RegisterPage {
         String expectedMessage = "Please fill in all fields";
         logger.info("Submission of a register form with only first name");
 
-        this.enterFirstName(UserTestData.FIRST_NAME);
+        this.enterFirstName(UserTestData.getFirstName());
 
         screenshotUtils.captureAndAttach(driver, "Submission with only first name");
 
@@ -111,8 +115,8 @@ public class RegisterPage {
         String expectedMessage = "Please fill in all fields";
         logger.info("Submission of a register form with only first name and last name");
 
-        this.enterFirstName(UserTestData.FIRST_NAME);
-        this.enterLastName(UserTestData.LAST_NAME);
+        this.enterFirstName(UserTestData.getFirstName());
+        this.enterLastName(UserTestData.getLastName());
 
         screenshotUtils.captureAndAttach(driver, "Submission with first name and last name");
 
@@ -125,8 +129,8 @@ public class RegisterPage {
         String expectedMessage = "Please fill in all fields";
         logger.info("Submission of a register form with first name, last name and invalid email address");
 
-        this.enterFirstName(UserTestData.FIRST_NAME);
-        this.enterLastName(UserTestData.LAST_NAME);
+        this.enterFirstName(UserTestData.getFirstName());
+        this.enterLastName(UserTestData.getLastName());
         this.enterEmailAddress(".");
 
         screenshotUtils.captureAndAttach(driver, "Submission with first name, last name and invalid email address");
@@ -140,8 +144,8 @@ public class RegisterPage {
         String expectedMessage = "Passwords do not match!";
         logger.info("Submission of a register form with first name, last name, invalid email address and password");
 
-        this.enterFirstName(UserTestData.FIRST_NAME);
-        this.enterLastName(UserTestData.LAST_NAME);
+        this.enterFirstName(UserTestData.getFirstName());
+        this.enterLastName(UserTestData.getLastName());
         this.enterEmailAddress(".");
         this.enterPassword(".");
 
@@ -156,8 +160,8 @@ public class RegisterPage {
         String expectedMessage = "Please enter a valid email address";
         logger.info("Submission of a register form with first name, last name, invalid email address, password and confirm password");
 
-        this.enterFirstName(UserTestData.FIRST_NAME);
-        this.enterLastName(UserTestData.LAST_NAME);
+        this.enterFirstName(UserTestData.getFirstName());
+        this.enterLastName(UserTestData.getLastName());
         this.enterEmailAddress(".");
         this.enterPassword(".");
         this.enterConfirmPassword(".");
@@ -173,9 +177,9 @@ public class RegisterPage {
         String expectedMessage = "Password must be at least 8 characters long";
         logger.info("Submission of a register form with first name, last name, valid email address, short password and confirm password");
 
-        this.enterFirstName(UserTestData.FIRST_NAME);
-        this.enterLastName(UserTestData.LAST_NAME);
-        this.enterEmailAddress(UserTestData.generateUniqueEmail());
+        this.enterFirstName(UserTestData.getFirstName());
+        this.enterLastName(UserTestData.getLastName());
+        this.enterEmailAddress(UserTestData.getUniqueEmail());
         this.enterPassword(".");
         this.enterConfirmPassword(".");
 
@@ -190,11 +194,11 @@ public class RegisterPage {
         String expectedMessage = "Registration successful! You can now login with your credentials.";
         logger.info("Submission of a register form with valid credentials");
 
-        this.enterFirstName(UserTestData.FIRST_NAME);
-        this.enterLastName(UserTestData.LAST_NAME);
-        this.enterEmailAddress(UserTestData.generateUniqueEmail());
-        this.enterPassword(UserTestData.PASSWORD);
-        this.enterConfirmPassword(UserTestData.PASSWORD);
+        this.enterFirstName(UserTestData.getFirstName());
+        this.enterLastName(UserTestData.getLastName());
+        this.enterEmailAddress(UserTestData.getUniqueEmail());
+        this.enterPassword(UserTestData.getPassword());
+        this.enterConfirmPassword(UserTestData.getPassword());
 
         screenshotUtils.captureAndAttach(driver, "Submission with valid credentials");
 
@@ -207,11 +211,11 @@ public class RegisterPage {
         String expectedMessage = "User with this email already exists";
         logger.info("Re-register user");
 
-        this.enterFirstName(UserTestData.FIRST_NAME);
-        this.enterLastName(UserTestData.LAST_NAME);
-        this.enterEmailAddress(UserTestData.generateUniqueEmail());
-        this.enterPassword(UserTestData.PASSWORD);
-        this.enterConfirmPassword(UserTestData.PASSWORD);
+        this.enterFirstName(UserTestData.getFirstName());
+        this.enterLastName(UserTestData.getLastName());
+        this.enterEmailAddress(UserTestData.getUniqueEmail());
+        this.enterPassword(UserTestData.getPassword());
+        this.enterConfirmPassword(UserTestData.getPassword());
 
         screenshotUtils.captureAndAttach(driver, "Re-register user");
 
