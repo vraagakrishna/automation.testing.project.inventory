@@ -110,7 +110,7 @@
 - [x] Invoice storage → Saves complete data: customerName, customerEmail, deliveryAddress, items, total, htmlContent.
 - [x] Invoice history panel → Shows last 10 invoices with view/download/delete options.
 - [x] View invoice → Opens in new tab with HTML format matching design.
-- [ ] Download PDF → Generates professional PDF with jsPDF, includes logo, **proper spacing, page boundaries**.
+- [x] Download PDF → Generates professional PDF with jsPDF, includes logo, proper spacing, page boundaries.
 - [x] PDF Bill To section → Shows customer name, email, and delivery address.
 - [x] PDF layout → Company logo top-left, company info top-right, proper margins and spacing.
 - [x] Delete invoice → Removes from history with confirmation, updates count display.

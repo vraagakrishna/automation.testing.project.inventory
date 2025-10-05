@@ -8,7 +8,9 @@ import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDResources;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.pdfbox.text.TextPosition;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -2429,6 +2431,13 @@ public class InventoryPage {
         Assert.assertTrue(pdfText.contains("Thank you for your business!"), "Thank you message on downloaded invoice is incorrect");
 
 
+        logger.info("Verifying text is within page");
+        try {
+            this.verifyTextWithinPageBounds(downloadedInvoice, invoice);
+        } catch (IOException e) {
+            logger.info("An exception occurred when checking text within page bounds for invoice " + invoice.getInvoiceNumber());
+            throw new RuntimeException(e);
+        }
 
 
         logger.info("Verifying no overlapping text");
@@ -2501,6 +2510,65 @@ public class InventoryPage {
         softAssert.assertTrue(idxItems < idxSubTotal, "Invoice items should be above subtotal");
         softAssert.assertTrue(idxSubTotal < idxTotal, "Subtotal should come be above total");
         softAssert.assertTrue(idxTotal < idxThankYou, "Totals should come be above footer");
+    }
+
+    private void verifyTextWithinPageBounds(File pdfFile, Invoice invoice) throws IOException {
+        try (PDDocument document = Loader.loadPDF(pdfFile)) {
+            for (int pageIndex = 0; pageIndex < document.getNumberOfPages(); pageIndex++) {
+                PDPage page = document.getPage(pageIndex);
+                PDRectangle cropBox = page.getCropBox();
+
+                List<TextPosition> positions = new ArrayList<>();
+
+                PDFTextStripper stripper = new PDFTextStripper() {
+                    @Override
+                    protected void processTextPosition(TextPosition text) {
+                        positions.add(text);
+                        super.processTextPosition(text);
+                    }
+                };
+
+                stripper.setStartPage(pageIndex + 1);
+                stripper.setEndPage(pageIndex + 1);
+                stripper.getText(document);
+
+                // Group text positions by line (Y)
+                Map<Integer, List<TextPosition>> lines = new TreeMap<>();
+                for (TextPosition pos : positions) {
+                    int y = Math.round(pos.getY());
+                    lines.computeIfAbsent(y, k -> new ArrayList<>()).add(pos);
+                }
+
+                // Convert grouped positions into text lines
+                Map<Integer, String> textLines = new LinkedHashMap<>();
+                for (Map.Entry<Integer, List<TextPosition>> entry : lines.entrySet()) {
+                    List<TextPosition> linePositions = entry.getValue();
+                    linePositions.sort(Comparator.comparing(TextPosition::getX));
+                    StringBuilder sb = new StringBuilder();
+                    for (TextPosition pos : linePositions) {
+                        sb.append(pos.getUnicode());
+                    }
+                    textLines.put(entry.getKey(), sb.toString().trim());
+                }
+
+                // Validate line bounds (based on Y distance)
+                for (Map.Entry<Integer, String> entry : textLines.entrySet()) {
+                    int y = entry.getKey();
+                    String text = entry.getValue();
+
+                    boolean withinY = y >= cropBox.getLowerLeftY() && y <= cropBox.getUpperRightY();
+
+                    if (!withinY) {
+                        softAssert.fail(
+                                String.format("Text '%s' is not within page bounds for downloaded invoice %s",
+                                        text, invoice.getInvoiceNumber()
+                                )
+                        );
+                    }
+
+                }
+            }
+        }
     }
     // </editor-fold>
     // </editor-fold>
