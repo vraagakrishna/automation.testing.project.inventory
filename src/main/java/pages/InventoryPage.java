@@ -2472,10 +2472,11 @@ public class InventoryPage {
                 String text = entry.getValue();
 
                 if (prevY != null && Math.abs(prevY - y) < 5) {
-                    softAssert.fail(String.format(
-                            "Overlapping lines on invoice %s: '%s' and '%s'",
-                            invoice.getInvoiceNumber(), prevText, text
-                    ));
+                    softAssert.fail(
+                            String.format("Overlapping lines on invoice %s: '%s' and '%s'",
+                                    invoice.getInvoiceNumber(), prevText, text
+                            )
+                    );
                 }
 
                 prevY = y;
