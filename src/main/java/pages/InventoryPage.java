@@ -2427,6 +2427,21 @@ public class InventoryPage {
 
         logger.info("Verifying the thank you message");
         Assert.assertTrue(pdfText.contains("Thank you for your business!"), "Thank you message on downloaded invoice is incorrect");
+
+
+        logger.info("Verifying section order");
+        String pdfTextLower = pdfText.toLowerCase();
+
+        int idxCustomer = pdfTextLower.indexOf("bill to");
+        int idxItems = pdfTextLower.indexOf("description");
+        int idxSubTotal = pdfTextLower.indexOf("subtotal");
+        int idxTotal = pdfTextLower.indexOf("total");
+        int idxThankYou = pdfTextLower.indexOf("thank you");
+
+        softAssert.assertTrue(idxCustomer < idxItems, "Customer details should be above invoice items on downloaded invoice");
+        softAssert.assertTrue(idxItems < idxSubTotal, "Invoice items should be above subtotal");
+        softAssert.assertTrue(idxSubTotal < idxTotal, "Subtotal should come be above total");
+        softAssert.assertTrue(idxTotal < idxThankYou, "Totals should come be above footer");
     }
     // </editor-fold>
     // </editor-fold>
