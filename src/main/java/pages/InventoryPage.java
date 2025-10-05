@@ -2429,6 +2429,64 @@ public class InventoryPage {
         Assert.assertTrue(pdfText.contains("Thank you for your business!"), "Thank you message on downloaded invoice is incorrect");
 
 
+
+
+        logger.info("Verifying no overlapping text");
+        try (PDDocument document = Loader.loadPDF(downloadedInvoice)) {
+            List<TextPosition> positions = new ArrayList<>();
+
+            PDFTextStripper stripper = new PDFTextStripper() {
+                @Override
+                protected void processTextPosition(TextPosition text) {
+                    positions.add(text);
+                    super.processTextPosition(text);
+                }
+            };
+
+            stripper.getText(document);
+
+            // Group text positions by line (Y)
+            Map<Integer, List<TextPosition>> lines = new TreeMap<>();
+            for (TextPosition pos : positions) {
+                int y = Math.round(pos.getY());
+                lines.computeIfAbsent(y, k -> new ArrayList<>()).add(pos);
+            }
+
+            // Convert grouped positions into text lines
+            Map<Integer, String> textLines = new LinkedHashMap<>();
+            for (Map.Entry<Integer, List<TextPosition>> entry : lines.entrySet()) {
+                List<TextPosition> linePositions = entry.getValue();
+                linePositions.sort(Comparator.comparing(TextPosition::getX));
+                StringBuilder sb = new StringBuilder();
+                for (TextPosition pos : linePositions) {
+                    sb.append(pos.getUnicode());
+                }
+                textLines.put(entry.getKey(), sb.toString().trim());
+            }
+
+            // Detect overlapping lines (based on Y distance)
+            Integer prevY = null;
+            String prevText = null;
+            for (Map.Entry<Integer, String> entry : textLines.entrySet()) {
+                int y = entry.getKey();
+                String text = entry.getValue();
+
+                if (prevY != null && Math.abs(prevY - y) < 5) {
+                    softAssert.fail(String.format(
+                            "Overlapping lines on invoice %s: '%s' and '%s'",
+                            invoice.getInvoiceNumber(), prevText, text
+                    ));
+                }
+
+                prevY = y;
+                prevText = text;
+            }
+        } catch (IOException e) {
+            logger.info("An exception occurred while verifying overlapping text");
+            throw new RuntimeException(e);
+        }
+
+
         logger.info("Verifying section order");
         String pdfTextLower = pdfText.toLowerCase();
 
