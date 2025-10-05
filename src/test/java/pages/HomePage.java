@@ -68,7 +68,7 @@ public class HomePage {
         // the user should be logged out when the tab is changed
         driver.navigate().refresh();
 
-        screenshotUtils.captureAndAttach(driver, "Verifying apage is refreshed");
+        screenshotUtils.captureAndAttach(driver, "Verifying page is refreshed");
     }
     // </editor-fold>
 
