@@ -40,7 +40,27 @@ public class InvoiceTests extends TestsBase {
     // </editor-fold>
 
     // <editor-fold desc="Invoice Tests">
-    @Test(description = "Place order and close toast", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 2)
+    @Test(description = "Place order for single item and close toast", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 2)
+    public void placeOrderForSingleItemAndCloseToast() {
+        // Defining inventory items
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+
+        List<InventoryItem> inventoryItemList = new ArrayList<>(List.of(inventoryItem1));
+
+        Invoice invoice = inventoryPage.orderMultipleItems(0, inventoryItemList, true);
+
+        List<Invoice> invoices = new ArrayList<>(List.of(invoice));
+
+        // Verifying all the invoices
+        inventoryPage.verifyingInvoices(invoices);
+
+        // clear all invoices
+        inventoryPage.clearAllInvoices();
+
+        inventoryPage.verifyInvoiceButton(0);
+    }
+
+    @Test(description = "Place order and close toast", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 3)
     public void placeOrderAndCloseToast() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
@@ -62,7 +82,7 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.verifyInvoiceButton(0);
     }
 
-    @Test(description = "Place order and view invoice", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 3)
+    @Test(description = "Place order and view invoice", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 4)
     public void placeOrderAndViewInvoice() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
@@ -84,7 +104,7 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.verifyInvoiceButton(0);
     }
 
-    @Test(description = "Place order with discount", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 4)
+    @Test(description = "Place order with discount", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 5)
     public void placeOrderWithDiscount() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "SAVE10");
@@ -106,7 +126,7 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.verifyInvoiceButton(0);
     }
 
-    @Test(description = "Place order with more than 10 items", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 5)
+    @Test(description = "Place order with more than 10 items", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 6)
     public void placeOrderWithMoreThanTenItems() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
@@ -137,7 +157,7 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.verifyInvoiceButton(0);
     }
 
-    @Test(description = "Delete single invoice", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 6)
+    @Test(description = "Delete single invoice", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 7)
     public void deleteSingleInvoice() {
         int orderNumber = 0;
         List<Invoice> invoices = new ArrayList<>();
@@ -172,7 +192,7 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.verifyInvoiceButton(orderNumber);
     }
 
-    @Test(description = "Order multiple items in separate orders", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 7)
+    @Test(description = "Order multiple items in separate orders", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 8)
     public void orderMultipleItemsInSeparateOrders() {
         int orderNumber = 0;
         List<Invoice> invoices = new ArrayList<>();
