@@ -238,7 +238,28 @@ public class CartTests extends TestsBase {
         inventoryPage.addItemAndRemoveExistingItemOnReviewStep(inventoryItem2, new ArrayList<>(List.of(inventoryItem1)));
     }
 
-    @Test(description = "Place order with empty cart", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 9)
+    @Test(description = "Double click on Place Order button", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 9)
+    public void doubleClickOnPlaceOrder() {
+        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        inventoryPage.addItemToCart(inventoryItem1);
+        inventoryPage.validateBlankInventoryForm();
+
+        inventoryPage.isCartVisible();
+
+        inventoryPage.verifyNumberOfItemsInCart(1);
+
+
+        // click Review Cart
+        inventoryPage.clickReviewCartOrder();
+
+
+        // click Confirm Order
+        inventoryPage.clickConfirmOrderDoubleClick();
+
+        inventoryPage.verifyPurchaseSuccessAfterConfirmOrder(new ArrayList<>(List.of(inventoryItem1)));
+    }
+
+    @Test(description = "Place order with empty cart", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 10)
     public void placeOrderWithEmptyCart() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "256GB", 1, "Gold", UserTestData.address, "express", "1yr", "SAVE10");
         inventoryPage.addItemToCart(inventoryItem);
@@ -271,36 +292,6 @@ public class CartTests extends TestsBase {
 
         // no toast should be shown
         Assert.assertFalse(inventoryPage.isPurchaseSuccessToastVisible(), "Purchase success toast is visible");
-    }
-
-    @Test(description = "Double click on Place Order button", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 10)
-    public void doubleClickOnPlaceOrder() {
-        InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
-        inventoryPage.addItemToCart(inventoryItem1);
-        inventoryPage.validateBlankInventoryForm();
-
-        inventoryPage.isCartVisible();
-
-        inventoryPage.verifyNumberOfItemsInCart(1);
-
-
-        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "256GB", 1, "Gold", UserTestData.address, "express", "1yr", "SAVE10");
-        inventoryPage.addItemToCart(inventoryItem2);
-        inventoryPage.validateBlankInventoryForm();
-
-        inventoryPage.isCartVisible();
-
-        inventoryPage.verifyNumberOfItemsInCart(2);
-
-
-        // click Review Cart
-        inventoryPage.clickReviewCartOrder();
-
-
-        // click Confirm Order
-        inventoryPage.clickConfirmOrderDoubleClick();
-
-        inventoryPage.verifyPurchaseSuccessAfterConfirmOrder(new ArrayList<>(List.of(inventoryItem1, inventoryItem2)));
     }
     // </editor-fold>
 
