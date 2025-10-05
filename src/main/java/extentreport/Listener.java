@@ -48,8 +48,6 @@ public class Listener implements ITestListener {
         }
 
         driver = DriverManager.getDriver();
-        screenshotUtils.setBrowserBounds(driver);
-
         screenshotUtils.captureAndAttach(driver, "Before Test Screenshot");
     }
 

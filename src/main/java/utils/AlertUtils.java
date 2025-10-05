@@ -14,14 +14,13 @@ public class AlertUtils {
 
     // <editor-fold desc="Class Fields / Constants">
     private static final Logger logger = Logger.getLogger(AlertUtils.class.getName());
-    private static ScreenshotUtils screenshotUtils;
+
     private final WebDriver driver;
     // </editor-fold>
 
     // <editor-fold desc="Ctor">
     public AlertUtils(WebDriver driver) {
         this.driver = driver;
-        screenshotUtils = new ScreenshotUtils();
     }
     // </editor-fold>
 
@@ -69,8 +68,6 @@ public class AlertUtils {
             Thread.sleep(200);
         } catch (InterruptedException ignored) {
         }
-
-        screenshotUtils.captureWithAlert("Alert after submission");
 
         String alertMessage = alert.getText();
 
