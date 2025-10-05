@@ -58,6 +58,8 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.clearAllInvoices();
 
         inventoryPage.verifyInvoiceButton(0);
+
+        inventoryPage.checkSoftAssertion();
     }
 
     @Test(description = "Place order and close toast", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 3)
@@ -80,6 +82,8 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.clearAllInvoices();
 
         inventoryPage.verifyInvoiceButton(0);
+
+        inventoryPage.checkSoftAssertion();
     }
 
     @Test(description = "Place order and view invoice", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 4)
@@ -102,6 +106,8 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.clearAllInvoices();
 
         inventoryPage.verifyInvoiceButton(0);
+
+        inventoryPage.checkSoftAssertion();
     }
 
     @Test(description = "Place order with discount", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 5)
@@ -124,6 +130,8 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.clearAllInvoices();
 
         inventoryPage.verifyInvoiceButton(0);
+
+        inventoryPage.checkSoftAssertion();
     }
 
     @Test(description = "Place order with more than 10 items", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 6)
@@ -155,6 +163,8 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.clearAllInvoices();
 
         inventoryPage.verifyInvoiceButton(0);
+
+        inventoryPage.checkSoftAssertion();
     }
 
     @Test(description = "Delete single invoice", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 7)
@@ -190,6 +200,8 @@ public class InvoiceTests extends TestsBase {
 
         // Verify Invoice Button
         inventoryPage.verifyInvoiceButton(orderNumber);
+
+        inventoryPage.checkSoftAssertion();
     }
 
     @Test(description = "Order multiple items in separate orders", groups = "11. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 8)
@@ -313,6 +325,8 @@ public class InvoiceTests extends TestsBase {
 
         // Verify Invoice Button
         inventoryPage.verifyInvoiceButton(orderNumber);
+
+        inventoryPage.checkSoftAssertion();
     }
     // </editor-fold>
 

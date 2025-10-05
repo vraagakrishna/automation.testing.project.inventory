@@ -35,8 +35,6 @@ public class InventoryPage {
 
     private static FileUtils fileUtils;
 
-    private final SoftAssert softAssert;
-
     private final WebDriver driver;
 
     private final AlertUtils alertUtils;
@@ -44,6 +42,8 @@ public class InventoryPage {
     private final JavascriptExecutorUtils javascriptExecutorUtils;
 
     private final UserTestData userTestData;
+
+    SoftAssert softAssert;
 
     // <editor-fold desc="Title">
     @FindBy(id = "inventory-title")
@@ -413,6 +413,14 @@ public class InventoryPage {
             return cartSummary_id.isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
+        }
+    }
+
+    public void checkSoftAssertion() {
+        try {
+            softAssert.assertAll();
+        } finally {
+            softAssert = new SoftAssert();
         }
     }
     // </editor-fold>
@@ -1160,17 +1168,17 @@ public class InventoryPage {
             orderDetails.append(String.format(" (+%s more)", inventoryItems.size() - 5));
 
         logger.info("Order details are: " + orderDetails);
-        Assert.assertEquals(details, orderDetails.toString(), "Order details are not the same");
+        softAssert.assertEquals(details, orderDetails.toString(), "Order details are not the same");
 
         logger.info("Verifying total price");
         double grandTotal = this.getGrandTotal(inventoryItems);
-        Assert.assertEquals(totalPrice.getText(), "Total: " + this.formatCurrency(grandTotal));
+        softAssert.assertEquals(totalPrice.getText(), "Total: " + this.formatCurrency(grandTotal));
 
         logger.info("Verifying the dismiss button is displayed");
-        Assert.assertTrue(this.isDisplayed(dismissNotificationBtn_id), "Dismiss button is not displayed");
+        softAssert.assertTrue(this.isDisplayed(dismissNotificationBtn_id), "Dismiss button is not displayed");
 
         logger.info("Verifying the View Invoice button is displayed");
-        Assert.assertTrue(this.isDisplayed(viewHistoryBtn_id), "View Invoice button is not displayed");
+        softAssert.assertTrue(this.isDisplayed(viewHistoryBtn_id), "View Invoice button is not displayed");
     }
 
     public void verifyPurchaseSuccessAfterPurchase(InventoryItem inventoryItem) {
@@ -1501,8 +1509,6 @@ public class InventoryPage {
 
             numberOfInvoice++;
         }
-
-        softAssert.assertAll();
     }
 
     public void addItemAndRemoveExistingItemOnReviewStep(InventoryItem inventoryItem, List<InventoryItem> previousItems) {

@@ -78,6 +78,8 @@ public class PurchaseTests extends TestsBase {
         inventoryPage.clearAllInvoices();
 
         inventoryPage.verifyInvoiceButton(0);
+
+        inventoryPage.checkSoftAssertion();
     }
 
     @Test(description = "Purchase item and view invoice", groups = "10. Purchase Items Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 3)
@@ -112,6 +114,8 @@ public class PurchaseTests extends TestsBase {
         inventoryPage.clearAllInvoices();
 
         inventoryPage.verifyInvoiceButton(0);
+
+        inventoryPage.checkSoftAssertion();
     }
 
     @Test(description = "Purchase multiple items", groups = "10. Purchase Items Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 4)
@@ -134,6 +138,8 @@ public class PurchaseTests extends TestsBase {
         inventoryPage.clearAllInvoices();
 
         inventoryPage.verifyInvoiceButton(0);
+
+        inventoryPage.checkSoftAssertion();
     }
 
     @Test(description = "Purchase 10 items", groups = "10. Purchase Items Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 5)
@@ -162,6 +168,8 @@ public class PurchaseTests extends TestsBase {
         inventoryPage.clearAllInvoices();
 
         inventoryPage.verifyInvoiceButton(0);
+
+        inventoryPage.checkSoftAssertion();
     }
 
     @Test(description = "Purchase more than 10 items", groups = "10. Purchase Items Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 6)
@@ -193,6 +201,8 @@ public class PurchaseTests extends TestsBase {
         inventoryPage.clearAllInvoices();
 
         inventoryPage.verifyInvoiceButton(0);
+
+        inventoryPage.checkSoftAssertion();
     }
     // </editor-fold>
 
