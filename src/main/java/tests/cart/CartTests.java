@@ -264,6 +264,17 @@ public class CartTests extends TestsBase {
         inventoryPage.verifyNumberOfItemsInCart(1);
 
 
+        InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
+        inventoryPage.addItemToCart(inventoryItem2);
+        inventoryPage.validateBlankInventoryForm();
+
+        inventoryPage.verifyNumberOfItemsInCart(2);
+
+
+        List<InventoryItem> inventoryItemList = new ArrayList<>(List.of(inventoryItem1, inventoryItem2));
+        inventoryPage.verifyCartItems(inventoryItemList);
+
+
         // click Review Cart
         inventoryPage.clickReviewCartOrder();
 
@@ -271,7 +282,11 @@ public class CartTests extends TestsBase {
         // click Confirm Order
         inventoryPage.clickConfirmOrderDoubleClick();
 
-        inventoryPage.verifyPurchaseSuccessAfterConfirmOrder(new ArrayList<>(List.of(inventoryItem1)));
+        inventoryPage.verifyPurchaseSuccessAfterConfirmOrder(inventoryItemList);
+
+        inventoryPage.closePurchaseSuccessToast();
+
+        Assert.assertFalse(inventoryPage.isCartSummaryVisible(), "Cart summary is still visible");
     }
 
     @Test(description = "Place order with empty cart", groups = "9. Cart Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 12)
