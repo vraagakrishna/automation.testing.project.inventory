@@ -180,11 +180,13 @@
 
 16. ~~Password Change~~ (There is no option to Change Password)
 
-- [ ] All fields required → Error: All fields are required
-- [ ] Password mismatch → Error: New passwords do not match
-- [ ] Password too short → Error: New password must be at least 6 characters long
-- [ ] Password visibility toggles → Eye icons work for all 3 password fields.
-- [ ] Successful change → Success message for 3 seconds, form cleared.
+- [ ] ~~All fields required → Error: All fields are required~~ (There is no option to Change Password)
+- [ ] ~~Password mismatch → Error: New passwords do not match~~ (There is no option to Change Password)
+- [ ] ~~Password too short → Error: New password must be at least 6 characters long~~ (There is no option to Change
+  Password)
+- [ ] ~~Password visibility toggles → Eye icons work for all 3 password fields.~~ (There is no option to Change
+  Password)
+- [ ] ~~Successful change → Success message for 3 seconds, form cleared.~~ (There is no option to Change Password)
 
 <br/>
 
@@ -193,8 +195,8 @@
 - [x] Tab cycles through all actionable elements (login → tabs → form → cart buttons → invoice buttons).
 - [x] Radio storage selectable by keyboard.
 - [x] Error text uses role=alert; toast uses role=status.
-- [x] Success popup dismiss button accessible via keyboard (Enter/Space). **alert.accept() is equivalent to pressing
-  Enter**
+- [x] Success popup dismiss button accessible via keyboard (Enter/Space). (**alert.accept() is equivalent to pressing
+  Enter**)
 - [x] Invoice history panel accessible with aria-labels and proper focus management.
 
 <br/>
