@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class ReadDataFromExcel {
 
-    static final String excelDir = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "user-data.xlsx";
+    static final String excelDir = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "user-data.xlsx";
 
     static FileInputStream fileInputStream;
 
