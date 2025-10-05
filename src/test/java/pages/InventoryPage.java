@@ -2184,43 +2184,79 @@ public class InventoryPage {
             String itemDescription = String.format("%s %s", item.getBrand(), item.getDeviceType()).toLowerCase();
             Assert.assertEquals(description, itemDescription, "Item description is incorrect");
 
-            Assert.assertTrue(details.contains(item.getStorage().toLowerCase()), "Item details does not contain storage");
-            Assert.assertTrue(details.contains(item.getColor().toLowerCase()), "Item details does not contain color");
-            Assert.assertTrue(details.contains(item.getWarrantyOnPurchaseToast().toLowerCase()), "Item details does not contain warranty");
-            Assert.assertTrue(details.contains(item.getShippingMethod().toLowerCase()), "Item details does not contain shipping");
+            Assert.assertTrue(
+                    details.contains(item.getStorage().toLowerCase()),
+                    String.format("Item details does not contain storage %s on invoice %s", item.getStorage(), invoice.getInvoiceNumber())
+            );
+            Assert.assertTrue(
+                    details.contains(item.getColor().toLowerCase()),
+                    String.format("Item details does not contain color %s on invoice %s", item.getColor(), invoice.getInvoiceNumber())
+            );
+            Assert.assertTrue(
+                    details.contains(item.getWarrantyOnPurchaseToast().toLowerCase()),
+                    String.format("Item details does not contain warranty %s on invoice %s", item.getWarrantyOnPurchaseToast(), invoice.getInvoiceNumber())
+            );
+            Assert.assertTrue(
+                    details.contains(item.getShippingMethod().toLowerCase()),
+                    String.format("Item details does not contain shipping %s on invoice %s", item.getShippingMethod(), invoice.getInvoiceNumber())
+            );
 
-            Assert.assertEquals(qty, Integer.toString(item.getQuantity()), "Item quantity is incorrect");
-            Assert.assertEquals(unitPrice, this.formatCurrency(item.getUnitPrice()), "Item unit price is incorrect");
+            Assert.assertEquals(
+                    qty, Integer.toString(item.getQuantity()),
+                    String.format("Item quantity (expected: %s) is incorrect on invoice %s", item.getQuantity(), invoice.getInvoiceNumber())
+            );
+            Assert.assertEquals(
+                    unitPrice, this.formatCurrency(item.getUnitPrice()),
+                    String.format("Item unit price (expected: %s) is incorrect on invoice %s", this.formatCurrency(item.getUnitPrice()), invoice.getInvoiceNumber())
+            );
 
-            this.softAssert.assertEquals(totalPrice, this.formatCurrency(item.getTotalPrice()), "Item total price is incorrect");
+            this.softAssert.assertEquals(
+                    totalPrice, this.formatCurrency(item.getTotalPrice()),
+                    String.format("Item total price (expected: %s) is incorrect on invoice %s", this.formatCurrency(item.getTotalPrice()), invoice.getInvoiceNumber())
+            );
 
             itemNumber++;
         }
 
         logger.info("Verifying invoice sub total");
-        softAssert.assertEquals(invoiceSubTotal.getText(), "Subtotal: " + this.formatCurrency(invoice.getSubTotalPrice()), "Invoice subtotal is incorrect");
+        softAssert.assertEquals(
+                invoiceSubTotal.getText(), "Subtotal: " + this.formatCurrency(invoice.getSubTotalPrice()),
+                String.format("Invoice subtotal (expected: %s) is incorrect on invoice %s", this.formatCurrency(invoice.getSubTotalPrice()), invoice.getInvoiceNumber())
+        );
         softAssert.assertEquals(javascriptExecutorUtils.getTextAlignment(invoiceSubTotal, "totals"), "right", "Invoice subtotal is not right-aligned");
 
         if (invoice.getShippingPrice() > 0) {
             logger.info("Verifying invoice shipping");
-            softAssert.assertEquals(invoiceShipping.getText(), "Shipping: " + this.formatCurrency(invoice.getShippingPrice()), "Invoice shipping is incorrect");
+            softAssert.assertEquals(
+                    invoiceShipping.getText(), "Shipping: " + this.formatCurrency(invoice.getShippingPrice()),
+                    String.format("Invoice shipping (expected: %s) is incorrect on invoice %s", this.formatCurrency(invoice.getShippingPrice()), invoice.getInvoiceNumber())
+            );
             softAssert.assertEquals(javascriptExecutorUtils.getTextAlignment(invoiceShipping, "totals"), "right", "Invoice shipping is not right-aligned");
         }
 
         if (invoice.getWarrantyPrice() > 0) {
             logger.info("Verifying invoice warranty");
-            softAssert.assertEquals(invoiceWarranty.getText(), "Warranty: " + this.formatCurrency(invoice.getWarrantyPrice()), "Invoice warranty is incorrect");
+            softAssert.assertEquals(
+                    invoiceWarranty.getText(), "Warranty: " + this.formatCurrency(invoice.getWarrantyPrice()),
+                    String.format("Invoice warranty (expected: %s) is incorrect on invoice %s", this.formatCurrency(invoice.getWarrantyPrice()), invoice.getInvoiceNumber())
+            );
             softAssert.assertEquals(javascriptExecutorUtils.getTextAlignment(invoiceWarranty, "totals"), "right", "Invoice warranty is not right-aligned");
         }
 
         if (invoice.getDiscountPrice() > 0) {
             logger.info("Verifying invoice discount");
-            softAssert.assertEquals(invoiceDiscount.getText(), "Discount: " + this.formatCurrency(invoice.getDiscountPrice()), "Invoice discount is incorrect");
+            softAssert.assertEquals(
+                    invoiceDiscount.getText(), "Discount: " + this.formatCurrency(invoice.getDiscountPrice()),
+                    String.format("Invoice discount (expected: %s) is incorrect on invoice %s", this.formatCurrency(invoice.getDiscountPrice()), invoice.getInvoiceNumber())
+            );
             softAssert.assertEquals(javascriptExecutorUtils.getTextAlignment(invoiceDiscount, "totals"), "right", "Invoice discount is not right-aligned");
         }
 
         logger.info("Verifying invoice total");
-        softAssert.assertEquals(invoiceTotal.getText(), "Total: " + this.formatCurrency(invoice.getTotalPrice()), "Invoice total is incorrect");
+        softAssert.assertEquals(
+                invoiceTotal.getText(), "Total: " + this.formatCurrency(invoice.getTotalPrice()),
+                String.format("Invoice total (expected: %s) is incorrect on invoice %s", this.formatCurrency(invoice.getTotalPrice()), invoice.getInvoiceNumber())
+        );
         softAssert.assertEquals(javascriptExecutorUtils.getTextAlignment(invoiceTotal, "totals"), "right", "Invoice total is not right-aligned");
 
         logger.info("Verifying the thank you message");
@@ -2232,16 +2268,14 @@ public class InventoryPage {
         logger.info("Getting details to verify thank you message and footer margins");
         Rectangle thankYouRect = invoiceThankYouMessage.getRect();
         Rectangle footerRect = invoiceFooter.getRect();
-        boolean thankYouInside =
-                thankYouRect.getX() >= containerRect.getX() &&
-                        thankYouRect.getY() >= containerRect.getY() &&
-                        (thankYouRect.getX() + thankYouRect.getWidth()) <= (containerRect.getX() + containerRect.getWidth()) &&
-                        (thankYouRect.getY() + thankYouRect.getHeight()) <= (containerRect.getY() + containerRect.getHeight());
-        boolean footerInside =
-                footerRect.getX() >= containerRect.getX() &&
-                        footerRect.getY() >= containerRect.getY() &&
-                        (footerRect.getX() + footerRect.getWidth()) <= (containerRect.getX() + containerRect.getWidth()) &&
-                        (footerRect.getY() + footerRect.getHeight()) <= (containerRect.getY() + containerRect.getHeight());
+        boolean thankYouInside = thankYouRect.getX() >= containerRect.getX() &&
+                thankYouRect.getY() >= containerRect.getY() &&
+                (thankYouRect.getX() + thankYouRect.getWidth()) <= (containerRect.getX() + containerRect.getWidth()) &&
+                (thankYouRect.getY() + thankYouRect.getHeight()) <= (containerRect.getY() + containerRect.getHeight());
+        boolean footerInside = footerRect.getX() >= containerRect.getX() &&
+                footerRect.getY() >= containerRect.getY() &&
+                (footerRect.getX() + footerRect.getWidth()) <= (containerRect.getX() + containerRect.getWidth()) &&
+                (footerRect.getY() + footerRect.getHeight()) <= (containerRect.getY() + containerRect.getHeight());
 
         logger.info("Verifying if thank you message and footer is within margin");
         softAssert.assertTrue(thankYouInside, "Thank you message is not within the page margins.");
