@@ -11,6 +11,8 @@ import utils.DriverManager;
 import utils.ReportManager;
 import utils.ScreenshotUtils;
 
+import java.util.Arrays;
+
 public class Listener implements ITestListener {
 
     // <editor-fold desc="Class Fields / Constants">
@@ -43,6 +45,17 @@ public class Listener implements ITestListener {
 
         // Add groups as categories
         String[] groups = result.getMethod().getGroups();
+
+        Arrays.sort(groups, (a, b) -> {
+            try {
+                int numA = Integer.parseInt(a.split("\\.")[0]);
+                int numB = Integer.parseInt(b.split("\\.")[0]);
+                return Integer.compare(numA, numB);
+            } catch (NumberFormatException e) {
+                return a.compareToIgnoreCase(b);
+            }
+        });
+
         for (String group : groups) {
             extentTest.assignCategory(group);
         }
