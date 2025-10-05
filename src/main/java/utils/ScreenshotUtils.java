@@ -16,6 +16,11 @@ public class ScreenshotUtils {
 
     // <editor-fold desc="Public Methods">
     public void captureAndAttach(WebDriver driver, String label) {
+        // removed capture code because of storage constraints on GitHub actions
+        // captureAndAttach(driver, label, true);
+    }
+
+    public void captureAndAttach(WebDriver driver, String label, boolean takesScreenshot) {
         String path = takeScreenshot(driver, label.replace(" ", "_") + "_" + System.currentTimeMillis());
         ReportManager.getTest()
                 .info(label)

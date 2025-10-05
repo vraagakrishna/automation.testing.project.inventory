@@ -48,7 +48,7 @@ public class Listener implements ITestListener {
         }
 
         driver = DriverManager.getDriver();
-        screenshotUtils.captureAndAttach(driver, "Before Test Screenshot");
+        screenshotUtils.captureAndAttach(driver, "Before Test Screenshot", true);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class Listener implements ITestListener {
 
     private void takeAfterScreenshot(ITestResult result) {
         if (driver != null) {
-            screenshotUtils.captureAndAttach(driver, "After Test Screenshot");
+            screenshotUtils.captureAndAttach(driver, "After Test Screenshot", true);
         }
     }
     // </editor-fold>
