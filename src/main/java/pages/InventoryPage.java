@@ -886,9 +886,11 @@ public class InventoryPage {
 
             WebElement cartItemDescription = cartItem.findElement(By.id(cartItemId + "description-" + idNumber));
 
+            logger.info(String.format("Item description: '%s'", cartItemDescription.getText()));
+
             // get item from list
             InventoryItem inventoryItem = inventoryItems.stream()
-                    .filter(item -> item.getItemDescription().equals(cartItemDescription.getText().trim()))
+                    .filter(item -> item.getItemDescription().trim().equals(cartItemDescription.getText().trim()))
                     .findFirst()
                     .orElse(null);
 
