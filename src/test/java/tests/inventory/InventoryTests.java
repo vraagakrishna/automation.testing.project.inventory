@@ -36,49 +36,49 @@ public class InventoryTests extends TestsBase {
     // </editor-fold>
 
     // <editor-fold desc="Negative Tests">
-    @Test(description = "Blank inventory form submission", groups = "6. Inventory Form Negative Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 2)
+    @Test(description = "Blank inventory form submission", groups = "6. Inventory Form", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 2)
     public void blankInventoryFormSubmission() {
         inventoryPage.blankInventoryFormSubmission();
     }
 
-    @Test(description = "Submit inventory form with valid device type", groups = "6. Inventory Form Negative Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 3)
+    @Test(description = "Submit inventory form with valid device type", groups = "6. Inventory Form", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 3)
     public void validDeviceTypeSubmission() {
         inventoryPage.validDeviceTypeSubmission();
     }
 
-    @Test(description = "Change selection of device type", groups = "6. Inventory Form Negative Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 4)
+    @Test(description = "Change selection of device type", groups = "6. Inventory Form", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 4)
     public void changeSelectionOfDeviceType() {
         inventoryPage.changeSelectionOfDeviceType();
     }
 
-    @Test(description = "Submit inventory form with valid device type and brand", groups = "6. Inventory Form Negative Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 5)
+    @Test(description = "Submit inventory form with valid device type and brand", groups = "6. Inventory Form", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 5)
     public void validDeviceTypeAndBrandSubmission() {
         inventoryPage.validDeviceTypeAndBrandSubmission();
     }
 
-    @Test(description = "Submit inventory form with valid device type, brand and storage", groups = "6. Inventory Form Negative Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 6)
+    @Test(description = "Submit inventory form with valid device type, brand and storage", groups = "6. Inventory Form", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 6)
     public void validDeviceTypeAndBrandAndStorageSubmission() {
         inventoryPage.validDeviceTypeAndBrandAndStorageSubmission();
     }
 
-    @Test(description = "Submit inventory form with valid device type, brand, storage, quantity, but invalid address", groups = "6. Inventory Form Negative Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 7)
+    @Test(description = "Submit inventory form with valid device type, brand, storage, quantity, but invalid address", groups = "6. Inventory Form", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 7)
     public void invalidAddressSubmission() {
         inventoryPage.invalidAddressSubmission();
     }
 
-    @Test(description = "Submit inventory form with valid device type, brand, storage, but invalid quantity", groups = "6. Inventory Form Negative Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 8)
+    @Test(description = "Submit inventory form with valid device type, brand, storage, but invalid quantity", groups = "6. Inventory Form", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 8)
     public void invalidQuantitySubmission() {
         inventoryPage.invalidQuantitySubmission();
     }
 
-    @Test(description = "Submit inventory form with valid device type, brand, storage, address, but invalid quantity amount", groups = "6. Inventory Form Negative Tests", dependsOnMethods = {"verifyWebAutomationTabOpens", "invalidQuantitySubmission"}, priority = 9)
+    @Test(description = "Submit inventory form with valid device type, brand, storage, address, but invalid quantity amount", groups = "6. Inventory Form", dependsOnMethods = {"verifyWebAutomationTabOpens", "invalidQuantitySubmission"}, priority = 9)
     public void invalidQuantityAmountSubmission() {
         inventoryPage.invalidQuantityAmountSubmission(11);
     }
     // </editor-fold>
 
     // <editor-fold desc="Additional Coverage Tests">
-    @Test(description = "Partial form reset", groups = "6. Inventory Form Negative Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 10)
+    @Test(description = "Partial form reset", groups = "6. Inventory Form", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 10)
     public void partialFormReset() {
         inventoryPage.partiallyFillInInventoryForm();
 
@@ -91,7 +91,7 @@ public class InventoryTests extends TestsBase {
         inventoryPage.validateBlankInventoryForm();
     }
 
-    @Test(description = "Submit inventory form with 999 quantity", groups = "6. Inventory Form Negative Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 11)
+    @Test(description = "Submit inventory form with 999 quantity", groups = "6. Inventory Form", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 11)
     public void largeQuantityAmountSubmission() {
         inventoryPage.invalidQuantityAmountSubmission(999);
     }
@@ -309,7 +309,7 @@ public class InventoryTests extends TestsBase {
     // </editor-fold>
 
     // <editor-fold desc="Additional Coverage Tests 2">
-    @Test(description = "Discount removal", groups = "6. Inventory Form Negative Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 47)
+    @Test(description = "Discount removal", groups = "6. Inventory Form", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 47)
     public void discountRemoval() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "256GB", 2, "Gold", UserTestData.address, "express", "2yr", "SAVE20");
         inventoryPage.discountRemoval(inventoryItem);
