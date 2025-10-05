@@ -2228,7 +2228,7 @@ public class InventoryPage {
         softAssert.assertTrue(footerInside, "Footer is not within the page margins.");
 
         logger.info("Verifying no overlapping text");
-        // Note: checking if anything is overlapping with footer (this means the text was not property formatted to go to next page)
+        // Note: checking if anything is overlapping with footer (this means the text was not properly formatted to go to next page)
         for (WebElement row : invoiceItems) {
             softAssert.assertFalse(this.areElementsOverLapping(row, invoiceThankYouMessage), "Footer is overlapping with invoice items");
         }
@@ -2295,7 +2295,7 @@ public class InventoryPage {
         }
 
         // Verifying if logo is displayed
-        logger.info("Veifying if logo is displayed");
+        logger.info("Verifying if logo is displayed");
         int imageCount = 0;
         try (PDDocument document = Loader.loadPDF(downloadedInvoice)) {
             for (PDPage page : document.getPages()) {
