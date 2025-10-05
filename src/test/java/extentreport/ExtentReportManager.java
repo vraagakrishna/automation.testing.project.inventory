@@ -2,6 +2,7 @@ package extentreport;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import java.io.File;
 
@@ -25,6 +26,8 @@ public class ExtentReportManager {
 
         // Make the right-hand details panel scrollable
         extentSparkReporter.config().setCss(".test-contents { overflow-y: scroll; max-height: 600px; }");
+
+        extentSparkReporter.config().setTheme(Theme.DARK);
 
         // Fetch system details
         String os = System.getProperty("os.name");
