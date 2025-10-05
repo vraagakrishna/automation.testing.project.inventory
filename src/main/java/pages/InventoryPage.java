@@ -2309,64 +2309,121 @@ public class InventoryPage {
             logger.info("An exception occurred while verifying if logo is present");
             throw new RuntimeException(e);
         }
-        softAssert.assertTrue(imageCount > 0, "No logo in downloaded invoice");
+        softAssert.assertTrue(
+                imageCount > 0,
+                String.format("No logo in downloaded invoice %s", invoice.getInvoiceNumber())
+        );
 
         // Verifying expected details
         logger.info("Verifying customer name");
-        Assert.assertTrue(pdfText.contains(String.format("%s %s", UserTestData.getFirstName(), UserTestData.getLastName())), "Customer name on downloaded invoice is incorrect");
+        softAssert.assertTrue(
+                pdfText.contains(String.format("%s %s", UserTestData.getFirstName(), UserTestData.getLastName())),
+                String.format("Customer name on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+        );
 
         logger.info("Verifying customer email");
-        Assert.assertTrue(pdfText.contains(UserTestData.getUniqueEmail()), "Customer email on downloaded invoice is incorrect");
+        softAssert.assertTrue(
+                pdfText.contains(UserTestData.getUniqueEmail()),
+                String.format("Customer email on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+        );
 
         logger.info("Verifying customer address");
-        Assert.assertTrue(pdfText.contains(invoice.getAddress()), "Customer address on downloaded invoice is incorrect");
+        softAssert.assertTrue(
+                pdfText.contains(invoice.getAddress()),
+                String.format("Customer address on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+        );
 
         logger.info("Verifying invoice number");
-        Assert.assertTrue(pdfText.contains("Invoice #: " + invoice.getInvoiceNumber()), "Invoice number on downloaded invoice is incorrect");
+        softAssert.assertTrue(
+                pdfText.contains("Invoice #: " + invoice.getInvoiceNumber()),
+                String.format("Invoice number on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+        );
 
         logger.info("Verifying invoice date");
-        Assert.assertTrue(pdfText.contains("Date: " + invoice.getDate()), "Invoice date on downloaded invoice is incorrect");
+        softAssert.assertTrue(
+                pdfText.contains("Date: " + invoice.getDate()),
+                String.format("Invoice date on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+        );
 
         logger.info("Verifying invoice time");
-        Assert.assertTrue(pdfText.contains("Time: " + invoice.getTime()), "Invoice time on downloaded invoice is incorrect");
+        softAssert.assertTrue(
+                pdfText.contains("Time: " + invoice.getTime()),
+                String.format("Invoice time on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+        );
 
         logger.info("Verifying items in invoice");
         for (InventoryItem item : invoice.getInventoryItems()) {
             logger.info("Verifying invoice item: " + item.getItemDescription());
 
-            Assert.assertTrue(pdfText.toLowerCase().contains(String.format("%s %s", item.getBrand(), item.getDeviceType()).toLowerCase()), "Item description on downloaded invoice is incorrect");
-            Assert.assertTrue(pdfText.toLowerCase().contains(item.getStorage().toLowerCase()), "Item details on downloaded invoice does not contain storage");
-            Assert.assertTrue(pdfText.toLowerCase().contains(item.getColor().toLowerCase()), "Item details on downloaded invoice does not contain color");
-            Assert.assertTrue(pdfText.toLowerCase().contains(item.getWarrantyOnPurchaseToast().toLowerCase()), "Item details on downloaded invoice does not contain warranty");
-            Assert.assertTrue(pdfText.toLowerCase().contains(item.getShippingMethod().toLowerCase()), "Item details on downloaded invoice does not contain shipping");
-            Assert.assertTrue(pdfText.contains(Integer.toString(item.getQuantity())), "Item quantity on downloaded invoice is incorrect");
-            Assert.assertTrue(pdfText.contains(this.formatCurrency(item.getUnitPrice())), "Item unit price on downloaded invoice is incorrect");
-
-            this.softAssert.assertTrue(pdfText.contains(this.formatCurrency(item.getTotalPrice())), "Item total price on downloaded invoice is incorrect");
+            softAssert.assertTrue(
+                    pdfText.toLowerCase().contains(String.format("%s %s", item.getBrand(), item.getDeviceType()).toLowerCase()),
+                    String.format("Item description on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+            );
+            softAssert.assertTrue(
+                    pdfText.toLowerCase().contains(item.getStorage().toLowerCase()),
+                    String.format("Item details on downloaded invoice %s does not contain storage", invoice.getInvoiceNumber())
+            );
+            softAssert.assertTrue(
+                    pdfText.toLowerCase().contains(item.getColor().toLowerCase()),
+                    String.format("Item details on downloaded invoice %s does not contain color", invoice.getInvoiceNumber())
+            );
+            softAssert.assertTrue(
+                    pdfText.toLowerCase().contains(item.getWarrantyOnPurchaseToast().toLowerCase()),
+                    String.format("Item details on downloaded invoice %s does not contain warranty", invoice.getInvoiceNumber())
+            );
+            softAssert.assertTrue(
+                    pdfText.toLowerCase().contains(item.getShippingMethod().toLowerCase()),
+                    String.format("Item details on downloaded invoice %s does not contain shipping", invoice.getInvoiceNumber())
+            );
+            softAssert.assertTrue(
+                    pdfText.contains(Integer.toString(item.getQuantity())),
+                    String.format("Item quantity on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+            );
+            softAssert.assertTrue(
+                    pdfText.contains(this.formatCurrency(item.getUnitPrice())),
+                    String.format("Item unit price on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+            );
+            softAssert.assertTrue(
+                    pdfText.contains(this.formatCurrency(item.getTotalPrice())),
+                    String.format("Item total price on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+            );
         }
 
-        logger.info("Creating list with the expected text on invoice");
-
         logger.info("Verifying invoice sub total");
-        softAssert.assertTrue(pdfText.contains("Subtotal: " + this.formatCurrency(invoice.getSubTotalPrice())), "Invoice subtotal on downloaded invoice is incorrect");
+        softAssert.assertTrue(
+                pdfText.contains("Subtotal: " + this.formatCurrency(invoice.getSubTotalPrice())),
+                String.format("Invoice subtotal on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+        );
 
         if (invoice.getShippingPrice() > 0) {
             logger.info("Verifying invoice shipping");
-            softAssert.assertTrue(pdfText.contains(this.formatCurrency(invoice.getShippingPrice())), "Invoice shipping on downloaded invoice is incorrect");
+            softAssert.assertTrue(
+                    pdfText.contains(this.formatCurrency(invoice.getShippingPrice())),
+                    String.format("Invoice shipping on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+            );
         }
 
         if (invoice.getWarrantyPrice() > 0) {
             logger.info("Verifying invoice warranty");
-            softAssert.assertTrue(pdfText.contains("Warranty: " + this.formatCurrency(invoice.getWarrantyPrice())), "Invoice warranty on downloaded invoice is incorrect");
+            softAssert.assertTrue(
+                    pdfText.contains("Warranty: " + this.formatCurrency(invoice.getWarrantyPrice())),
+                    String.format("Invoice warranty on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+            );
         }
 
         if (invoice.getDiscountPrice() > 0) {
             logger.info("Verifying invoice discount");
-            softAssert.assertTrue(pdfText.contains("Discount: " + this.formatCurrency(invoice.getDiscountPrice())), "Invoice discount on downloaded invoice is incorrect");
+            softAssert.assertTrue(
+                    pdfText.contains("Discount: " + this.formatCurrency(invoice.getDiscountPrice())),
+                    String.format("Invoice discount on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+            );
         }
 
         logger.info("Verifying invoice total");
-        softAssert.assertTrue(pdfText.contains("Total: " + this.formatCurrency(invoice.getTotalPrice())), "Invoice total on downloaded invoice is incorrect");
+        softAssert.assertTrue(
+                pdfText.contains("Total: " + this.formatCurrency(invoice.getTotalPrice())),
+                String.format("Invoice total on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+        );
 
         logger.info("Verifying the thank you message");
         Assert.assertTrue(pdfText.contains("Thank you for your business!"), "Thank you message on downloaded invoice is incorrect");
