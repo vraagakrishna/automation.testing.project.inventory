@@ -1141,6 +1141,9 @@ public class InventoryPage {
     public void verifyPurchaseSuccessAfterConfirmOrder(List<InventoryItem> inventoryItems) {
         logger.info("Verifying Purchase");
 
+        new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(visibilityOf(purchaseSuccessToast_id));
+
         Assert.assertTrue(this.isDisplayed(purchaseSuccessToast_id), "Purchase success toast is not displayed");
 
         Assert.assertEquals(purchaseSuccessToast_id.getAttribute("role"), "status", "Toast is not role=status");
