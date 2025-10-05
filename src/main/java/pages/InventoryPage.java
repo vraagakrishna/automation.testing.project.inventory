@@ -2211,8 +2211,8 @@ public class InventoryPage {
                         (footerRect.getY() + footerRect.getHeight()) <= (containerRect.getY() + containerRect.getHeight());
 
         logger.info("Verifying if thank you message and footer is within margin");
-        Assert.assertTrue(thankYouInside, "Thank you message is not within the page margins.");
-        Assert.assertTrue(footerInside, "Footer is not within the page margins.");
+        softAssert.assertTrue(thankYouInside, "Thank you message is not within the page margins.");
+        softAssert.assertTrue(footerInside, "Footer is not within the page margins.");
 
 
         // Close invoice tab
