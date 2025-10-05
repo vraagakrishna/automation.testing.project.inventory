@@ -225,56 +225,108 @@ public class InventoryItem {
 
     // <editor-fold desc="Master Data For Price">
     private int getPriceForDevice() {
-        return switch (this.deviceType) {
-            case "Phone" -> 400;
-            case "Tablet" -> 600;
-            case "Laptop" -> 1200;
-            default -> 0;
-        };
+        int price;
+        switch (this.deviceType) {
+            case "Phone":
+                price = 400;
+                break;
+            case "Tablet":
+                price = 600;
+                break;
+            case "Laptop":
+                price = 1200;
+                break;
+            default:
+                price = 0;
+        }
+        return price;
     }
 
     private int getPriceForStorage() {
-        return switch (this.storage) {
-            case "64GB" -> 0;
-            case "128GB" -> 80;
-            case "256GB" -> 160;
-            default -> 0;
-        };
+        int price;
+        switch (this.storage) {
+            case "64GB":
+                price = 0;
+                break;
+            case "128GB":
+                price = 80;
+                break;
+            case "256GB":
+                price = 160;
+                break;
+            default:
+                price = 0;
+        }
+        return price;
     }
 
     private int getPriceForShippingMethod() {
-        return switch (this.shippingMethod) {
-            case "standard" -> 0;
-            case "express" -> 25;
-            default -> 0;
-        };
+        int price;
+        switch (this.shippingMethod) {
+            case "standard":
+                price = 0;
+                break;
+            case "express":
+                price = 25;
+                break;
+            default:
+                price = 0;
+        }
+        return price;
     }
 
     private int getPriceForWarranty() {
-        return switch (this.warranty) {
-            case "none" -> 0;
-            case "1yr" -> 49;
-            case "2yr" -> 89;
-            default -> 0;
-        };
+        int price;
+        switch (this.warranty) {
+            case "none":
+                price = 0;
+                break;
+            case "1yr":
+                price = 49;
+                break;
+            case "2yr":
+                price = 89;
+                break;
+            default:
+                price = 0;
+        }
+        return price;
     }
 
     private int getDiscountPercentage() {
-        return switch (this.discountCode) {
-            case "" -> 0;
-            case "SAVE10" -> -10;
-            case "SAVE20" -> -20;
-            default -> 0;
-        };
+        int discountAmount;
+        switch (this.discountCode) {
+            case "":
+                discountAmount = 0;
+                break;
+            case "SAVE10":
+                discountAmount = -10;
+                break;
+            case "SAVE20":
+                discountAmount = -20;
+                break;
+            default:
+                discountAmount = 0;
+        }
+        return discountAmount;
     }
 
     private String getStringDiscountPercentage() {
-        return switch (this.discountCode) {
-            case "" -> "";
-            case "SAVE10" -> "10%";
-            case "SAVE20" -> "20%";
-            default -> "";
-        };
+        String discountPercentageString;
+        switch (this.discountCode) {
+            case "":
+                discountPercentageString = "";
+                break;
+            case "SAVE10":
+                discountPercentageString = "10%";
+                break;
+            case "SAVE20":
+                discountPercentageString = "20%";
+                break;
+            default:
+                discountPercentageString = "";
+        }
+        return discountPercentageString;
     }
     // </editor-fold>
 
@@ -318,12 +370,21 @@ public class InventoryItem {
     }
 
     public String getWarrantyOnPurchaseToast() {
-        return switch (this.warranty) {
-            case "no" -> "no warranty";
-            case "1yr" -> "1yr warranty";
-            case "2yr" -> "2yr warranty";
-            default -> "no warranty";
-        };
+        String warrantyString;
+        switch (this.warranty) {
+            case "no":
+                warrantyString = "no warranty";
+                break;
+            case "1yr":
+                warrantyString = "1yr warranty";
+                break;
+            case "2yr":
+                warrantyString = "2yr warranty";
+                break;
+            default:
+                warrantyString = "no warranty";
+        }
+        return warrantyString;
     }
     // </editor-fold>
 

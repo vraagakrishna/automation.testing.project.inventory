@@ -470,31 +470,31 @@ public class InventoryPage {
             expectedFields.remove(fieldName);
 
             switch (fieldName) {
-                case "Device Type" -> {
+                case "Device Type":
                     String expectedBlankDeviceTypeText = "Select";
                     Assert.assertEquals(expectedBlankDeviceTypeText, new Select(fieldControl.findElement(By.id("deviceType"))).getFirstSelectedOption().getText(), errorMessage);
-                }
-                case "Brand" -> {
+                    break;
+                case "Brand":
                     String expectedBlankBrandText = "Select device type first";
                     Assert.assertEquals(expectedBlankBrandText, new Select(fieldControl.findElement(By.id("brand"))).getFirstSelectedOption().getText(), errorMessage);
-                }
-                case "Storage" -> {
+                    break;
+                case "Storage":
                     for (WebElement radioButton : fieldControl.findElements(By.tagName("label"))) {
                         Assert.assertFalse(radioButton.isSelected(), errorMessage);
                     }
-                }
-                case "Color" -> {
+                    break;
+                case "Color":
                     String expectedBlankColorText = "Black";
                     Assert.assertEquals(expectedBlankColorText, new Select(fieldControl.findElement(By.id("color"))).getFirstSelectedOption().getText(), errorMessage);
-                }
-                case "Quantity" -> {
+                    break;
+                case "Quantity":
                     String expectedQuantity = "1";
                     Assert.assertEquals(expectedQuantity, fieldControl.findElement(By.id("quantity")).getAttribute("value"), errorMessage);
-                }
-                case "Delivery Address" -> {
+                    break;
+                case "Delivery Address":
                     String expectedDeliveryAddress = "";
                     Assert.assertEquals(expectedDeliveryAddress, fieldControl.findElement(By.id("address")).getText(), errorMessage);
-                }
+                    break;
             }
 
             logger.info(String.format("%s is found", fieldName));
@@ -1984,12 +1984,21 @@ public class InventoryPage {
     }
 
     private String validateDiscount(String discountCode) {
-        return switch (discountCode) {
-            case "" -> "";
-            case "SAVE10" -> "Code SAVE10 applied: -10%";
-            case "SAVE20" -> "Code SAVE20 applied: -20%";
-            default -> "Invalid code";
-        };
+        String discountString;
+        switch (discountCode) {
+            case "":
+                discountString = "";
+                break;
+            case "SAVE10":
+                discountString = "Code SAVE10 applied: -10%";
+                break;
+            case "SAVE20":
+                discountString = "Code SAVE20 applied: -20%";
+                break;
+            default:
+                discountString = "Invalid code";
+        }
+        return discountString;
     }
     // </editor-fold>
 
@@ -2029,7 +2038,7 @@ public class InventoryPage {
     private List<WebElement> getCartItems() {
         return cartItems.stream()
                 .filter(e -> e.getAttribute("id").matches("cart-item-\\d+(\\.\\d+)?"))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     private double getGrandTotal(List<InventoryItem> inventoryItems) {
