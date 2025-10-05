@@ -1253,6 +1253,12 @@ public class InventoryPage {
         invoicesToggleBtn_id.click();
 
         screenshotUtils.captureAndAttach(driver, "Clicked invoice button");
+
+        logger.info("Waiting for invoice history panel to be displayed");
+        new WebDriverWait(driver, Duration.ofSeconds(20))
+                .until(visibilityOf(invoiceHistoryPanel_id));
+
+        Assert.assertTrue(this.isDisplayed(invoiceHistoryPanel_id), "Invoice history is not displayed");
     }
 
     public Invoice verifyInvoiceAndGetInvoiceNumber(Invoice invoice) {
