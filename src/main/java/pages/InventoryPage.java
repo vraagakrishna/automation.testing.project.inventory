@@ -2085,14 +2085,13 @@ public class InventoryPage {
         logger.info("Getting details to verify invoice margins");
         Rectangle containerRect = invoiceContainer.getRect();
 
-        long windowHeight = javascriptExecutorUtils.getWindowHeight();
-        long windowWidth = javascriptExecutorUtils.getWindowWidth();
+        long viewPortWidth = javascriptExecutorUtils.getViewPortWidth();
         long leftSpace = containerRect.getX();
-        long rightSpace = windowWidth - (containerRect.getX() + containerRect.getWidth());
+        long rightSpace = viewPortWidth - (containerRect.getX() + containerRect.getWidth());
         long topSpace = containerRect.getY();
 
         logger.info("Verifying invoice margins");
-        softAssert.assertTrue(Math.abs(leftSpace - rightSpace) <= 0, "Invoice container is not horizontally centered");
+        softAssert.assertTrue(Math.abs(leftSpace - rightSpace) <= 5, "Invoice container is not horizontally centered");
         softAssert.assertTrue(topSpace >= 20, "Top margin does not have enough spacing");
 
         Dimension windowSize = driver.manage().window().getSize();

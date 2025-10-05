@@ -58,12 +58,8 @@ public class JavascriptExecutorUtils {
         );
     }
 
-    public long getWindowWidth() {
-        return ((Number) js.executeScript("return window.innerWidth")).longValue();
-    }
-
-    public long getWindowHeight() {
-        return ((Number) js.executeScript("return window.innerHeight")).longValue();
+    public long getViewPortWidth() {
+        return ((Number) js.executeScript("return document.documentElement.clientWidth")).longValue();
     }
     // </editor-fold>
 
