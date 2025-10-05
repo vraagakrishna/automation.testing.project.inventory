@@ -2243,9 +2243,9 @@ public class InventoryPage {
 
         softAssert.assertTrue(yLogo < yCustomerInfo, "Logo should be above customer details");
         softAssert.assertTrue(yCustomerInfo < yItems, "Customer details should be above invoice items");
-        softAssert.assertTrue(yItems < ySubTotal, "Invoice items should appear above subtotal");
-        softAssert.assertTrue(ySubTotal < yTotal, "Subtotal should appear above total");
-        softAssert.assertTrue(yTotal < yFooter, "Total should appear above footer");
+        softAssert.assertTrue(yItems < ySubTotal, "Invoice items should be above subtotal");
+        softAssert.assertTrue(ySubTotal < yTotal, "Subtotal should be above total");
+        softAssert.assertTrue(yTotal < yFooter, "Total should be above footer");
 
 
         // Close invoice tab
