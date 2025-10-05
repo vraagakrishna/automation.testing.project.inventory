@@ -205,7 +205,7 @@
 - [x] Multi-item cart → Invoice shows all items with individual and total calculations.
 - [x] Discounted purchase → Invoice reflects discount in both HTML and PDF versions.
 - [x] Express shipping + warranty → Invoice shows all additional charges correctly.
-- [ ] PDF generation → Verify logo displays, customer info complete, **proper formatting**.
+- [x] PDF generation → Verify logo displays, customer info complete, proper formatting.
 - [x] PDF page boundaries → "Thank you" message and footer stay within margins.
 - [x] Invoice sequence → Each new purchase gets incrementing invoice number.
 - [x] History limit → Only last 10 invoices retained, oldest removed automatically.

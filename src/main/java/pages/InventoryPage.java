@@ -2052,6 +2052,16 @@ public class InventoryPage {
 
         return isPresent;
     }
+
+    private boolean areElementsOverLapping(WebElement element1, WebElement element2) {
+        Rectangle rect1 = element1.getRect();
+        Rectangle rect2 = element2.getRect();
+
+        return rect1.getY() < rect2.getY() + rect2.getHeight() &&
+                rect1.getY() + rect1.getHeight() > rect2.getY() &&
+                rect1.getX() < rect2.getX() + rect2.getWidth() &&
+                rect1.getX() + rect1.getWidth() > rect2.getX();
+    }
     // </editor-fold>
 
     // <editor-fold desc="Invoice Methods">
@@ -2213,6 +2223,26 @@ public class InventoryPage {
         logger.info("Verifying if thank you message and footer is within margin");
         softAssert.assertTrue(thankYouInside, "Thank you message is not within the page margins.");
         softAssert.assertTrue(footerInside, "Footer is not within the page margins.");
+
+        logger.info("Verifying no overlapping text");
+        // Note: checking if anything is overlapping with footer (this means the text was not property formatted to go to next page)
+        for (WebElement row : invoiceItems) {
+            softAssert.assertFalse(this.areElementsOverLapping(row, invoiceThankYouMessage), "Footer is overlapping with invoice items");
+        }
+
+        logger.info("Verifying section order");
+        int yLogo = invoiceCompanyLogo.getLocation().getY();
+        int yCustomerInfo = invoiceCustomerName.getLocation().getY();
+        int yItems = invoiceItems.get(0).getLocation().getY();
+        int ySubTotal = invoiceSubTotal.getLocation().getY();
+        int yTotal = invoiceTotal.getLocation().getY();
+        int yFooter = invoiceFooter.getLocation().getY();
+
+        softAssert.assertTrue(yLogo < yCustomerInfo, "Logo should be above customer details");
+        softAssert.assertTrue(yCustomerInfo < yItems, "Customer details should be above invoice items");
+        softAssert.assertTrue(yItems < ySubTotal, "Invoice items should appear above subtotal");
+        softAssert.assertTrue(ySubTotal < yTotal, "Subtotal should appear above total");
+        softAssert.assertTrue(yTotal < yFooter, "Total should appear above footer");
 
 
         // Close invoice tab
