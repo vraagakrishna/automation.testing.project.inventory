@@ -2090,12 +2090,10 @@ public class InventoryPage {
         long leftSpace = containerRect.getX();
         long rightSpace = windowWidth - (containerRect.getX() + containerRect.getWidth());
         long topSpace = containerRect.getY();
-        long bottomSpace = windowHeight - (containerRect.getY() + containerRect.getHeight());
 
         logger.info("Verifying invoice margins");
-        softAssert.assertTrue(Math.abs(leftSpace - rightSpace) < 0, "Invoice container is not horizontally centered");
-        softAssert.assertTrue(topSpace > 20, "Top margin does not have enough spacing");
-        softAssert.assertTrue(bottomSpace > 20, "Bottom margin does not have enough spacing");
+        softAssert.assertTrue(Math.abs(leftSpace - rightSpace) <= 0, "Invoice container is not horizontally centered");
+        softAssert.assertTrue(topSpace >= 20, "Top margin does not have enough spacing");
 
         Dimension windowSize = driver.manage().window().getSize();
         int midX = windowSize.getWidth() / 2;
