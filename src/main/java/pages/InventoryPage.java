@@ -249,6 +249,9 @@ public class InventoryPage {
     @FindBy(css = ".company-logo")
     WebElement invoiceCompanyLogo;
 
+    @FindBy(css = ".company-info .company-name")
+    WebElement invoiceCompanyName;
+
     @FindBy(css = ".customer-info .info-line strong")
     WebElement invoiceCustomerName;
 
@@ -2053,12 +2056,26 @@ public class InventoryPage {
 
         screenshotUtils.captureAndAttach(driver, "Opened Invoice tab");
 
+        Dimension windowSize = driver.manage().window().getSize();
+        int midX = windowSize.getWidth() / 2;
+        int midY = windowSize.getHeight() / 2;
+
         logger.info("Verifying tab title");
         Assert.assertEquals(driver.getTitle(), "Invoice " + invoice.getInvoiceNumber(), "Invoice title is incorrect");
 
         logger.info("Verifying company logo");
         String logoSrc = invoiceCompanyLogo.getAttribute("src");
         Assert.assertTrue(logoSrc.startsWith("data:image/png;base64,"), "Logo is missing or not base64 encoded");
+
+        logger.info("Verifying that the company logo is on left");
+        Point companyLogoPosition = invoiceCompanyLogo.getLocation();
+        Assert.assertTrue(companyLogoPosition.getX() < midX, "Company logo is not on left side of the page");
+        Assert.assertTrue(companyLogoPosition.getY() < midY, "Company logo is not on top side of the page");
+
+        logger.info("Verifying that the company name is on right");
+        Point companyNamePosition = invoiceCompanyName.getLocation();
+        Assert.assertTrue(companyNamePosition.getX() > midX, "Company name is not on right side of the page");
+        Assert.assertTrue(companyNamePosition.getY() < midY, "Company name is not on top side of the page");
 
         logger.info("Verifying customer name");
         Assert.assertEquals(invoiceCustomerName.getText(), String.format("%s %s", UserTestData.getFirstName(), UserTestData.getLastName()), "Customer name on invoice is incorrect");

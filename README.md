@@ -112,7 +112,7 @@
 - [x] View invoice → Opens in new tab with HTML format matching design.
 - [ ] Download PDF → Generates professional PDF with jsPDF, includes logo, **proper spacing, page boundaries**.
 - [x] PDF Bill To section → Shows customer name, email, and delivery address.
-- [ ] PDF layout → Company logo **top-left**, company info **top-right**, **proper margins and spacing**.
+- [ ] PDF layout → Company logo top-left, company info top-right, **proper margins and spacing**.
 - [x] Delete invoice → Removes from history with confirmation, updates count display.
 - [x] Clear all invoices → Bulk delete option with confirmation dialog.
 - [x] Invoice counter → Shows "📄 Invoices (X)" with current count in collapsible header.
