@@ -2093,7 +2093,7 @@ public class InventoryPage {
         logger.info("Switch to new tab");
         driver.switchTo().window(newWindow);
 
-        screenshotUtils.captureAndAttach(driver, "Opened Invoice tab");
+        screenshotUtils.captureAndAttach(driver, String.format("Opened Invoice %s tab", invoice.getInvoiceNumber()));
 
         logger.info("Getting details to verify invoice margins");
         Rectangle containerRect = invoiceContainer.getRect();
