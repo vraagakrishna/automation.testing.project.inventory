@@ -15,7 +15,9 @@ public class ExtentReportManager {
     // <editor-fold desc="Public Methods">
     public static ExtentReports extentReportSetup() {
         ExtentReports extentReports = new ExtentReports();
-        ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(new File(reportDir + File.separator + "inventory.html"));
+        ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(new File(
+                reportDir + File.separator + "inventory_" + System.currentTimeMillis() + ".html"
+        ));
         extentReports.attachReporter(extentSparkReporter);
 
         extentSparkReporter.config().setDocumentTitle("Extent Report");
