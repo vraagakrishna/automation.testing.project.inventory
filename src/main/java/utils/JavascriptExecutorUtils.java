@@ -1,5 +1,6 @@
 package utils;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -60,6 +61,17 @@ public class JavascriptExecutorUtils {
 
     public long getViewPortWidth() {
         return ((Number) js.executeScript("return document.documentElement.clientWidth")).longValue();
+    }
+
+    public String getTextAlignment(WebElement element, String useAncestorClass) {
+        WebElement target = element;
+
+        if (useAncestorClass != null && !useAncestorClass.isEmpty())
+            target = element.findElement(By.xpath("./ancestor::*[contains(@class,'" + useAncestorClass + "')]"));
+
+        return (String) js.executeScript(
+                "return window.getComputedStyle(arguments[0]).textAlign", target
+        );
     }
     // </editor-fold>
 

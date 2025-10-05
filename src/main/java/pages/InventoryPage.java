@@ -2166,24 +2166,29 @@ public class InventoryPage {
 
         logger.info("Verifying invoice sub total");
         softAssert.assertEquals(invoiceSubTotal.getText(), "Subtotal: " + this.formatCurrency(invoice.getSubTotalPrice()), "Invoice subtotal is incorrect");
+        softAssert.assertEquals(javascriptExecutorUtils.getTextAlignment(invoiceSubTotal, "totals"), "right", "Invoice subtotal is not right-aligned");
 
         if (invoice.getShippingPrice() > 0) {
             logger.info("Verifying invoice shipping");
             softAssert.assertEquals(invoiceShipping.getText(), "Shipping: " + this.formatCurrency(invoice.getShippingPrice()), "Invoice shipping is incorrect");
+            softAssert.assertEquals(javascriptExecutorUtils.getTextAlignment(invoiceShipping, "totals"), "right", "Invoice shipping is not right-aligned");
         }
 
         if (invoice.getWarrantyPrice() > 0) {
             logger.info("Verifying invoice warranty");
             softAssert.assertEquals(invoiceWarranty.getText(), "Warranty: " + this.formatCurrency(invoice.getWarrantyPrice()), "Invoice warranty is incorrect");
+            softAssert.assertEquals(javascriptExecutorUtils.getTextAlignment(invoiceWarranty, "totals"), "right", "Invoice warranty is not right-aligned");
         }
 
         if (invoice.getDiscountPrice() > 0) {
             logger.info("Verifying invoice discount");
             softAssert.assertEquals(invoiceDiscount.getText(), "Discount: " + this.formatCurrency(invoice.getDiscountPrice()), "Invoice discount is incorrect");
+            softAssert.assertEquals(javascriptExecutorUtils.getTextAlignment(invoiceDiscount, "totals"), "right", "Invoice discount is not right-aligned");
         }
 
         logger.info("Verifying invoice total");
         softAssert.assertEquals(invoiceTotal.getText(), "Total: " + this.formatCurrency(invoice.getTotalPrice()), "Invoice total is incorrect");
+        softAssert.assertEquals(javascriptExecutorUtils.getTextAlignment(invoiceTotal, "totals"), "right", "Invoice total is not right-aligned");
 
         logger.info("Verifying the thank you message");
         softAssert.assertEquals(invoiceThankYouMessage.getText(), "Thank you for your business!", "Thank you message is incorrect");
