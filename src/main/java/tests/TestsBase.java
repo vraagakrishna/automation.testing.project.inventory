@@ -120,10 +120,11 @@ public class TestsBase {
             inventoryPage.backToInventoryForm();
         }
 
-        if (inventoryPage.isInventoryFormVisible()) {
+        if (inventoryPage.isInventoryFormVisible())
             inventoryPage.resetInventoryForm();
+
+        if (inventoryPage.isCartSummaryVisible())
             inventoryPage.removeAllItemsInCart();
-        }
 
         if (registerPage.isRegisterFormVisible())
             registerPage.clearRegisterForm();

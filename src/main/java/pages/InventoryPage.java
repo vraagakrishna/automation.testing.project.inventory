@@ -400,6 +400,15 @@ public class InventoryPage {
         selectQuantity(1);
         typeAddress("");
     }
+
+    public boolean isCartSummaryVisible() {
+        logger.info("Checking if the Cart Summary is visible");
+        try {
+            return cartSummary_id.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
     // </editor-fold>
 
     public void verifyWebAutomationTabOpened() {
@@ -913,6 +922,9 @@ public class InventoryPage {
     public void removeAllItemsInCart() {
         logger.info("Removing all items in the cart");
         List<WebElement> filteredCartItems = getCartItems();
+
+        if (this.isCartSummaryVisible())
+            javascriptExecutorUtils.scrollToView(cartSummary_id);
 
         String cartItemId = "cart-item-";
 
