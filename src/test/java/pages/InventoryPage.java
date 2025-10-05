@@ -2446,14 +2446,14 @@ public class InventoryPage {
         logger.info("Verifying invoice sub total");
         softAssert.assertTrue(
                 pdfText.contains("Subtotal: " + this.formatCurrency(invoice.getSubTotalPrice())),
-                String.format("Invoice subtotal on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+                String.format("Invoice subtotal (expected: %s) on downloaded invoice %s is incorrect", this.formatCurrency(invoice.getSubTotalPrice()), invoice.getInvoiceNumber())
         );
 
         if (invoice.getShippingPrice() > 0) {
             logger.info("Verifying invoice shipping");
             softAssert.assertTrue(
                     pdfText.contains(this.formatCurrency(invoice.getShippingPrice())),
-                    String.format("Invoice shipping on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+                    String.format("Invoice shipping (expected: %s) on downloaded invoice %s is incorrect", this.formatCurrency(invoice.getShippingPrice()), invoice.getInvoiceNumber())
             );
         }
 
@@ -2461,7 +2461,7 @@ public class InventoryPage {
             logger.info("Verifying invoice warranty");
             softAssert.assertTrue(
                     pdfText.contains("Warranty: " + this.formatCurrency(invoice.getWarrantyPrice())),
-                    String.format("Invoice warranty on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+                    String.format("Invoice warranty (expected: %s) on downloaded invoice %s is incorrect", this.formatCurrency(invoice.getWarrantyPrice()), invoice.getInvoiceNumber())
             );
         }
 
@@ -2469,14 +2469,14 @@ public class InventoryPage {
             logger.info("Verifying invoice discount");
             softAssert.assertTrue(
                     pdfText.contains("Discount: " + this.formatCurrency(invoice.getDiscountPrice())),
-                    String.format("Invoice discount on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+                    String.format("Invoice discount (expected: %s) on downloaded invoice %s is incorrect", this.formatCurrency(invoice.getDiscountPrice()), invoice.getInvoiceNumber())
             );
         }
 
         logger.info("Verifying invoice total");
         softAssert.assertTrue(
                 pdfText.contains("Total: " + this.formatCurrency(invoice.getTotalPrice())),
-                String.format("Invoice total on downloaded invoice %s is incorrect", invoice.getInvoiceNumber())
+                String.format("Invoice total (expected: %s) on downloaded invoice %s is incorrect", this.formatCurrency(invoice.getTotalPrice()), invoice.getInvoiceNumber())
         );
 
         logger.info("Verifying the thank you message");
