@@ -247,5 +247,5 @@
 - [x] Generate a report
 - [x] Take screenshots
 - [x] Read from Excel
-- [ ] Implement CI/CD pipeline using GitHub actions
+- [x] Implement CI/CD pipeline using GitHub actions
 
