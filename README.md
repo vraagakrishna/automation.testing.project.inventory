@@ -112,7 +112,7 @@
 - [x] View invoice → Opens in new tab with HTML format matching design.
 - [ ] Download PDF → Generates professional PDF with jsPDF, includes logo, **proper spacing, page boundaries**.
 - [x] PDF Bill To section → Shows customer name, email, and delivery address.
-- [ ] PDF layout → Company logo top-left, company info top-right, **proper margins and spacing**.
+- [x] PDF layout → Company logo top-left, company info top-right, proper margins and spacing.
 - [x] Delete invoice → Removes from history with confirmation, updates count display.
 - [x] Clear all invoices → Bulk delete option with confirmation dialog.
 - [x] Invoice counter → Shows "📄 Invoices (X)" with current count in collapsible header.
@@ -206,7 +206,7 @@
 - [x] Discounted purchase → Invoice reflects discount in both HTML and PDF versions.
 - [x] Express shipping + warranty → Invoice shows all additional charges correctly.
 - [ ] PDF generation → Verify logo displays, customer info complete, **proper formatting**.
-- [ ] PDF page boundaries → "Thank you" message and footer stay within **margins**.
+- [x] PDF page boundaries → "Thank you" message and footer stay within margins.
 - [x] Invoice sequence → Each new purchase gets incrementing invoice number.
 - [x] History limit → Only last 10 invoices retained, oldest removed automatically.
 - [x] View invoice → Opens in new tab with professional HTML layout.

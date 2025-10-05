@@ -246,6 +246,9 @@ public class InventoryPage {
     // </editor-fold>
 
     // <editor-fold desc="View Invoice">
+    @FindBy(css = ".invoice-container")
+    WebElement invoiceContainer;
+
     @FindBy(css = ".company-logo")
     WebElement invoiceCompanyLogo;
 
@@ -289,7 +292,10 @@ public class InventoryPage {
     WebElement invoiceTotal;
 
     @FindBy(xpath = "//div[@class='thank-you']")
-    WebElement thankYouMessage;
+    WebElement invoiceThankYouMessage;
+
+    @FindBy(css = ".footer")
+    WebElement invoiceFooter;
     // </editor-fold>
     // </editor-fold>
 
@@ -2070,6 +2076,21 @@ public class InventoryPage {
 
         screenshotUtils.captureAndAttach(driver, "Opened Invoice tab");
 
+        logger.info("Getting details to verify invoice margins");
+        Rectangle containerRect = invoiceContainer.getRect();
+
+        long windowHeight = javascriptExecutorUtils.getWindowHeight();
+        long windowWidth = javascriptExecutorUtils.getWindowWidth();
+        long leftSpace = containerRect.getX();
+        long rightSpace = windowWidth - (containerRect.getX() + containerRect.getWidth());
+        long topSpace = containerRect.getY();
+        long bottomSpace = windowHeight - (containerRect.getY() + containerRect.getHeight());
+
+        logger.info("Verifying invoice margins");
+        softAssert.assertTrue(Math.abs(leftSpace - rightSpace) < 0, "Invoice container is not horizontally centered");
+        softAssert.assertTrue(topSpace > 20, "Top margin does not have enough spacing");
+        softAssert.assertTrue(bottomSpace > 20, "Bottom margin does not have enough spacing");
+
         Dimension windowSize = driver.manage().window().getSize();
         int midX = windowSize.getWidth() / 2;
         int midY = windowSize.getHeight() / 2;
@@ -2162,7 +2183,29 @@ public class InventoryPage {
         softAssert.assertEquals(invoiceTotal.getText(), "Total: " + this.formatCurrency(invoice.getTotalPrice()), "Invoice total is incorrect");
 
         logger.info("Verifying the thank you message");
-        Assert.assertEquals(thankYouMessage.getText(), "Thank you for your business!", "Thank you message is incorrect");
+        softAssert.assertEquals(invoiceThankYouMessage.getText(), "Thank you for your business!", "Thank you message is incorrect");
+
+        logger.info("Verifying invoice footer");
+        softAssert.assertTrue(this.isDisplayed(invoiceFooter), "Invoice footer is not displayed");
+
+        logger.info("Getting details to verify thank you message and footer margins");
+        Rectangle thankYouRect = invoiceThankYouMessage.getRect();
+        Rectangle footerRect = invoiceFooter.getRect();
+        boolean thankYouInside =
+                thankYouRect.getX() >= containerRect.getX() &&
+                        thankYouRect.getY() >= containerRect.getY() &&
+                        (thankYouRect.getX() + thankYouRect.getWidth()) <= (containerRect.getX() + containerRect.getWidth()) &&
+                        (thankYouRect.getY() + thankYouRect.getHeight()) <= (containerRect.getY() + containerRect.getHeight());
+        boolean footerInside =
+                footerRect.getX() >= containerRect.getX() &&
+                        footerRect.getY() >= containerRect.getY() &&
+                        (footerRect.getX() + footerRect.getWidth()) <= (containerRect.getX() + containerRect.getWidth()) &&
+                        (footerRect.getY() + footerRect.getHeight()) <= (containerRect.getY() + containerRect.getHeight());
+
+        logger.info("Verifying if thank you message and footer is within margin");
+        Assert.assertTrue(thankYouInside, "Thank you message is not within the page margins.");
+        Assert.assertTrue(footerInside, "Footer is not within the page margins.");
+
 
         // Close invoice tab
         logger.info("Closing invoice tab");
