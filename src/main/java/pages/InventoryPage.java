@@ -4,7 +4,10 @@ import enums.Enums;
 import model.InventoryItem;
 import model.Invoice;
 import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDResources;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.*;
@@ -2277,6 +2280,9 @@ public class InventoryPage {
 
         Assert.assertTrue(downloadedInvoice.exists(), "Invoice PDF was not downloaded!");
 
+        logger.info("Attaching invoice to test");
+        fileUtils.addFileToTest(filename);
+
         // Parse PDF text
         logger.info("Parsing the pdf");
         String pdfText;
@@ -2288,10 +2294,22 @@ public class InventoryPage {
             throw new RuntimeException(e);
         }
 
-        logger.info("Attaching invoice to test");
-        fileUtils.addFileToTest(filename);
-
-        System.out.println(pdfText);
+        // Verifying if logo is displayed
+        logger.info("Veifying if logo is displayed");
+        int imageCount = 0;
+        try (PDDocument document = Loader.loadPDF(downloadedInvoice)) {
+            for (PDPage page : document.getPages()) {
+                PDResources resources = page.getResources();
+                for (COSName name : resources.getXObjectNames()) {
+                    if (resources.isImageXObject(name))
+                        imageCount++;
+                }
+            }
+        } catch (IOException e) {
+            logger.info("An exception occurred while verifying if logo is present");
+            throw new RuntimeException(e);
+        }
+        softAssert.assertTrue(imageCount > 0, "No logo in downloaded invoice");
 
         // Verifying expected details
         logger.info("Verifying customer name");

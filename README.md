@@ -214,7 +214,7 @@
 - [x] Delete invoice → Removes from history, updates counter, no errors.
 - [x] Success popup "View History" → Expands history panel and scrolls smoothly.
 - [x] Empty history → Shows appropriate "No invoices" message.
-- [ ] Company logo → Displays in both HTML invoice and **PDF** (base64 embedded).
+- [x] Company logo → Displays in both HTML invoice and PDF (base64 embedded).
 - [x] Customer data → Bill To section shows name, email, and delivery address.
 
 <br/>
