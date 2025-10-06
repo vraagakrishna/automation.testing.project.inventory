@@ -89,15 +89,15 @@ mvn clean test
 │       │   │   │── inventory
 │       │   │   │   └── InventoryTests.java
 │       │   │   └── TestsBase.java
-│       │   ├── utils                           # Helper classes
-│       │   │   ├── AlertUtils.java
-│       │   │   ├── DriverManager.java
-│       │   │   ├── FileUtils.java
-│       │   │   ├── JavascriptExecutorUtils.java
-│       │   │   ├── ReadDataFromExcel.java
-│       │   │   ├── ReportManager.java
-│       │   │   ├── ScreenshotUtils.java
-│       │   │   └── UserTestData.java
+│       │   └── utils                           # Helper classes
+│       │       ├── AlertUtils.java
+│       │       ├── DriverManager.java
+│       │       ├── FileUtils.java
+│       │       ├── JavascriptExecutorUtils.java
+│       │       ├── ReadDataFromExcel.java
+│       │       ├── ReportManager.java
+│       │       ├── ScreenshotUtils.java
+│       │       └── UserTestData.java
 │       └── resources
 │           └── user-data.xlsx
 ├── pom.xml
