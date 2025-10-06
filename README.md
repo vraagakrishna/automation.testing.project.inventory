@@ -86,7 +86,7 @@ mvn clean test
 │       │   │   │   └── PurchaseTests.java
 │       │   │   ├── home
 │       │   │   │   └── HomePageTests.java
-│       │   │   │── inventory
+│       │   │   ├── inventory
 │       │   │   │   └── InventoryTests.java
 │       │   │   └── TestsBase.java
 │       │   └── utils                           # Helper classes
