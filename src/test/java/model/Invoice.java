@@ -92,7 +92,7 @@ public class Invoice {
     }
 
     public String getDate() {
-        return this.timeStamp.substring(0, 11).trim();
+        return this.timeStamp.substring(0, 10).trim();
     }
 
     public String getTime() {
