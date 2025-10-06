@@ -15,6 +15,12 @@ public class ExtentReportManager {
 
     // <editor-fold desc="Public Methods">
     public static ExtentReports extentReportSetup() {
+        // Create report directory
+        File dir = new File(reportDir);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
         ExtentReports extentReports = new ExtentReports();
         ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(new File(
                 reportDir + File.separator + "inventory_" + System.currentTimeMillis() + ".html"

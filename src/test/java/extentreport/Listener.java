@@ -11,9 +11,13 @@ import utils.DriverManager;
 import utils.ReportManager;
 import utils.ScreenshotUtils;
 
+import java.util.logging.Logger;
+
 public class Listener implements ITestListener {
 
     // <editor-fold desc="Class Fields / Constants">
+    private static final Logger logger = Logger.getLogger(Listener.class.getName());
+
     private static ExtentReports extent;
 
     private static ExtentTest extentTest;
@@ -82,8 +86,17 @@ public class Listener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext results) {
-        ReportManager.unload();
-        extent.flush();
+        try {
+            ReportManager.unload();
+            if (extent != null) {
+                extent.flush();
+                logger.info("Extent report flushed successfully.");
+            } else {
+                logger.info("Extent instance was null - report not flushed");
+            }
+        } catch (Exception e) {
+            logger.info("Error flushing extent report: " + e.getMessage());
+        }
     }
     // </editor-fold>
 
