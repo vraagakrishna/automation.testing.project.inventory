@@ -1880,6 +1880,11 @@ public class InventoryPage {
         );
         String deviceType = item.getDeviceType();
 
+        if (!deviceType.isEmpty() || !deviceType.isBlank()) {
+            new WebDriverWait(driver, Duration.ofSeconds(20))
+                    .until(visibilityOf(devicePreview_id));
+        }
+
         if (deviceType.equalsIgnoreCase(Enums.DeviceType.LAPTOP.getDisplayName())) {
             WebElement image = devicePreview_id.findElement(By.tagName("img"));
             Assert.assertTrue(image.getAttribute("src").contains("laptop"), "Laptop image is not displayed");
@@ -1910,8 +1915,6 @@ public class InventoryPage {
                     Assert.assertTrue(image.getAttribute("src").contains("xiami"), "Xiaomi phone is not displayed");
                 }
             }
-
-
         }
     }
 
