@@ -92,11 +92,11 @@ public class Invoice {
     }
 
     public String getDate() {
-        return this.timeStamp.substring(0, 10).trim();
+        return this.timeStamp.split("at")[0].trim();
     }
 
     public String getTime() {
-        return this.timeStamp.substring(this.timeStamp.length() - 8).trim();
+        return this.timeStamp.split("at")[1].trim();
     }
     // </editor-fold>
 
