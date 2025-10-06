@@ -2132,39 +2132,45 @@ public class InventoryPage {
         int midY = windowSize.getHeight() / 2;
 
         logger.info("Verifying tab title");
-        Assert.assertEquals(driver.getTitle(), "Invoice " + invoice.getInvoiceNumber(), "Invoice title is incorrect");
+        softAssert.assertEquals(driver.getTitle(), "Invoice " + invoice.getInvoiceNumber(), "Invoice title is incorrect");
 
         logger.info("Verifying company logo");
         String logoSrc = invoiceCompanyLogo.getAttribute("src");
-        Assert.assertTrue(logoSrc.startsWith("data:image/png;base64,"), "Logo is missing or not base64 encoded");
+        softAssert.assertTrue(logoSrc.startsWith("data:image/png;base64,"), "Logo is missing or not base64 encoded");
 
         logger.info("Verifying that the company logo is on left");
         Point companyLogoPosition = invoiceCompanyLogo.getLocation();
-        Assert.assertTrue(companyLogoPosition.getX() < midX, "Company logo is not on left side of the page");
-        Assert.assertTrue(companyLogoPosition.getY() < midY, "Company logo is not on top side of the page");
+        softAssert.assertTrue(companyLogoPosition.getX() < midX, "Company logo is not on left side of the page");
+        softAssert.assertTrue(companyLogoPosition.getY() < midY, "Company logo is not on top side of the page");
 
         logger.info("Verifying that the company name is on right");
         Point companyNamePosition = invoiceCompanyName.getLocation();
-        Assert.assertTrue(companyNamePosition.getX() > midX, "Company name is not on right side of the page");
-        Assert.assertTrue(companyNamePosition.getY() < midY, "Company name is not on top side of the page");
+        softAssert.assertTrue(companyNamePosition.getX() > midX, "Company name is not on right side of the page");
+        softAssert.assertTrue(companyNamePosition.getY() < midY, "Company name is not on top side of the page");
 
         logger.info("Verifying customer name");
-        Assert.assertEquals(invoiceCustomerName.getText(), String.format("%s %s", UserTestData.getFirstName(), UserTestData.getLastName()), "Customer name on invoice is incorrect");
+        softAssert.assertEquals(invoiceCustomerName.getText(), String.format("%s %s", UserTestData.getFirstName(), UserTestData.getLastName()), "Customer name on invoice is incorrect");
 
         logger.info("Verifying customer email");
-        Assert.assertEquals(invoiceCustomerEmail.getText(), UserTestData.getUniqueEmail(), "Customer email on invoice is incorrect");
+        softAssert.assertEquals(invoiceCustomerEmail.getText(), UserTestData.getUniqueEmail(), "Customer email on invoice is incorrect");
 
         logger.info("Verifying customer address");
-        Assert.assertEquals(invoiceCustomerAddress.getText(), invoice.getAddress(), "Address on invoice is incorrect");
+        softAssert.assertEquals(invoiceCustomerAddress.getText(), invoice.getAddress(), "Address on invoice is incorrect");
 
         logger.info("Verifying invoice number");
-        Assert.assertEquals(invoiceDetailsNumber.getText(), "Invoice #: " + invoice.getInvoiceNumber(), "Invoice number on invoice is incorrect");
+        softAssert.assertEquals(invoiceDetailsNumber.getText(), "Invoice #: " + invoice.getInvoiceNumber(), "Invoice number on invoice is incorrect");
 
         logger.info("Verifying invoice date");
-        Assert.assertEquals(invoiceDetailsDate.getText(), "Date: " + invoice.getDate(), "Invoice date on invoice is incorrect");
+        softAssert.assertEquals(
+                invoiceDetailsDate.getText(), "Date: " + invoice.getDate(),
+                String.format("Invoice date on invoice %s is incorrect", invoice.getInvoiceNumber())
+        );
 
         logger.info("Verifying invoice time");
-        Assert.assertEquals(invoiceDetailsTime.getText(), "Time: " + invoice.getTime(), "Invoice time on invoice is incorrect");
+        softAssert.assertEquals(
+                invoiceDetailsTime.getText(), "Time: " + invoice.getTime(),
+                String.format("Invoice time on invoice %s is incorrect", invoice.getInvoiceNumber())
+        );
 
         logger.info("Verifying items in invoice");
         int itemNumber = 0;
