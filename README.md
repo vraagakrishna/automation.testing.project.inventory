@@ -1,5 +1,112 @@
 # Ndosi Test Automation Project 1: Inventory Form
 
+## Overview
+
+This project automates end-to-ending of the **[Ndosi Test Automation](https://www.ndosiautomation.co.za/)** using
+**Selenium WebDriver** with **Java** and **TestNG**.
+
+It validates the core functionalities of the application such as login, adding items to cart, invoice details, etc.
+
+<br/>
+
+## Prerequisites
+
+Before setting up the project, ensure you have the following installed:
+
+* **Java JDK 11**
+* **Apache Maven 3.6 of higher**
+* **Git**
+* **Google Chrome** or **Microsoft Edge** or **Mozilla Firefox**
+
+<br/>
+
+## Setup instructions
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/vraagakrishna/automation.testing.project.inventory
+cd automation.testing.project.inventory 
+```
+
+2. Run the tests
+
+```bash
+mvn clean test
+```
+
+<br/>
+
+## Setup in IntelliJ IDEA (Optional)
+
+1. Import the project
+
+* Open IntelliJ IDEA.
+* Select **File** -> **Open**, and choose the cloned project folder.
+* Wait for IntelliJ to download all Maven dependencies.
+
+2. Open the `testng.xml` file
+
+
+3. **Right-click** -> **Run 'testng.xml'**
+
+<br/>
+
+## Project Structure
+
+```
+.
+├── src
+│   └── test
+│       ├── java
+│       │   ├── enums
+│       │   │   └── Enums.java
+│       │   ├── extentreport                    # Extent Reports setup
+│       │   │   ├── ExtentReportManager.java
+│       │   │   └── Listener.java
+│       │   ├── factory                         # WebDriver factory setup
+│       │   │   └── BrowserFactory.java
+│       │   ├── model                           # Data models
+│       │   │   ├── InventoryItem.java
+│       │   │   └── Invoice.java
+│       │   ├── pages                           # Page Object Model classes
+│       │   │   ├── HomePage.java
+│       │   │   ├── InventoryPage.java
+│       │   │   ├── LearningMaterialPage.java
+│       │   │   ├── LoginPage.java
+│       │   │   └── RegisterPage.java
+│       │   ├── tests                           # Test classes 
+│       │   │   ├── auth
+│       │   │   │   ├── LoginTests.java
+│       │   │   │   ├── NormalLoginTests.java
+│       │   │   │   └── RegisterTests.java
+│       │   │   ├── cart
+│       │   │   │   ├── CartTests.java
+│       │   │   │   ├── InvoiceTests.java
+│       │   │   │   └── PurchaseTests.java
+│       │   │   ├── home
+│       │   │   │   └── HomePageTests.java
+│       │   │   │── inventory
+│       │   │   │   └── InventoryTests.java
+│       │   │   └── TestsBase.java
+│       │   ├── utils                           # Helper classes
+│       │   │   ├── AlertUtils.java
+│       │   │   ├── DriverManager.java
+│       │   │   ├── FileUtils.java
+│       │   │   ├── JavascriptExecutorUtils.java
+│       │   │   ├── ReadDataFromExcel.java
+│       │   │   ├── ReportManager.java
+│       │   │   ├── ScreenshotUtils.java
+│       │   │   └── UserTestData.java
+│       └── resources
+│           └── user-data.xlsx
+├── pom.xml
+├── README.md
+└── testng.xml
+```
+
+<br/>
+
 ## Assessment requirements
 
 1. Login & Session
