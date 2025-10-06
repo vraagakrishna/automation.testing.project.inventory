@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import tests.TestsBase;
 import utils.DriverManager;
 import utils.ReportManager;
 import utils.ScreenshotUtils;
@@ -89,6 +90,7 @@ public class Listener implements ITestListener {
         try {
             ReportManager.unload();
             if (extent != null) {
+                extent.setSystemInfo("Browser", TestsBase.browserName);
                 extent.flush();
                 logger.info("Extent report flushed successfully.");
             } else {

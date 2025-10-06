@@ -19,6 +19,8 @@ public class TestsBase {
     // <editor-fold desc="Class Fields / Constants">
     private static final Logger logger = Logger.getLogger(TestsBase.class.getName());
 
+    public static String browserName;
+
     public final String WEBSITE_URL = "https://www.ndosiautomation.co.za/";
 
     private final BrowserFactory browserFactory;
@@ -47,6 +49,8 @@ public class TestsBase {
     @BeforeClass
     public void setUp(String browser) {
         logger.info("Setting up the driver");
+
+        browserName = browser;
 
         this.driver = browserFactory.startBrowser(browser, WEBSITE_URL);
         DriverManager.setDriver(driver);
