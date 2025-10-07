@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import utils.LoggingManager;
 import utils.ScreenshotUtils;
 
 import java.time.Duration;
@@ -16,7 +17,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 public class HomePage {
 
     // <editor-fold desc="Class Fields / Constants">
-    private static final Logger logger = Logger.getLogger(HomePage.class.getName());
+    private static final Logger logger = LoggingManager.getLogger(HomePage.class.getName());
 
     private static ScreenshotUtils screenshotUtils;
 

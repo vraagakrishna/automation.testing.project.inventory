@@ -9,6 +9,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import tests.TestsBase;
 import utils.DriverManager;
+import utils.LoggingManager;
 import utils.ReportManager;
 import utils.ScreenshotUtils;
 
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 public class Listener implements ITestListener {
 
     // <editor-fold desc="Class Fields / Constants">
-    private static final Logger logger = Logger.getLogger(Listener.class.getName());
+    private static final Logger logger = LoggingManager.getLogger(Listener.class.getName());
 
     private static ExtentReports extent;
 
@@ -58,6 +59,7 @@ public class Listener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         extentTest.log(Status.PASS, "Test Case '" + this.getDescription(result) + "' has Passed.");
+        logger.info(String.format("PASSED: %s - %s", result.getName(), this.getDescription(result)));
 
         this.takeAfterScreenshot(result);
     }
@@ -70,6 +72,7 @@ public class Listener implements ITestListener {
         Throwable throwable = result.getThrowable();
         if (throwable != null) {
             extentTest.log(Status.FAIL, "Reason: " + throwable.getMessage());
+            logger.info(String.format("FAILED: %s - %s", result.getName(), result.getThrowable()));
 
             // If you also want the stacktrace:
             extentTest.log(Status.FAIL, throwable);
@@ -81,6 +84,7 @@ public class Listener implements ITestListener {
     @Override
     public void onTestSkipped(ITestResult result) {
         extentTest.log(Status.SKIP, "Test Case '" + this.getDescription(result) + "' has been Skipped.");
+        logger.info(String.format("SKIPPED: %s", result.getName()));
 
         this.takeAfterScreenshot(result);
     }

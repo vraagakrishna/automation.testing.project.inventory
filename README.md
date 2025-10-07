@@ -94,6 +94,7 @@ mvn clean test
 │       │       ├── DriverManager.java
 │       │       ├── FileUtils.java
 │       │       ├── JavascriptExecutorUtils.java
+│       │       ├── LoggingManager.java
 │       │       ├── ReadDataFromExcel.java
 │       │       ├── ReportManager.java
 │       │       ├── ScreenshotUtils.java

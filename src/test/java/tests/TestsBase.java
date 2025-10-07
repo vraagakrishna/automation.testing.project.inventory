@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import pages.*;
 import utils.DriverManager;
+import utils.LoggingManager;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 public class TestsBase {
 
     // <editor-fold desc="Class Fields / Constants">
-    private static final Logger logger = Logger.getLogger(TestsBase.class.getName());
+    private static final Logger logger = LoggingManager.getLogger(TestsBase.class.getName());
 
     public static String browserName;
 

@@ -34,7 +34,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 public class InventoryPage {
 
     // <editor-fold desc="Class Fields / Constants">
-    private static final Logger logger = Logger.getLogger(InventoryPage.class.getName());
+    private static final Logger logger = LoggingManager.getLogger(InventoryPage.class.getName());
 
     private static ScreenshotUtils screenshotUtils;
 

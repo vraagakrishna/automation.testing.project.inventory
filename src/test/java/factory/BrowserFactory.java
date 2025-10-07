@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import utils.FileUtils;
+import utils.LoggingManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 public class BrowserFactory {
 
     // <editor-fold desc="Class Fields / Constants">
-    private static final Logger logger = Logger.getLogger(BrowserFactory.class.getName());
+    private static final Logger logger = LoggingManager.getLogger(BrowserFactory.class.getName());
 
     private static FileUtils fileUtils;
     // </editor-fold>

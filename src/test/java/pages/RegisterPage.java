@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.AlertUtils;
+import utils.LoggingManager;
 import utils.ScreenshotUtils;
 import utils.UserTestData;
 
@@ -19,7 +20,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 public class RegisterPage {
 
     // <editor-fold desc="Class Fields / Constants">
-    private static final Logger logger = Logger.getLogger(RegisterPage.class.getName());
+    private static final Logger logger = LoggingManager.getLogger(RegisterPage.class.getName());
 
     private static ScreenshotUtils screenshotUtils;
 
