@@ -1513,9 +1513,13 @@ public class InventoryPage {
             WebElement totalPrice = driver.findElement(By.id("invoice-total-" + invoice.getInvoiceNumber()));
             Assert.assertEquals(totalPrice.getText(), this.formatCurrency(invoice.getTotalPrice()));
 
-            logger.info("Verifying View Invoice");
-            WebElement viewInvoiceBtn = driver.findElement(By.id("view-invoice-" + invoice.getInvoiceNumber()));
-            this.clickViewInvoiceAndVerify(viewInvoiceBtn, invoice);
+            try {
+                logger.info("Verifying View Invoice");
+                WebElement viewInvoiceBtn = driver.findElement(By.id("view-invoice-" + invoice.getInvoiceNumber()));
+                this.clickViewInvoiceAndVerify(viewInvoiceBtn, invoice);
+            } catch (InterruptedException ex) {
+                logger.info("View Invoice failed to open: " + ex.getMessage());
+            }
 
             logger.info("Verifying Download Invoice");
             WebElement downloadInvoiceBtn = driver.findElement(By.id("download-invoice-" + invoice.getInvoiceNumber()));
@@ -2097,7 +2101,7 @@ public class InventoryPage {
     // </editor-fold>
 
     // <editor-fold desc="Invoice Methods">
-    private void clickViewInvoiceAndVerify(WebElement viewInvoiceButton, Invoice invoice) {
+    private void clickViewInvoiceAndVerify(WebElement viewInvoiceButton, Invoice invoice) throws InterruptedException {
         logger.info(String.format("Clicking View Invoice button for %s", invoice.getInvoiceNumber()));
 
         // save current window handle
@@ -2106,6 +2110,9 @@ public class InventoryPage {
 
         // click button
         viewInvoiceButton.click();
+
+        // Give JS time to execute window.open()
+        Thread.sleep(1000);
 
         logger.info("Waiting until new tab is opened");
         new WebDriverWait(driver, Duration.ofSeconds(50))
