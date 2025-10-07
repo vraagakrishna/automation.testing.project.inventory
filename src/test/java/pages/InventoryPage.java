@@ -472,11 +472,11 @@ public class InventoryPage {
             switch (fieldName) {
                 case "Device Type":
                     String expectedBlankDeviceTypeText = "Select";
-                    Assert.assertEquals(expectedBlankDeviceTypeText, new Select(fieldControl.findElement(By.id("deviceType"))).getFirstSelectedOption().getText(), errorMessage);
+                    Assert.assertEquals(new Select(fieldControl.findElement(By.id("deviceType"))).getFirstSelectedOption().getText(), expectedBlankDeviceTypeText, errorMessage);
                     break;
                 case "Brand":
                     String expectedBlankBrandText = "Select device type first";
-                    Assert.assertEquals(expectedBlankBrandText, new Select(fieldControl.findElement(By.id("brand"))).getFirstSelectedOption().getText(), errorMessage);
+                    Assert.assertEquals(new Select(fieldControl.findElement(By.id("brand"))).getFirstSelectedOption().getText(), expectedBlankBrandText, errorMessage);
                     break;
                 case "Storage":
                     for (WebElement radioButton : fieldControl.findElements(By.tagName("label"))) {
@@ -485,15 +485,15 @@ public class InventoryPage {
                     break;
                 case "Color":
                     String expectedBlankColorText = "Black";
-                    Assert.assertEquals(expectedBlankColorText, new Select(fieldControl.findElement(By.id("color"))).getFirstSelectedOption().getText(), errorMessage);
+                    Assert.assertEquals(new Select(fieldControl.findElement(By.id("color"))).getFirstSelectedOption().getText(), expectedBlankColorText, errorMessage);
                     break;
                 case "Quantity":
                     String expectedQuantity = "1";
-                    Assert.assertEquals(expectedQuantity, fieldControl.findElement(By.id("quantity")).getAttribute("value"), errorMessage);
+                    Assert.assertEquals(fieldControl.findElement(By.id("quantity")).getAttribute("value"), expectedQuantity, errorMessage);
                     break;
                 case "Delivery Address":
                     String expectedDeliveryAddress = "";
-                    Assert.assertEquals(expectedDeliveryAddress, fieldControl.findElement(By.id("address")).getText(), errorMessage);
+                    Assert.assertEquals(fieldControl.findElement(By.id("address")).getText(), expectedDeliveryAddress, errorMessage);
                     break;
             }
 
@@ -502,7 +502,7 @@ public class InventoryPage {
 
         screenshotUtils.captureAndAttach(driver, "Validate blank inventory form");
 
-        Assert.assertEquals(0, expectedFields.size(), "All the expected fields are not present");
+        Assert.assertEquals(expectedFields.size(), 0, "All the expected fields are not present");
     }
 
     public void blankInventoryFormSubmission() {
@@ -523,7 +523,7 @@ public class InventoryPage {
 
         // Brand changes to "Select Brand"
         String expectedBlankBrandText = "Select brand";
-        Assert.assertEquals(expectedBlankBrandText, new Select(brand_id).getFirstSelectedOption().getText(), "Brand is not blank");
+        Assert.assertEquals(new Select(brand_id).getFirstSelectedOption().getText(), expectedBlankBrandText, "Brand is not blank");
 
         // verify purchase device form is disabled
         Assert.assertFalse(inventoryNextBtn_id.isEnabled(), "Next Button is enabled...");
@@ -669,7 +669,7 @@ public class InventoryPage {
 
         // Brand changes to "Select Brand"
         String expectedBlankBrandText = "Select brand";
-        Assert.assertEquals(expectedBlankBrandText, new Select(brand_id).getFirstSelectedOption().getText(), "Brand is not blank");
+        Assert.assertEquals(new Select(brand_id).getFirstSelectedOption().getText(), expectedBlankBrandText, "Brand is not blank");
 
         // verify purchase device form is disabled
         Assert.assertFalse(inventoryNextBtn_id.isEnabled(), "Next Button is enabled...");
@@ -693,7 +693,7 @@ public class InventoryPage {
 
         // Brand changes to "Select Brand"
         String expectedBlankBrandText2 = "Select brand";
-        Assert.assertEquals(expectedBlankBrandText2, new Select(brand_id).getFirstSelectedOption().getText(), "Brand is not blank");
+        Assert.assertEquals(new Select(brand_id).getFirstSelectedOption().getText(), expectedBlankBrandText2, "Brand is not blank");
 
         // verify purchase device form is disabled
         Assert.assertFalse(inventoryNextBtn_id.isEnabled(), "Next Button is enabled...");
@@ -1848,7 +1848,7 @@ public class InventoryPage {
             expectedSummary.remove(fieldName);
         }
 
-        Assert.assertEquals(0, expectedSummary.size(), "All the expected fields are not present");
+        Assert.assertEquals(expectedSummary.size(), 0, "All the expected fields are not present");
     }
 
     private void validateUnitPrice(String pricePerUnitFormatted) {
