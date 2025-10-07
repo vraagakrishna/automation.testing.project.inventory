@@ -1717,7 +1717,7 @@ public class InventoryPage {
         //address_id.clear();
 
         // since there is a onChange event
-        address_id.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
+        address_id.sendKeys(Keys.chord(this.getModifierKey(), "a"), Keys.DELETE);
 
         address_id.sendKeys(address);
     }
@@ -1756,7 +1756,7 @@ public class InventoryPage {
         //discountCode_id.clear();
 
         // since there is a onChange event
-        discountCode_id.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
+        discountCode_id.sendKeys(Keys.chord(this.getModifierKey(), "a"), Keys.DELETE);
 
         discountCode_id.sendKeys(discountCode);
     }
@@ -1793,6 +1793,12 @@ public class InventoryPage {
         // enter discount
         logger.info("Entering discount");
         this.enterDiscount(inventoryItem.getDiscountCode());
+    }
+
+    private Keys getModifierKey() {
+        String os = System.getProperty("os.name").toLowerCase();
+
+        return os.contains("mac") ? Keys.COMMAND : Keys.CONTROL;
     }
     // </editor-fold>
 
