@@ -400,8 +400,6 @@ public class InventoryPage {
     }
 
     public void resetInventoryForm() {
-        this.javascriptExecutorUtils.resetForm(inventoryForm_id);
-
         // the reset of form is not always working...
         this.selectBrand("Select brand");
         this.selectDeviceType("Select");
@@ -410,6 +408,8 @@ public class InventoryPage {
         // Note: this does not reset Quantity and Address
         selectQuantity(1);
         typeAddress("");
+
+        this.javascriptExecutorUtils.resetForm(inventoryForm_id);
     }
 
     public boolean isCartSummaryVisible() {

@@ -27,7 +27,14 @@ public class JavascriptExecutorUtils {
     }
 
     public void resetForm(WebElement form) {
-        js.executeScript("arguments[0].reset();", form);
+        js.executeScript(
+                "arguments[0].querySelectorAll('input, select, textarea').forEach(el => {" +
+                        "  el.dispatchEvent(new Event('input', { bubbles: true }));" +
+                        "  el.dispatchEvent(new Event('change', { bubbles: true }));" +
+                        "});" +
+                        "arguments[0].reset();",
+                form
+        );
     }
 
     public void scrollToView(WebElement element) {
