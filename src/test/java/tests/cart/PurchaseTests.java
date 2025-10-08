@@ -1,6 +1,8 @@
 package tests.cart;
 
 import enums.Enums;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import model.InventoryItem;
 import model.Invoice;
 import org.testng.annotations.Test;
@@ -35,6 +37,7 @@ public class PurchaseTests extends TestsBase {
 
     // <editor-fold desc="Purchase Items Tests">
     @Test(description = "Purchase item and close toast", groups = "9. Purchase Items Tests", priority = 2)
+    @Severity(SeverityLevel.CRITICAL)
     public void purchaseItemAndCloseToast() {
         inventoryPage.verifyInvoiceButton(0);
 
@@ -77,6 +80,7 @@ public class PurchaseTests extends TestsBase {
     }
 
     @Test(description = "Purchase item and view invoice", groups = "9. Purchase Items Tests", priority = 3)
+    @Severity(SeverityLevel.CRITICAL)
     public void purchaseItemAndViewInvoice() {
         inventoryPage.verifyInvoiceButton(0);
 
@@ -113,6 +117,7 @@ public class PurchaseTests extends TestsBase {
     }
 
     @Test(description = "Purchase multiple items", groups = "9. Purchase Items Tests", priority = 4)
+    @Severity(SeverityLevel.CRITICAL)
     public void purchaseMultipleItems() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "256GB", 1, "Black", UserTestData.address, "express", "none", "SAVE10");
@@ -137,6 +142,7 @@ public class PurchaseTests extends TestsBase {
     }
 
     @Test(description = "Purchase 10 items", groups = "9. Purchase Items Tests", priority = 5)
+    @Severity(SeverityLevel.CRITICAL)
     public void purchaseTenItems() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "256GB", 1, "Black", UserTestData.address, "express", "none", "SAVE10");
@@ -167,6 +173,7 @@ public class PurchaseTests extends TestsBase {
     }
 
     @Test(description = "Purchase more than 10 items", groups = "9. Purchase Items Tests", priority = 6)
+    @Severity(SeverityLevel.CRITICAL)
     public void purchaseMoreThanTenItems() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "256GB", 1, "Black", UserTestData.address, "express", "none", "SAVE10");

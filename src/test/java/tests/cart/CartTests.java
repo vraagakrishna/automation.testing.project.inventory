@@ -1,6 +1,8 @@
 package tests.cart;
 
 import enums.Enums;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import model.InventoryItem;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -35,6 +37,7 @@ public class CartTests extends TestsBase {
 
     // <editor-fold desc="Cart Tests">
     @Test(description = "Add item to cart", groups = "8. Cart Tests", priority = 2)
+    @Severity(SeverityLevel.NORMAL)
     public void addItemToCart() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
@@ -52,6 +55,7 @@ public class CartTests extends TestsBase {
     }
 
     @Test(description = "Add items to cart", groups = "8. Cart Tests", priority = 3)
+    @Severity(SeverityLevel.NORMAL)
     public void addItemsToCart() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
@@ -80,6 +84,7 @@ public class CartTests extends TestsBase {
     }
 
     @Test(description = "Add items to cart and remove first item", groups = "8. Cart Tests", priority = 4)
+    @Severity(SeverityLevel.CRITICAL)
     public void addItemsToCartAndRemoveFirst() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
@@ -109,6 +114,7 @@ public class CartTests extends TestsBase {
     }
 
     @Test(description = "Add items to cart and remove last item", groups = "8. Cart Tests", priority = 5)
+    @Severity(SeverityLevel.CRITICAL)
     public void addItemsToCartAndRemoveLast() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
@@ -138,6 +144,7 @@ public class CartTests extends TestsBase {
     }
 
     @Test(description = "Add items to cart and remove discounted item", groups = "8. Cart Tests", priority = 6)
+    @Severity(SeverityLevel.BLOCKER)
     public void addItemsToCartAndRemoveDiscountedItem() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "SAVE20");
         inventoryPage.addItemToCart(inventoryItem1);
@@ -167,6 +174,7 @@ public class CartTests extends TestsBase {
     }
 
     @Test(description = "Add items to cart and reduce quantity", groups = "8. Cart Tests", priority = 7)
+    @Severity(SeverityLevel.CRITICAL)
     public void addItemsToCartAndReduceQuantity() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 10, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
@@ -185,6 +193,7 @@ public class CartTests extends TestsBase {
     }
 
     @Test(description = "Add items to cart and increase quantity", groups = "8. Cart Tests", priority = 8)
+    @Severity(SeverityLevel.CRITICAL)
     public void addItemsToCartAndIncreaseQuantity() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
@@ -205,6 +214,7 @@ public class CartTests extends TestsBase {
 
     // <editor-fold desc="Cart Tests Additional">
     @Test(description = "Add multiple items to cart", groups = "8. Cart Tests", priority = 9)
+    @Severity(SeverityLevel.BLOCKER)
     public void multiDevice() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
@@ -248,6 +258,7 @@ public class CartTests extends TestsBase {
     }
 
     @Test(description = "Remove item on cart review step", groups = "8. Cart Tests", priority = 10)
+    @Severity(SeverityLevel.CRITICAL)
     public void removeItemOnCartReview() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "SAVE10");
         inventoryPage.addItemToCart(inventoryItem1);
@@ -266,6 +277,7 @@ public class CartTests extends TestsBase {
     }
 
     @Test(description = "Double click on Place Order button", groups = "8. Cart Tests", priority = 11)
+    @Severity(SeverityLevel.CRITICAL)
     public void doubleClickOnPlaceOrder() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         inventoryPage.addItemToCart(inventoryItem1);
@@ -304,6 +316,7 @@ public class CartTests extends TestsBase {
     }
 
     @Test(description = "Place order with empty cart", groups = "8. Cart Tests", priority = 12)
+    @Severity(SeverityLevel.MINOR)
     public void placeOrderWithEmptyCart() {
         InventoryItem inventoryItem = new InventoryItem(Enums.DeviceType.LAPTOP.getDisplayName(), Enums.Brand.MACBOOK_PRO.getDisplayName(), "256GB", 1, "Gold", UserTestData.address, "express", "1yr", "SAVE10");
         inventoryPage.addItemToCart(inventoryItem);

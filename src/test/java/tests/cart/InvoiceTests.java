@@ -1,6 +1,8 @@
 package tests.cart;
 
 import enums.Enums;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import model.InventoryItem;
 import model.Invoice;
 import org.testng.annotations.Test;
@@ -35,6 +37,7 @@ public class InvoiceTests extends TestsBase {
 
     // <editor-fold desc="Invoice Tests">
     @Test(description = "Place order for single item and close toast", groups = "10. Invoice Tests", priority = 2)
+    @Severity(SeverityLevel.NORMAL)
     public void placeOrderForSingleItemAndCloseToast() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
@@ -57,6 +60,7 @@ public class InvoiceTests extends TestsBase {
     }
 
     @Test(description = "Place order and close toast", groups = "10. Invoice Tests", priority = 3)
+    @Severity(SeverityLevel.NORMAL)
     public void placeOrderAndCloseToast() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
@@ -81,6 +85,7 @@ public class InvoiceTests extends TestsBase {
     }
 
     @Test(description = "Place order and view invoice", groups = "10. Invoice Tests", priority = 4)
+    @Severity(SeverityLevel.CRITICAL)
     public void placeOrderAndViewInvoice() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
@@ -105,6 +110,7 @@ public class InvoiceTests extends TestsBase {
     }
 
     @Test(description = "Place order with discount", groups = "10. Invoice Tests", priority = 5)
+    @Severity(SeverityLevel.CRITICAL)
     public void placeOrderWithDiscount() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "SAVE10");
@@ -129,6 +135,7 @@ public class InvoiceTests extends TestsBase {
     }
 
     @Test(description = "Place order with more than 10 items", groups = "10. Invoice Tests", priority = 6)
+    @Severity(SeverityLevel.CRITICAL)
     public void placeOrderWithMoreThanTenItems() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
@@ -162,6 +169,7 @@ public class InvoiceTests extends TestsBase {
     }
 
     @Test(description = "Delete single invoice", groups = "10. Invoice Tests", priority = 7)
+    @Severity(SeverityLevel.CRITICAL)
     public void deleteSingleInvoice() {
         int orderNumber = 0;
         List<Invoice> invoices = new ArrayList<>();
@@ -199,6 +207,7 @@ public class InvoiceTests extends TestsBase {
     }
 
     @Test(description = "Order multiple items in separate orders", groups = "10. Invoice Tests", priority = 8)
+    @Severity(SeverityLevel.CRITICAL)
     public void orderMultipleItemsInSeparateOrders() {
         int orderNumber = 0;
         List<Invoice> invoices = new ArrayList<>();

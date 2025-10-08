@@ -1,5 +1,7 @@
 package tests.auth;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
 import tests.TestsBase;
 
@@ -18,6 +20,7 @@ public class NormalLoginTests extends TestsBase {
 
     // <editor-fold desc="Normal Login Tests">
     @Test(description = "Login with valid credentials", groups = "4. Normal Login Tests")
+    @Severity(SeverityLevel.CRITICAL)
     public void validCredentialsLogin() {
         loginPage.validCredentialsLogin();
 
@@ -31,6 +34,7 @@ public class NormalLoginTests extends TestsBase {
     }
 
     @Test(description = "Login with valid credentials with whitespace", groups = "4. Normal Login Tests", priority = 1)
+    @Severity(SeverityLevel.CRITICAL)
     public void validCredentialsWithWhitespaceLogin() {
         loginPage.validCredentialsWithWhitespaceLogin();
 
@@ -44,6 +48,7 @@ public class NormalLoginTests extends TestsBase {
     }
 
     @Test(description = "Login with valid credentials and logout using switch tabs", groups = "4. Normal Login Tests", priority = 2)
+    @Severity(SeverityLevel.NORMAL)
     public void validCredentialsAndLogoutUsingSwitchTabs() {
         loginPage.validCredentialsLogin();
 
@@ -60,6 +65,7 @@ public class NormalLoginTests extends TestsBase {
     }
 
     @Test(description = "Login with valid credentials and logout using reload", groups = "4. Normal Login Tests", priority = 3)
+    @Severity(SeverityLevel.NORMAL)
     public void validCredentialsAndLogoutUsingReload() {
         loginPage.validCredentialsLogin();
 

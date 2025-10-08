@@ -3,9 +3,12 @@ package extentreport;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
+import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import tests.TestsBase;
 import utils.DriverManager;
@@ -43,9 +46,19 @@ public class Listener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        String description = this.getDescription(result);
+        ITestNGMethod method = result.getMethod();
+        String description = this.getDescription(method);
         extentTest = extent.createTest(description);
         ReportManager.setTest(extentTest);
+
+        Severity severity = method.getConstructorOrMethod().getMethod().getAnnotation(Severity.class);
+
+        if (severity != null) {
+            SeverityLevel level = severity.value();
+            extentTest.getModel().setDescription(level.toString().toUpperCase());
+        } else {
+            extentTest.getModel().setDescription("UNDEFINED");
+        }
 
         String[] groups = result.getMethod().getGroups();
         for (String group : groups) {
@@ -58,15 +71,16 @@ public class Listener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        extentTest.log(Status.PASS, "Test Case '" + this.getDescription(result) + "' has Passed.");
-        logger.info(String.format("PASSED: %s - %s", result.getName(), this.getDescription(result)));
+        ITestNGMethod method = result.getMethod();
+        extentTest.log(Status.PASS, "Test Case '" + this.getDescription(method) + "' has Passed.");
+        logger.info(String.format("PASSED: %s - %s", result.getName(), this.getDescription(method)));
 
         this.takeAfterScreenshot(result);
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        extentTest.log(Status.FAIL, "Test Case '" + this.getDescription(result) + "' has Failed.");
+        extentTest.log(Status.FAIL, "Test Case '" + this.getDescription(result.getMethod()) + "' has Failed.");
 
         // Log the actual exception/assertion message
         Throwable throwable = result.getThrowable();
@@ -83,7 +97,7 @@ public class Listener implements ITestListener {
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        extentTest.log(Status.SKIP, "Test Case '" + this.getDescription(result) + "' has been Skipped.");
+        extentTest.log(Status.SKIP, "Test Case '" + this.getDescription(result.getMethod()) + "' has been Skipped.");
         logger.info(String.format("SKIPPED: %s", result.getName()));
 
         this.takeAfterScreenshot(result);
@@ -107,10 +121,10 @@ public class Listener implements ITestListener {
     // </editor-fold>
 
     // <editor-fold desc="Private Methods">
-    private String getDescription(ITestResult result) {
-        String description = result.getMethod().getDescription();
+    private String getDescription(ITestNGMethod method) {
+        String description = method.getDescription();
         if (description == null || description.isEmpty())
-            description = result.getMethod().getMethodName();
+            description = method.getMethodName();
 
         return description;
     }
