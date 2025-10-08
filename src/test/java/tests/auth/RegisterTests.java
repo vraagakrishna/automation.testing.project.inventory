@@ -6,8 +6,8 @@ import tests.TestsBase;
 public class RegisterTests extends TestsBase {
 
     // <editor-fold desc="Set Up">
-    @Test(description = "Navigate to Login Page", groups = "3. Register")
-    public void navigateToLoginPage() {
+    @Override
+    protected void setUpPage() {
         homePage.verifyHomePageIsDisplayed();
 
         homePage.clickLearningMaterial();
