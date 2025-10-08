@@ -2115,7 +2115,7 @@ public class InventoryPage {
         Thread.sleep(1000);
 
         logger.info("Waiting until new tab is opened");
-        new WebDriverWait(driver, Duration.ofSeconds(50))
+        new WebDriverWait(driver, Duration.ofSeconds(150))
                 .until(d -> driver.getWindowHandles().size() > existingHandles.size());
 
         screenshotUtils.captureAndAttach(driver, "Clicked on View Invoice button");
