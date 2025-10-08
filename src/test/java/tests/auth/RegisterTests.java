@@ -15,7 +15,7 @@ public class RegisterTests extends TestsBase {
         loginPage.verifyLoginPageIsDisplayed();
     }
 
-    @Test(description = "Click on Register button", groups = "3. Register", dependsOnMethods = "navigateToLoginPage")
+    @Test(description = "Click on Register button", groups = "3. Register")
     public void clickRegister() {
         loginPage.clickRegisterButton();
     }

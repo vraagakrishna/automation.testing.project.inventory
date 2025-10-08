@@ -9,8 +9,8 @@ import utils.UserTestData;
 public class InventoryTests extends TestsBase {
 
     // <editor-fold desc="Set Up">
-    @Test(description = "Navigate to Login Page", groups = "5. Inventory Form Negative Tests")
-    public void navigateToLoginPage() {
+    @Override
+    protected void setUpPage() {
         homePage.verifyHomePageIsDisplayed();
 
         homePage.clickLearningMaterial();
@@ -18,7 +18,7 @@ public class InventoryTests extends TestsBase {
         loginPage.verifyLoginPageIsDisplayed();
     }
 
-    @Test(description = "Login user to start Inventory Form testing", groups = "5. Inventory Form Negative Tests", dependsOnMethods = "navigateToLoginPage")
+    @Test(description = "Login user to start Inventory Form testing", groups = "5. Inventory Form Negative Tests")
     public void validLoginCredentialsToStartInventoryFormTesting() {
         loginPage.validCredentialsLogin();
 

@@ -6,8 +6,8 @@ import tests.TestsBase;
 public class NormalLoginTests extends TestsBase {
 
     // <editor-fold desc="Set Up">
-    @Test(description = "Navigate to Login Page", groups = "4. Normal Login Tests")
-    public void navigateToLoginPage() {
+    @Override
+    protected void setUpPage() {
         homePage.verifyHomePageIsDisplayed();
 
         homePage.clickLearningMaterial();
@@ -17,7 +17,7 @@ public class NormalLoginTests extends TestsBase {
     // </editor-fold>
 
     // <editor-fold desc="Normal Login Tests">
-    @Test(description = "Login with valid credentials", groups = "4. Normal Login Tests", dependsOnMethods = "navigateToLoginPage", priority = 2)
+    @Test(description = "Login with valid credentials", groups = "4. Normal Login Tests")
     public void validCredentialsLogin() {
         loginPage.validCredentialsLogin();
 
@@ -30,7 +30,7 @@ public class NormalLoginTests extends TestsBase {
         loginPage.verifyLoginPageIsDisplayed();
     }
 
-    @Test(description = "Login with valid credentials with whitespace", groups = "4. Normal Login Tests", dependsOnMethods = "navigateToLoginPage", priority = 3)
+    @Test(description = "Login with valid credentials with whitespace", groups = "4. Normal Login Tests", priority = 1)
     public void validCredentialsWithWhitespaceLogin() {
         loginPage.validCredentialsWithWhitespaceLogin();
 
@@ -43,7 +43,7 @@ public class NormalLoginTests extends TestsBase {
         loginPage.verifyLoginPageIsDisplayed();
     }
 
-    @Test(description = "Login with valid credentials and logout using switch tabs", groups = "4. Normal Login Tests", dependsOnMethods = "navigateToLoginPage", priority = 4)
+    @Test(description = "Login with valid credentials and logout using switch tabs", groups = "4. Normal Login Tests", priority = 2)
     public void validCredentialsAndLogoutUsingSwitchTabs() {
         loginPage.validCredentialsLogin();
 
@@ -59,7 +59,7 @@ public class NormalLoginTests extends TestsBase {
         loginPage.verifyLoginPageIsDisplayed();
     }
 
-    @Test(description = "Login with valid credentials and logout using reload", groups = "4. Normal Login Tests", dependsOnMethods = "navigateToLoginPage", priority = 5)
+    @Test(description = "Login with valid credentials and logout using reload", groups = "4. Normal Login Tests", priority = 3)
     public void validCredentialsAndLogoutUsingReload() {
         loginPage.validCredentialsLogin();
 

@@ -13,24 +13,18 @@ import java.util.List;
 public class InvoiceTests extends TestsBase {
 
     // <editor-fold desc="Set Up">
-    @Test(description = "Navigate to Login Page", groups = "10. Invoice Tests")
-    public void navigateToLoginPage() {
+    @Override
+    protected void setUpPage() {
         homePage.verifyHomePageIsDisplayed();
 
         homePage.clickLearningMaterial();
 
         loginPage.verifyLoginPageIsDisplayed();
-    }
 
-    @Test(description = "Login user to start Inventory Form testing", groups = "10. Invoice Tests", dependsOnMethods = "navigateToLoginPage")
-    public void validLoginCredentialsToStartInventoryFormTesting() {
         loginPage.validCredentialsLogin();
 
         learningMaterialsPage.verifyLearningMaterialsPageIsDisplayed();
-    }
 
-    @Test(description = "Verify that the Web Automation Tab opens", groups = "10. Invoice Tests", dependsOnMethods = "validLoginCredentialsToStartInventoryFormTesting")
-    public void verifyWebAutomationTabOpens() {
         learningMaterialsPage.clickWebAutomationTab();
 
         inventoryPage.verifyWebAutomationTabOpened();
@@ -40,7 +34,7 @@ public class InvoiceTests extends TestsBase {
     // </editor-fold>
 
     // <editor-fold desc="Invoice Tests">
-    @Test(description = "Place order for single item and close toast", groups = "10. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 2)
+    @Test(description = "Place order for single item and close toast", groups = "10. Invoice Tests", priority = 2)
     public void placeOrderForSingleItemAndCloseToast() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
@@ -62,7 +56,7 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.checkSoftAssertion();
     }
 
-    @Test(description = "Place order and close toast", groups = "10. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 3)
+    @Test(description = "Place order and close toast", groups = "10. Invoice Tests", priority = 3)
     public void placeOrderAndCloseToast() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
@@ -86,7 +80,7 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.checkSoftAssertion();
     }
 
-    @Test(description = "Place order and view invoice", groups = "10. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 4)
+    @Test(description = "Place order and view invoice", groups = "10. Invoice Tests", priority = 4)
     public void placeOrderAndViewInvoice() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
@@ -110,7 +104,7 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.checkSoftAssertion();
     }
 
-    @Test(description = "Place order with discount", groups = "10. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 5)
+    @Test(description = "Place order with discount", groups = "10. Invoice Tests", priority = 5)
     public void placeOrderWithDiscount() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "SAVE10");
@@ -134,7 +128,7 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.checkSoftAssertion();
     }
 
-    @Test(description = "Place order with more than 10 items", groups = "10. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 6)
+    @Test(description = "Place order with more than 10 items", groups = "10. Invoice Tests", priority = 6)
     public void placeOrderWithMoreThanTenItems() {
         // Defining inventory items
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
@@ -167,7 +161,7 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.checkSoftAssertion();
     }
 
-    @Test(description = "Delete single invoice", groups = "10. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 7)
+    @Test(description = "Delete single invoice", groups = "10. Invoice Tests", priority = 7)
     public void deleteSingleInvoice() {
         int orderNumber = 0;
         List<Invoice> invoices = new ArrayList<>();
@@ -204,7 +198,7 @@ public class InvoiceTests extends TestsBase {
         inventoryPage.checkSoftAssertion();
     }
 
-    @Test(description = "Order multiple items in separate orders", groups = "10. Invoice Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 8)
+    @Test(description = "Order multiple items in separate orders", groups = "10. Invoice Tests", priority = 8)
     public void orderMultipleItemsInSeparateOrders() {
         int orderNumber = 0;
         List<Invoice> invoices = new ArrayList<>();

@@ -13,24 +13,18 @@ import java.util.List;
 public class PurchaseTests extends TestsBase {
 
     // <editor-fold desc="Set Up">
-    @Test(description = "Navigate to Login Page", groups = "9. Purchase Items Tests")
-    public void navigateToLoginPage() {
+    @Override
+    protected void setUpPage() {
         homePage.verifyHomePageIsDisplayed();
 
         homePage.clickLearningMaterial();
 
         loginPage.verifyLoginPageIsDisplayed();
-    }
 
-    @Test(description = "Login user to start Inventory Form testing", groups = "9. Purchase Items Tests", dependsOnMethods = "navigateToLoginPage")
-    public void validLoginCredentialsToStartInventoryFormTesting() {
         loginPage.validCredentialsLogin();
 
         learningMaterialsPage.verifyLearningMaterialsPageIsDisplayed();
-    }
 
-    @Test(description = "Verify that the Web Automation Tab opens", groups = "9. Purchase Items Tests", dependsOnMethods = "validLoginCredentialsToStartInventoryFormTesting")
-    public void verifyWebAutomationTabOpens() {
         learningMaterialsPage.clickWebAutomationTab();
 
         inventoryPage.verifyWebAutomationTabOpened();
@@ -40,7 +34,7 @@ public class PurchaseTests extends TestsBase {
     // </editor-fold>
 
     // <editor-fold desc="Purchase Items Tests">
-    @Test(description = "Purchase item and close toast", groups = "9. Purchase Items Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 2)
+    @Test(description = "Purchase item and close toast", groups = "9. Purchase Items Tests", priority = 2)
     public void purchaseItemAndCloseToast() {
         inventoryPage.verifyInvoiceButton(0);
 
@@ -82,7 +76,7 @@ public class PurchaseTests extends TestsBase {
         inventoryPage.checkSoftAssertion();
     }
 
-    @Test(description = "Purchase item and view invoice", groups = "9. Purchase Items Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 3)
+    @Test(description = "Purchase item and view invoice", groups = "9. Purchase Items Tests", priority = 3)
     public void purchaseItemAndViewInvoice() {
         inventoryPage.verifyInvoiceButton(0);
 
@@ -118,7 +112,7 @@ public class PurchaseTests extends TestsBase {
         inventoryPage.checkSoftAssertion();
     }
 
-    @Test(description = "Purchase multiple items", groups = "9. Purchase Items Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 4)
+    @Test(description = "Purchase multiple items", groups = "9. Purchase Items Tests", priority = 4)
     public void purchaseMultipleItems() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "256GB", 1, "Black", UserTestData.address, "express", "none", "SAVE10");
@@ -142,7 +136,7 @@ public class PurchaseTests extends TestsBase {
         inventoryPage.checkSoftAssertion();
     }
 
-    @Test(description = "Purchase 10 items", groups = "9. Purchase Items Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 5)
+    @Test(description = "Purchase 10 items", groups = "9. Purchase Items Tests", priority = 5)
     public void purchaseTenItems() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "256GB", 1, "Black", UserTestData.address, "express", "none", "SAVE10");
@@ -172,7 +166,7 @@ public class PurchaseTests extends TestsBase {
         inventoryPage.checkSoftAssertion();
     }
 
-    @Test(description = "Purchase more than 10 items", groups = "9. Purchase Items Tests", dependsOnMethods = "verifyWebAutomationTabOpens", priority = 6)
+    @Test(description = "Purchase more than 10 items", groups = "9. Purchase Items Tests", priority = 6)
     public void purchaseMoreThanTenItems() {
         InventoryItem inventoryItem1 = new InventoryItem(Enums.DeviceType.PHONE.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "64GB", 1, "Gold", UserTestData.address, "standard", "none", "");
         InventoryItem inventoryItem2 = new InventoryItem(Enums.DeviceType.TABLET.getDisplayName(), Enums.Brand.APPLE.getDisplayName(), "256GB", 1, "Black", UserTestData.address, "express", "none", "SAVE10");

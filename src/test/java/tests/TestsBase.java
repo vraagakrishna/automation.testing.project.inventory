@@ -61,6 +61,8 @@ public class TestsBase {
         this.registerPage = PageFactory.initElements(driver, RegisterPage.class);
         this.learningMaterialsPage = PageFactory.initElements(driver, LearningMaterialsPage.class);
         this.inventoryPage = PageFactory.initElements(driver, InventoryPage.class);
+
+        this.setUpPage();
     }
 
     @AfterClass
@@ -136,6 +138,12 @@ public class TestsBase {
 
         if (loginPage.isLoginFormVisible())
             loginPage.clearLoginForm();
+    }
+    // </editor-fold>
+
+    // <editor-fold desc="Protected Methods">
+    protected void setUpPage() {
+        // the inherited classes will implement this, if necessary
     }
     // </editor-fold>
 
