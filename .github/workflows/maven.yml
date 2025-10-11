@@ -51,7 +51,13 @@ jobs:
           
           echo "Last commit seem: $LAST_COMMIT"
           
-          if [ "$LATEST_COMMIT" = "$LAST_COMMIT" ]; then
+          # Always run tests if this repo changed
+          if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "Tests triggered due to repoTest changes."
+            echo "run_tests=true" >> $GITHUB_OUTPUT
+          
+          # Otherwise, check dev repo changes
+          elif [ "$LATEST_COMMIT" = "$LAST_COMMIT" ]; then
             echo "No new commits in dev repo. Skipping tests."
             echo "run_tests=false" >> $GITHUB_OUTPUT
           else
