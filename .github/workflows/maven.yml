@@ -24,11 +24,6 @@ jobs:
       - name: Build with Maven
         run: mvn clean test
 
-      - name: List workspace contents
-        run: |
-          echo "Current directory: $(pwd)"
-          ls -R
-
       - name: Upload Test Evidence
         if: always()
         uses: actions/upload-artifact@v4
