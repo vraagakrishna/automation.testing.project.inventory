@@ -70,11 +70,18 @@ jobs:
       - name: Commit cache update
         if: steps.check_changes.outputs.run_tests == 'true'
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .github/cache/latest_dev_repo_commit.txt
-          git commit -m "Update last seen commit from repoDev" || echo "No changes to commit"
-          git push || echo "No push permission or nothing to update"
+          echo "Committing updated cache file..."
+          mkdir -p .github/cache
+          
+          if [ -f ".github/cache/latest_dev_repo_commit.txt" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add .github/cache/latest_dev_repo_commit.txt || echo "Nothing to add"
+            git diff --cached --quiet && echo "No changes to commit" || git commit -m "Update last seen commit from repoDev"
+            git push || echo "No push permission or nothing to update"
+          else
+            echo "No cache file found — skipping commit."
+          fi
 
       # Set up JDK
       - name: Set up JDK 11
