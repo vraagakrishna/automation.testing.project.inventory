@@ -6,8 +6,12 @@ on:
     - cron: '*/10 * * * *' # poll every 10 minutes
 
   workflow_dispatch:  # allow manual runs too
+
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - '.github/cache/**'  # prevent self-trigger
+
   pull_request:
     branches: [ "main" ]
 
