@@ -1,5 +1,9 @@
 name: Running Inventory Tests
 
+# grant permission to write content
+permissions:
+  contents: write
+
 on:
   # run manually or on schedule
   schedule:
