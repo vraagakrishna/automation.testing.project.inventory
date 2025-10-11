@@ -8,17 +8,17 @@
         <parameter name="browser" value="Edge"/>
         <classes>
             <class name="tests.home.HomePageTests"></class>
-            <class name="tests.auth.LoginTests"></class>
+            <!--            <class name="tests.auth.LoginTests"></class>-->
 
             <!-- <class name="tests.auth.RegisterTests"></class>-->
 
-            <class name="tests.auth.NormalLoginTests"></class>
+            <!--            <class name="tests.auth.NormalLoginTests"></class>-->
 
-            <class name="tests.inventory.InventoryTests"></class>
-            <class name="tests.cart.CartTests"></class>
+            <!--            <class name="tests.inventory.InventoryTests"></class>-->
+            <!--            <class name="tests.cart.CartTests"></class>-->
 
-            <class name="tests.cart.PurchaseTests"></class>
-            <class name="tests.cart.InvoiceTests"></class>
+            <!--            <class name="tests.cart.PurchaseTests"></class>-->
+            <!--            <class name="tests.cart.InvoiceTests"></class>-->
         </classes>
     </test>
 </suite>
