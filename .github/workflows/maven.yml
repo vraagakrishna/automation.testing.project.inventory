@@ -86,7 +86,6 @@ jobs:
           git add .github/cache/latest_dev_repo_commit.txt
           git diff --cached --quiet && echo "No changes to commit" || git commit -m "Update last seen commit from dev repo"
           git push || echo "No push permission or nothing to update"
-          fi
 
       # Set up JDK
       - name: Set up JDK 11
