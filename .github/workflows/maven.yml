@@ -86,7 +86,7 @@ jobs:
 
       # Upload test report
       - name: Upload Test Evidence
-        if: always()
+        if: steps.check_changes.run_tests == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: test-evidence
