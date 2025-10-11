@@ -25,8 +25,13 @@ jobs:
         id: check_changes
         run: |
           echo "Checking latest commit in dev repo" 
-          LATEST_COMMIT=$(curl -s https://github.com/vraagakrishna/automation.testing.project.development/commits/main | jq -r '.sha')
-          echo "Latest commit: $LATEST_COMMIT"
+          
+          LATEST_COMMIT=$(curl -s \
+            -H "Authorization: token ${{ secrets.DEV_REPO_TOKEN }}" \
+            https://api.github.com/repos/vraagakrishna/automation.testing.project.development/commits/main | jq -r '.sha')
+          
+          echo "Latest commit SHA: $LATEST_COMMIT"
+          echo "latest_commit=$LATEST_COMMIT" >> $GITHUB_OUTPUT
           
           mkdir -p .github/cache
           if [ -f .github/cache/latest_dev_repo_commit.txt ]; then
