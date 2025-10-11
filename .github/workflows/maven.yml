@@ -1,6 +1,11 @@
 name: Running Inventory Tests
 
 on:
+  # run manually or on schedule
+  schedule:
+    - cron: '*/10 * * * *' # poll every 10 minutes
+
+  workflow_dispatch:  # allow manual runs too
   push:
     branches: [ "main" ]
   pull_request:
@@ -12,18 +17,60 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout current repo
       - uses: actions/checkout@v4
 
+      # Check if development repo changed since last run
+      - name: Check for new commits in development repo
+        id: check_changes
+        run: |
+          echo "Checking latest commit in dev repo" 
+          LATEST_COMMIT=$(curl -s https://github.com/vraagakrishna/automation.testing.project.development/commits/main | jq -r '.sha')
+          echo "Latest commit: $LATEST_COMMIT"
+          
+          mkdir -p .github/cache
+          if [ -f .github/cache/latest_dev_repo_commit.txt ]; then
+            LAST_COMMIT=$(cat .github/cache/latest_dev_repo_commit.txt)
+          else
+            LAST_COMMIT=""
+          fi
+          
+          echo "Last commit seem: $LAST_COMMIT"
+          
+          if [ "$LATEST_COMMIT" = "$LAST_COMMIT" ]; then
+            echo "No new commits in dev repo. Skipping tests."
+            echo "run_tests=false" >> $GITHUB_OUTPUT
+          else
+            echo "New commit detected in dev repo!"
+            echo "$LATEST_COMMIT" > .github/cache/latest_dev_repo_commit.txt
+            echo "run_tests=true" >> $GITHUB_OUTPUT
+          fi
+
+      # Save last seem commit
+      - name: Commit cache update
+        if: steps.check_changes.run_tests == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/cache/last_repoDev_commit.txt
+          git commit -m "Update last seen commit from repoDev" || echo "No changes to commit"
+          git push || echo "No push permission or nothing to update"
+
+      # Set up JDK
       - name: Set up JDK 11
+        if: steps.check_changes.run_tests == 'true'
         uses: actions/setup-java@v4
         with:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
 
+      # Run Maven tests
       - name: Build with Maven
+        if: steps.check_changes.run_tests == 'true'
         run: mvn clean test
 
+      # Upload test report
       - name: Upload Test Evidence
         if: always()
         uses: actions/upload-artifact@v4
