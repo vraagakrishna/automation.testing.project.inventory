@@ -53,7 +53,7 @@ jobs:
           
           # Always run tests if this repo changed
           if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "pull_request" ]; then
-            echo "Tests triggered due to repoTest changes."
+            echo "Tests triggered due to current repo changed."
             echo "run_tests=true" >> $GITHUB_OUTPUT
           
           # Otherwise, check dev repo changes
@@ -68,7 +68,7 @@ jobs:
 
       # Save last seem commit
       - name: Commit cache update
-        if: steps.check_changes.run_tests == 'true'
+        if: steps.check_changes.outputs.run_tests == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -78,7 +78,7 @@ jobs:
 
       # Set up JDK
       - name: Set up JDK 11
-        if: steps.check_changes.run_tests == 'true'
+        if: steps.check_changes.outputs.run_tests == 'true'
         uses: actions/setup-java@v4
         with:
           java-version: '11'
@@ -87,12 +87,12 @@ jobs:
 
       # Run Maven tests
       - name: Build with Maven
-        if: steps.check_changes.run_tests == 'true'
+        if: steps.check_changes.outputs.run_tests == 'true'
         run: mvn clean test
 
       # Upload test report
       - name: Upload Test Evidence
-        if: steps.check_changes.run_tests == 'true'
+        if: steps.check_changes.outputs.run_tests == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: test-evidence
