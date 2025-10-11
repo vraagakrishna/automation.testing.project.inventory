@@ -34,8 +34,10 @@ jobs:
           echo "latest_commit=$LATEST_COMMIT" >> $GITHUB_OUTPUT
           
           mkdir -p .github/cache
-          if [ -f .github/cache/latest_dev_repo_commit.txt ]; then
-            LAST_COMMIT=$(cat .github/cache/latest_dev_repo_commit.txt)
+          CACHE_FILE=".github/cache/latest_dev_repo_commit.txt"
+          
+          if [ -f "$CACHE_FILE" ]; then
+            LAST_COMMIT=$(cat "$CACHE_FILE")
           else
             LAST_COMMIT=""
           fi
@@ -47,7 +49,7 @@ jobs:
             echo "run_tests=false" >> $GITHUB_OUTPUT
           else
             echo "New commit detected in dev repo!"
-            echo "$LATEST_COMMIT" > .github/cache/latest_dev_repo_commit.txt
+            echo "$LATEST_COMMIT" > "$CACHE_FILE"
             echo "run_tests=true" >> $GITHUB_OUTPUT
           fi
 
@@ -57,7 +59,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .github/cache/last_repoDev_commit.txt
+          git add .github/cache/latest_dev_repo_commit.txt
           git commit -m "Update last seen commit from repoDev" || echo "No changes to commit"
           git push || echo "No push permission or nothing to update"
 
