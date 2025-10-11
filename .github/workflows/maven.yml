@@ -77,7 +77,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add .github/cache/latest_dev_repo_commit.txt || echo "Nothing to add"
-            git diff --cached --quiet && echo "No changes to commit" || git commit -m "Update last seen commit from repoDev"
+            git diff --cached --quiet && echo "No changes to commit" || git commit -m "Update last seen commit from dev repo"
             git push || echo "No push permission or nothing to update"
           else
             echo "No cache file found — skipping commit."
